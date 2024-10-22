@@ -1,12 +1,18 @@
-package org.example.Controller;
+package org.example.lk.ijse;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class Login {
 
@@ -44,12 +50,21 @@ public class Login {
     private TextField usernametxt;
 
     @FXML
-    void SigninOnAction(ActionEvent event) {
-
+    void SigninOnAction(ActionEvent event) throws IOException {
+        Parent parent = FXMLLoader.load(getClass().getResource("/View/RegisterTheSystem.fxml"));
+        Scene scene = new Scene(parent);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
+        stage.setTitle("Sign Up");
+        stage.centerOnScreen();
     }
 
     @FXML
     void loginOnAction(ActionEvent event) {
+
+
+
 
     }
 

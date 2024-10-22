@@ -1,11 +1,17 @@
-package org.example.Controller;
+package org.example.lk.ijse;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class RegisterTheSystem {
 
@@ -28,7 +34,10 @@ public class RegisterTheSystem {
     private TextField usernametxt;
 
     @FXML
-    void SignUpOnAction(ActionEvent event) {
+    void SignUpOnAction(ActionEvent event) throws IOException {
+
+
+
 
     }
 

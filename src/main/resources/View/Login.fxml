@@ -9,11 +9,11 @@
 <?import javafx.scene.text.Text?>
 
 
-<AnchorPane fx:id="loginpage" prefHeight="458.0" prefWidth="676.0" style="-fx-background-color: #243642;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.Controller.Login">
+<AnchorPane fx:id="loginpage" prefHeight="458.0" prefWidth="676.0" style="-fx-background-color: #243642;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.lk.ijse.Login">
    <children>
       <ImageView fx:id="loginPic" fitHeight="457.0" fitWidth="271.0">
          <image>
-            <Image url="@Assert/2b4438c84840f07cdcb66925f64b17d0.jpg" />
+            <Image url="@../Assert/2b4438c84840f07cdcb66925f64b17d0.jpg" />
          </image>
       </ImageView>
       <TextField fx:id="usernametxt" layoutX="331.0" layoutY="127.0" opacity="0.79" prefHeight="26.0" prefWidth="271.0" promptText="Username" />
@@ -35,12 +35,12 @@
       </Text>
       <ImageView fx:id="passwordpic" fitHeight="15.0" fitWidth="21.0" layoutX="573.0" layoutY="181.0">
          <image>
-            <Image url="@../../../../Final-Project-Layerd/src/main/resources/Images/icons8-password-30.png" />
+            <Image url="@../../../../../Final-Project-Layerd/src/main/resources/Images/icons8-password-30.png" />
          </image>
       </ImageView>
       <ImageView fx:id="usernamepic" fitHeight="14.0" fitWidth="21.0" layoutX="569.0" layoutY="135.0">
          <image>
-            <Image url="@../../../../Final-Project-Layerd/src/main/resources/Images/icons8-user-50.png" />
+            <Image url="@../../../../../Final-Project-Layerd/src/main/resources/Images/icons8-user-50.png" />
          </image>
       </ImageView>
       <Text fx:id="OR" fill="#111010" layoutX="40.0" layoutY="243.0" strokeType="OUTSIDE" strokeWidth="0.0" text="OR Continue With" textAlignment="CENTER" wrappingWidth="172.44775390625">
