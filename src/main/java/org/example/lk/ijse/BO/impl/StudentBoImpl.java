@@ -4,6 +4,8 @@ import org.example.lk.ijse.DAO.DaoFactory;
 import org.example.lk.ijse.DAO.cutom.StudentDao;
 import org.example.lk.ijse.Entity.Student;
 
+import java.util.List;
+
 public class StudentBoImpl implements StudentBo {
 
     StudentDao studentDao = (StudentDao) DaoFactory.getDaoFactory().getDAO(DaoFactory.DAOTypes.STUDENT);
@@ -22,6 +24,15 @@ public class StudentBoImpl implements StudentBo {
     @Override
     public boolean deleteStudent(int id){
         return studentDao.delete(id);
+    }
+
+    @Override
+    public List<Student> getAllStudent(){
+
+        List<Student> allStudent = studentDao.getaAll();
+
+        return allStudent;
+
     }
 
 }

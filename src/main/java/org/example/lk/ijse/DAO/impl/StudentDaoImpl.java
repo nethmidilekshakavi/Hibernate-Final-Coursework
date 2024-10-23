@@ -7,6 +7,8 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.NativeQuery;
 
+import java.util.List;
+
 public class StudentDaoImpl implements StudentDao {
 
     @Override
@@ -54,6 +56,21 @@ public class StudentDaoImpl implements StudentDao {
         session.close();
 
         return false;
+    }
+
+    @Override
+    public List<Student> getaAll() {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        List<Student> list = session.createQuery("from Student ", Student.class).list();
+
+
+        transaction.commit();
+        session.close();
+
+
+        return list;
     }
 
 }

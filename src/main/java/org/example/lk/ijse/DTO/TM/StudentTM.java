@@ -16,6 +16,7 @@ public class StudentTM extends StudentController {
     private  String FirstName;
     private  String LastName;
     private  String PhoneNumber;
+    private  String address;
     private String email;
 
 
