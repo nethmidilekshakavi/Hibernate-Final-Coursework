@@ -5,4 +5,8 @@ import org.example.lk.ijse.Entity.Student;
 
 public interface StudentDao extends CrudDao<Student> {
     boolean save(Student enitiy);
+
+    boolean update(Student dto);
+
+    boolean delete(int entity);
 }

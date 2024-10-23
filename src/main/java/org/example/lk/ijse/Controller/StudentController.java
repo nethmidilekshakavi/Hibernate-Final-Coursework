@@ -11,6 +11,7 @@ import org.example.lk.ijse.BO.custom.StudentBo;
 import org.example.lk.ijse.DTO.StudentDto;
 import org.example.lk.ijse.Entity.Student;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 
 public class StudentController {
@@ -20,6 +21,12 @@ public class StudentController {
 
     @FXML
     private Text addresstext;
+
+    @FXML
+    private Text idtext;
+
+    @FXML
+    private TextField idtxt;
 
     @FXML
     private TextField addresstxt;
@@ -85,7 +92,20 @@ public class StudentController {
 
     @FXML
     void deleteOnActionStudent(ActionEvent event) {
+        int id = Integer.parseInt(idtxt.getText());
 
+        boolean s = false;
+
+        s = studentBo.deleteStudent(id);
+
+
+        if (s){
+            new Alert(Alert.AlertType.ERROR,"Student not delete").show();
+        }
+        else {
+            new Alert(Alert.AlertType.CONFIRMATION,"Student delete Success").show();
+
+        }
     }
 
     @FXML
@@ -126,6 +146,33 @@ public class StudentController {
 
     @FXML
     void updateOnActionStudent(ActionEvent event) {
+        int id = 0;
+        String fn = firstNametxt.getText();
+        String ln = lastnametxt.getText();
+        String address = addresstxt.getText();
+        String email = emailtxt.getText();
+        String number = phonenumbertxt.getText();
+        LocalDate enrollmentDate = datecombo.getValue();
+
+
+        Student student = new Student(id,fn,ln,address,email,number,enrollmentDate);
+
+        boolean s = false;
+
+        try{
+
+            s = studentBo.updateStudent(student);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if (s){
+            new Alert(Alert.AlertType.CONFIRMATION,"Customer Update Success").show();
+        }else {
+
+            new Alert(Alert.AlertType.ERROR,"Student Update UnSuccess").show();
+        }
 
     }
 

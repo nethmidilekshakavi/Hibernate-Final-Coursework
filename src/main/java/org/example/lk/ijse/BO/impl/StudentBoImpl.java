@@ -13,4 +13,15 @@ public class StudentBoImpl implements StudentBo {
          return studentDao.save(new Student(entity.getId(),entity.getFirstName(),entity.getLastName(),entity.getAddress(),entity.getEmail(),entity.getPhoneNumber(),entity.getEnrollmentDate()));
     }
 
+
+    @Override
+    public boolean updateStudent(Student entity){
+        return studentDao.update(new Student(entity.getId(),entity.getFirstName(),entity.getLastName(),entity.getAddress(),entity.getEmail(),entity.getPhoneNumber(),entity.getEnrollmentDate()));
+    }
+
+    @Override
+    public boolean deleteStudent(int id){
+        return studentDao.delete(id);
+    }
+
 }
