@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane fx:id="studentForm" prefHeight="711.0" prefWidth="828.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.lk.ijse.Controller.StudentController">
+   <children>
+      <Text fx:id="topic" layoutX="270.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="STUDENT MANAGMENT ">
+         <font>
+            <Font name="Bookman Old Style" size="24.0" />
+         </font>
+      </Text>
+      <TextField fx:id="firstNametxt" layoutX="63.0" layoutY="147.0" prefHeight="26.0" prefWidth="398.0" />
+      <TextField fx:id="lastnametxt" layoutX="63.0" layoutY="209.0" prefHeight="26.0" prefWidth="398.0" />
+      <TextField fx:id="addresstxt" layoutX="63.0" layoutY="271.0" prefHeight="26.0" prefWidth="398.0" />
+      <TextField fx:id="emailtxt" layoutX="63.0" layoutY="331.0" prefHeight="26.0" prefWidth="398.0" />
+      <TextField fx:id="phonenumbertxt" layoutX="63.0" layoutY="391.0" prefHeight="26.0" prefWidth="398.0" />
+      <DatePicker fx:id="datecombo" layoutX="503.0" layoutY="146.0" prefHeight="28.0" prefWidth="291.0" promptText="Date" />
+      <Text fx:id="fntext" layoutX="63.0" layoutY="133.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text fx:id="lntext" layoutX="63.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text fx:id="addresstext" layoutX="63.0" layoutY="257.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text fx:id="emailtext" layoutX="63.0" layoutY="321.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text fx:id="pntext" layoutX="63.0" layoutY="379.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone Number">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Button layoutX="65.0" layoutY="441.0" mnemonicParsing="false" onAction="#saveOnActionStudent" prefHeight="26.0" prefWidth="94.0" text="Save" />
+      <Button layoutX="187.0" layoutY="441.0" mnemonicParsing="false" onAction="#updateOnActionStudent" prefHeight="26.0" prefWidth="94.0" text="Update" />
+      <Button layoutX="303.0" layoutY="441.0" mnemonicParsing="false" onAction="#deleteOnActionStudent" prefHeight="26.0" prefWidth="94.0" text="Delete" />
+      <Button layoutX="419.0" layoutY="441.0" mnemonicParsing="false" onAction="#clearOnActionStudent" prefHeight="26.0" prefWidth="94.0" text="Clear" />
+      <TableView fx:id="StudentTable" layoutX="63.0" layoutY="497.0" prefHeight="200.0" prefWidth="735.0">
+        <columns>
+          <TableColumn fx:id="colid" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="colfirstname" prefWidth="126.39993286132812" text="First Name" />
+            <TableColumn fx:id="collastname" prefWidth="126.39993286132812" text="Last Name" />
+            <TableColumn fx:id="coladdress" prefWidth="126.39993286132812" text="Address" />
+            <TableColumn fx:id="colemail" prefWidth="126.39993286132812" text="Email" />
+            <TableColumn fx:id="colnumber" prefWidth="153.5999633789063" text="Phone Number" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

@@ -61,7 +61,23 @@ public class Login {
     }
 
     @FXML
-    void loginOnAction(ActionEvent event) {
+    void loginOnAction(ActionEvent event) throws IOException {
+
+        String un = "hii";
+        String pw = "1234";
+
+        if (usernametxt.getText().equals(un) && passwordtxt.getText().equals(pw)){
+
+            Parent parent = FXMLLoader.load(getClass().getResource("/View/StudentForm.fxml"));
+            Scene scene = new Scene(parent);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.centerOnScreen();
+            stage.show();
+
+        }else {
+            System.out.printf("Wrong");
+        }
 
 
 
