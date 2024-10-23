@@ -13,4 +13,6 @@ public interface StudentDao extends CrudDao<Student> {
     boolean delete(int entity);
 
     List<Student> getaAll();
+
+    Student searchByCID(int id);
 }

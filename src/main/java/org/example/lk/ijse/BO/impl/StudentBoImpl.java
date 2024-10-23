@@ -35,4 +35,11 @@ public class StudentBoImpl implements StudentBo {
 
     }
 
+    @Override
+    public Student serachbyIDS(int sid) {
+        Student student = studentDao.searchByCID(sid);
+
+        return new Student(student.getId(),student.getFirstName(),student.getLastName(),student.getAddress(),student.getEmail(),student.getPhoneNumber(),student.getEnrollmentDate());
+    }
+
 }

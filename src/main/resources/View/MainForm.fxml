@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="774.0" prefWidth="1211.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.lk.ijse.MainForm">
+   <children>
+      <AnchorPane fx:id="ButtonPane" layoutX="-2.0" layoutY="-1.0" prefHeight="774.0" prefWidth="218.0" style="-fx-background-color: #ECDFCC;">
+         <children>
+            <Button fx:id="StudentManagmentBtn" layoutX="22.0" layoutY="328.0" mnemonicParsing="false" onAction="#StudentManageOnAction" prefHeight="50.0" prefWidth="174.0" text="Student Managment" />
+            <Button fx:id="CoourseManagmentbtn" layoutX="23.0" layoutY="496.0" mnemonicParsing="false" onAction="#CourseManagmentOnAction" prefHeight="50.0" prefWidth="174.0" text="Course Managment🧑‍🍳" />
+            <Button fx:id="logOutbtn" layoutX="83.0" layoutY="724.0" mnemonicParsing="false" onAction="#LogOutOnAction" text="LogOut" />
+            <Button fx:id="DashBoardbtn" layoutX="24.0" layoutY="181.0" mnemonicParsing="false" onAction="#DashBoradOnAction" prefHeight="50.0" prefWidth="174.0" style="-fx-background-color: #;" text="DashBoard" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="Emptypane" layoutX="217.0" layoutY="-1.0" prefHeight="774.0" prefWidth="1210.0" style="-fx-background-color: white;" />
+   </children>
+</AnchorPane>

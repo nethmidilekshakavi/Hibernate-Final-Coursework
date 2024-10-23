@@ -73,4 +73,22 @@ public class StudentDaoImpl implements StudentDao {
         return list;
     }
 
+    @Override
+    public Student searchByCID(int id) {
+
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+
+
+        Object customers = session.createQuery("FROM Student WHERE id = :sid", Student.class)
+                .setParameter("sid", id);
+
+
+        transaction.commit();
+        session.close();
+
+        return (Student) customers;
+    }
+
 }

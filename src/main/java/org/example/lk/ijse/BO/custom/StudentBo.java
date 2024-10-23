@@ -14,4 +14,6 @@ public interface StudentBo extends SuperBo {
     boolean deleteStudent(int id);
 
     List<Student> getAllStudent();
+
+    Student serachbyIDS(int sid);
 }
