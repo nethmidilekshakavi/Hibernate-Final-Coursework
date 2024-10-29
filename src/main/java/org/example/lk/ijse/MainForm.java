@@ -68,4 +68,9 @@ public class MainForm implements Initializable {
         Emptypane.getChildren().setAll(parent);
     }
 
+    public void PaymentManagmentOnAction(ActionEvent actionEvent) {
+    }
+
+    public void logOutTheSystem(ActionEvent actionEvent) {
+    }
 }

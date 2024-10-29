@@ -68,7 +68,7 @@ public class Login {
 
         if (usernametxt.getText().equals(un) && passwordtxt.getText().equals(pw)){
 
-            Parent parent = FXMLLoader.load(getClass().getResource("/View/StudentForm.fxml"));
+            Parent parent = FXMLLoader.load(getClass().getResource("/View/MainForm.fxml"));
             Scene scene = new Scene(parent);
             Stage stage = new Stage();
             stage.setScene(scene);
@@ -79,7 +79,8 @@ public class Login {
             System.out.printf("Wrong");
         }
 
-
+        Stage currentStage = (Stage) btnLogin.getScene().getWindow();
+        currentStage.close();
 
 
     }

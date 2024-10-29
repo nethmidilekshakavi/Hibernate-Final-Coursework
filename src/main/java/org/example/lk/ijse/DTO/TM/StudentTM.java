@@ -1,5 +1,6 @@
 package org.example.lk.ijse.DTO.TM;
 
+import com.jfoenix.controls.JFXButton;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,6 +19,10 @@ public class StudentTM extends StudentController {
     private  String PhoneNumber;
     private  String address;
     private String email;
+
+    private JFXButton delete;
+    private JFXButton update;
+
 
 
 }

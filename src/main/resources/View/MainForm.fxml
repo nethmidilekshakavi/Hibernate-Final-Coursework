@@ -1,18 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="774.0" prefWidth="1211.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.lk.ijse.MainForm">
    <children>
-      <AnchorPane fx:id="ButtonPane" layoutX="-2.0" layoutY="-1.0" prefHeight="774.0" prefWidth="218.0" style="-fx-background-color: #ECDFCC;">
+      <AnchorPane fx:id="ButtonPane" layoutY="-1.0" prefHeight="818.0" prefWidth="230.0" style="-fx-background-color: #ECDFCC; -fx-background-color: black;">
          <children>
-            <Button fx:id="StudentManagmentBtn" layoutX="22.0" layoutY="328.0" mnemonicParsing="false" onAction="#StudentManageOnAction" prefHeight="50.0" prefWidth="174.0" text="Student Managment" />
-            <Button fx:id="CoourseManagmentbtn" layoutX="23.0" layoutY="496.0" mnemonicParsing="false" onAction="#CourseManagmentOnAction" prefHeight="50.0" prefWidth="174.0" text="Course Managment🧑‍🍳" />
-            <Button fx:id="logOutbtn" layoutX="83.0" layoutY="724.0" mnemonicParsing="false" onAction="#LogOutOnAction" text="LogOut" />
-            <Button fx:id="DashBoardbtn" layoutX="24.0" layoutY="181.0" mnemonicParsing="false" onAction="#DashBoradOnAction" prefHeight="50.0" prefWidth="174.0" style="-fx-background-color: #;" text="DashBoard" />
+            <Button fx:id="StudentManagmentBtn" layoutX="22.0" layoutY="333.0" mnemonicParsing="false" onAction="#StudentManageOnAction" prefHeight="50.0" prefWidth="174.0" style="-fx-background-radius: 10px;" text="Student Managment">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+            <Button fx:id="CoourseManagmentbtn" layoutX="22.0" layoutY="477.0" mnemonicParsing="false" onAction="#CourseManagmentOnAction" prefHeight="50.0" prefWidth="174.0" style="-fx-background-radius: 10px;" text="Course Managment🧑‍🍳">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+            <Button fx:id="DashBoardbtn" layoutX="19.0" layoutY="183.0" mnemonicParsing="false" onAction="#DashBoradOnAction" prefHeight="50.0" prefWidth="174.0" style="-fx-background-radius: 10px;" text="DashBoard" textFill="#232222">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+            <Button fx:id="llogoutbtn" layoutX="69.0" layoutY="723.0" mnemonicParsing="false" onAction="#logOutTheSystem" prefHeight="39.0" prefWidth="74.0" style="-fx-background-color: #5dbea3; -fx-background-radius: 10;" text="LOGUOT" textFill="#f2ecec">
+               <font>
+                  <Font name="Dyuthi Regular" size="13.0" />
+               </font>
+            </Button>
+            <ImageView fx:id="logoutbtnpic" fitHeight="29.0" fitWidth="30.0" layoutX="86.0" layoutY="748.0" style="-fx-rotate: 180;">
+               <image>
+                  <Image url="@../../../../../Final-Project-Layerd/src/main/resources/Images/icons8-logout-24.png" />
+               </image>
+            </ImageView>
+            <Text fx:id="des1" fill="#ece9e9" layoutX="19.0" layoutY="277.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&quot;Manage student registrations, track progress, and update records effortlessly.&quot;" wrappingWidth="174.39999999999998">
+               <font>
+                  <Font name="Candara Bold" size="11.0" />
+               </font>
+            </Text>
+            <Text fx:id="topics" fill="#f2eeee" layoutX="18.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welocome to Culinary Academy 🧑‍🍳" wrappingWidth="174.39999999999992">
+               <font>
+                  <Font name="Century" size="27.0" />
+               </font>
+            </Text>
+            <Text fx:id="desc2" fill="#ece9e9" layoutX="22.0" layoutY="418.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&quot;Organize course content, update details, and oversee student enrollments with ease.&quot;" wrappingWidth="174.39999999999998">
+               <font>
+                  <Font name="Candara Bold" size="11.0" />
+               </font>
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+            <Button fx:id="paymentMangmentBTN" layoutX="22.0" layoutY="616.0" mnemonicParsing="false" onAction="#PaymentManagmentOnAction" prefHeight="50.0" prefWidth="174.0" style="-fx-background-radius: 10px;" text="Payment Managment 💵">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+            <Text layoutX="23.0" layoutY="578.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+            <Text fx:id="desc3" fill="#f4f2f2" layoutX="25.0" layoutY="559.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&quot;Handle transactions, track payments, and generate invoices securely and efficiently.&quot;" wrappingWidth="161.49920654296875">
+               <font>
+                  <Font name="Candara Bold" size="11.0" />
+               </font>
+            </Text>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="Emptypane" layoutX="217.0" layoutY="-1.0" prefHeight="774.0" prefWidth="1210.0" style="-fx-background-color: white;" />
+      <AnchorPane fx:id="Emptypane" layoutX="232.0" layoutY="-1.0" prefHeight="774.0" prefWidth="1195.0" style="-fx-background-color: white;" />
    </children>
 </AnchorPane>
