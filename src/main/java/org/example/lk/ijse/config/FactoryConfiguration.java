@@ -1,33 +1,34 @@
 package org.example.lk.ijse.config;
-import org.example.lk.ijse.Controller.StudentController;
 import org.example.lk.ijse.Entity.Student;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import java.io.IOException;
+import java.util.Properties;
+
 public class FactoryConfiguration {
 
-    private static FactoryConfiguration factoryConfiguration;
+    private static  FactoryConfiguration factoryConfiguration;
+    private final SessionFactory sessionFactory;
 
-    private SessionFactory sessionFactory;
-    private FactoryConfiguration(){
-        Configuration configuration = new Configuration().configure().addAnnotatedClass(Student.class);
-        sessionFactory=configuration.buildSessionFactory();
-    }
+   private FactoryConfiguration() throws IOException {
 
-    public static FactoryConfiguration getInstance(){
-        return (factoryConfiguration == null)?factoryConfiguration=
-                new FactoryConfiguration():factoryConfiguration;
+       Configuration configuration = new Configuration();
+       Properties properties = new Properties();
+       properties.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("hibernate.properties"));
+       configuration.setProperties(properties);
+       configuration.addAnnotatedClass(Student.class);
+       sessionFactory = configuration.buildSessionFactory();
 
-    }
+   }
 
-    public Session getSession(){
+   public static FactoryConfiguration getInstance() throws IOException {
+       return (factoryConfiguration == null) ? factoryConfiguration = new FactoryConfiguration():factoryConfiguration;
+   }
 
-        return  sessionFactory.openSession();
-
-    }
-
-
-
+   public Session getSession(){
+       return sessionFactory.openSession();
+   }
 
 }

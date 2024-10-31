@@ -38,7 +38,7 @@
                   <Font name="Candara Bold" size="11.0" />
                </font>
             </Text>
-            <Text fx:id="topics" fill="#f2eeee" layoutX="18.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welocome to Culinary Academy 🧑‍🍳" wrappingWidth="174.39999999999992">
+            <Text fx:id="topics" fill="#f2eeee" layoutX="21.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welocome to Culinary Academy 🧑‍🍳" wrappingWidth="174.39999999999992">
                <font>
                   <Font name="Century" size="27.0" />
                </font>

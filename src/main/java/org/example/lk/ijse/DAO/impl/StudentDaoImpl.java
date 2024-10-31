@@ -7,12 +7,13 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.NativeQuery;
 
+import java.io.IOException;
 import java.util.List;
 
 public class StudentDaoImpl implements StudentDao {
 
     @Override
-    public boolean save(Student Dto) {
+    public boolean save(Student Dto) throws IOException {
 
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
@@ -29,7 +30,7 @@ public class StudentDaoImpl implements StudentDao {
 
 
     @Override
-    public boolean update(Student dto){
+    public boolean update(Student dto) throws IOException {
 
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
@@ -43,7 +44,7 @@ public class StudentDaoImpl implements StudentDao {
     }
 
     @Override
-    public boolean delete(int entity){
+    public boolean delete(int entity) throws IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
@@ -59,7 +60,7 @@ public class StudentDaoImpl implements StudentDao {
     }
 
     @Override
-    public List<Student> getaAll() {
+    public List<Student> getaAll() throws IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
@@ -74,10 +75,11 @@ public class StudentDaoImpl implements StudentDao {
     }
 
     @Override
-    public Student searchByCID(int id) {
+    public Student searchByCID(int id) throws IOException {
 
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
+
 
 
 

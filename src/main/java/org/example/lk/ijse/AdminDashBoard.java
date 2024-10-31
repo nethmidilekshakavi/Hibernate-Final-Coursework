@@ -5,22 +5,20 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
-import org.w3c.dom.Text;
+import javafx.scene.image.ImageView;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
 
-import javax.swing.text.html.ImageView;
-import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ResourceBundle;
 
-public class AdminDashBoard {
-
+public class AdminDashBoard implements Initializable {
 
         @FXML
         private AnchorPane Emptypane;
-
-        @FXML
-        private TextField SearchBar;
 
         @FXML
         private Text admin;
@@ -44,6 +42,9 @@ public class AdminDashBoard {
         private Text coursecountxtx;
 
         @FXML
+        private Text date;
+
+        @FXML
         private Text desc1;
 
         @FXML
@@ -56,7 +57,13 @@ public class AdminDashBoard {
         private Text desc5;
 
         @FXML
+        private Text desc51;
+
+        @FXML
         private Text desc7;
+
+        @FXML
+        private Text desc71;
 
         @FXML
         private Rectangle f1;
@@ -71,10 +78,16 @@ public class AdminDashBoard {
         private Rectangle f5;
 
         @FXML
+        private Rectangle f51;
+
+        @FXML
         private Rectangle ff1;
 
         @FXML
         private Rectangle frame6;
+
+        @FXML
+        private Rectangle frame61;
 
         @FXML
         private Rectangle mainFrame;
@@ -89,9 +102,6 @@ public class AdminDashBoard {
         private Text month3;
 
         @FXML
-        private ImageView notification;
-
-        @FXML
         private ImageView pic1;
 
         @FXML
@@ -104,13 +114,7 @@ public class AdminDashBoard {
         private ImageView pic4;
 
         @FXML
-        private ImageView q;
-
-        @FXML
-        private ImageView serchpic;
-
-        @FXML
-        private ImageView setting;
+        private ImageView pic41;
 
         @FXML
         private Text student;
@@ -119,12 +123,28 @@ public class AdminDashBoard {
         private Text studentcounttxt;
 
         @FXML
+        private Text time;
+
+        @FXML
         private Text welcometopic;
 
         @FXML
         private Text welcommedesc;
+        @Override
+        public void initialize(URL location, ResourceBundle resources) {
+                getDate();
+                getTime();
+        }
 
+        private void getTime() {
+                LocalTime localTime = LocalTime.now();
+                time.setText(localTime.toString());
+                System.out.println(localTime);
+        }
 
-
-
+        private void getDate() {
+                LocalDate now = LocalDate.now();
+                date.setText(now.toString());
+                System.out.println(now);
+        }
 }

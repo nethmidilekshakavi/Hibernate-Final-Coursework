@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-
 
 <AnchorPane fx:id="Emptypane" prefHeight="774.0" prefWidth="1210.0" style="-fx-background-color: #F5F5F5;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -116,36 +114,46 @@
             <Font size="11.0" />
          </font>
       </Text>
-      <TextField fx:id="SearchBar" layoutX="723.0" layoutY="37.0" opacity="0.15" prefHeight="31.0" prefWidth="224.0" promptText="Search" style="-fx-background-color: black; -fx-background-radius: 20;" />
-      <Text layoutX="731.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search" />
-      <ImageView fx:id="serchpic" fitHeight="18.0" fitWidth="19.0" layoutX="915.0" layoutY="44.0">
-         <image>
-            <Image url="@../../../../../Final-Project-Layerd/src/main/resources/Images/icons8-search-50.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="setting" fitHeight="18.0" fitWidth="18.0" layoutX="1056.0" layoutY="45.0">
-         <image>
-            <Image url="@../../../../../Final-Project-Layerd/src/main/resources/Images/icons8-setting-50.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="notification" fitHeight="19.0" fitWidth="20.0" layoutX="1011.0" layoutY="45.0">
-         <image>
-            <Image url="@../../../../../Final-Project-Layerd/src/main/resources/Images/icons8-bell-24.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="qu" fitHeight="20.0" fitWidth="20.0" layoutX="964.0" layoutY="44.0">
-         <image>
-            <Image url="@../../../../../Final-Project-Layerd/src/main/resources/Images/icons8-question-30.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="adminpic" fitHeight="71.0" fitWidth="83.0" layoutX="1101.0" layoutY="25.0">
+      <ImageView fx:id="adminpic" fitHeight="71.0" fitWidth="83.0" layoutX="1100.0">
          <image>
             <Image url="@../Assert/icons8-admin-94.png" />
          </image>
       </ImageView>
-      <Text fx:id="admin" layoutX="1123.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin">
+      <Text fx:id="admin" fill="#151515" layoutX="1041.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin">
          <font>
-            <Font name="Calibri" size="14.0" />
+            <Font name="Calibri Bold" size="19.0" />
+         </font>
+      </Text>
+      <Text fx:id="date" fill="#121312" layoutX="44.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="61.875">
+         <font>
+            <Font name="Candara Bold" size="24.0" />
+         </font>
+      </Text>
+      <Text fx:id="time" fill="#121312" layoutX="44.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="61.875">
+         <font>
+            <Font name="Candara Bold" size="24.0" />
+         </font>
+      </Text>
+      <Text fx:id="date" fill="#121312" layoutX="54.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="61.875">
+         <font>
+            <Font name="Candara Bold" size="24.0" />
+         </font>
+      </Text>
+      <ImageView fx:id="pic41" fitHeight="150.0" fitWidth="134.0" layoutX="964.0" layoutY="110.0">
+         <image>
+            <Image url="@../Assert/ba4f5670c8cdc234001069e87812bd0e.jpg" />
+         </image>
+      </ImageView>
+      <Rectangle fx:id="frame61" arcHeight="5.0" arcWidth="5.0" fill="#227b94" height="71.0" layoutX="825.0" layoutY="294.0" stroke="#227b94" strokeType="INSIDE" width="235.0" />
+      <Text fx:id="desc71" fill="#ece7e7" layoutX="840.0" layoutY="323.0" strokeType="OUTSIDE" strokeWidth="0.0" text="International Cuisine" wrappingWidth="112.17816162109375">
+         <font>
+            <Font name="System Bold Italic" size="16.0" />
+         </font>
+      </Text>
+      <Rectangle fx:id="f51" arcHeight="5.0" arcWidth="5.0" fill="#d4d5d7" height="109.0" layoutX="950.0" layoutY="231.0" stroke="#d4d5d7" strokeType="INSIDE" width="235.0" />
+      <Text fx:id="desc51" layoutX="961.0" layoutY="259.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&quot;Explore global flavors and culinary techniques with this 1-year International Cuisine course, designed to master diverse recipes, cooking methods, and presentation skills from around the world" wrappingWidth="214.4000244140625">
+         <font>
+            <Font size="11.0" />
          </font>
       </Text>
    </children>

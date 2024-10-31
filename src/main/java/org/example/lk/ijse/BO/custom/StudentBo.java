@@ -3,17 +3,18 @@ package org.example.lk.ijse.BO.custom;
 import org.example.lk.ijse.BO.SuperBo;
 import org.example.lk.ijse.Entity.Student;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface StudentBo extends SuperBo {
 
-    boolean saveStudent(Student entity);
+    boolean saveStudent(Student entity) throws IOException;
 
-    boolean updateStudent(Student entity);
+    boolean updateStudent(Student entity) throws IOException;
 
-    boolean deleteStudent(int id);
+    boolean deleteStudent(int id) throws IOException;
 
-    List<Student> getAllStudent();
+    List<Student> getAllStudent() throws IOException;
 
-    Student serachbyIDS(int sid);
+    Student serachbyIDS(int sid) throws IOException;
 }

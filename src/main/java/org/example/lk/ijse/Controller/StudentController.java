@@ -17,6 +17,7 @@ import org.example.lk.ijse.BO.custom.StudentBo;
 import org.example.lk.ijse.DTO.TM.StudentTM;
 import org.example.lk.ijse.Entity.Student;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -190,7 +191,7 @@ public class StudentController implements Initializable {
 
     }
 
-    public void loadallvalues() throws SQLException {
+    public void loadallvalues() throws SQLException, IOException {
 
         List<Student> allstudent = studentBo.getAllStudent();
 
@@ -242,7 +243,12 @@ public class StudentController implements Initializable {
                 confirmDialog.showAndWait().ifPresent(response -> {
                     if (response == ButtonType.OK) {
                         //deleteCustomer
-                        boolean deleted = studentBo.deleteStudent(id);
+                        boolean deleted = false;
+                        try {
+                            deleted = studentBo.deleteStudent(id);
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
                         if (deleted) {
                             Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
                             successAlert.setTitle("Success");
@@ -261,6 +267,8 @@ public class StudentController implements Initializable {
                         try {
                             loadallvalues();
                         } catch (SQLException e) {
+                            throw new RuntimeException(e);
+                        } catch (IOException e) {
                             throw new RuntimeException(e);
                         }
                     }
@@ -289,6 +297,8 @@ public class StudentController implements Initializable {
         try {
             loadallvalues();
         } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
