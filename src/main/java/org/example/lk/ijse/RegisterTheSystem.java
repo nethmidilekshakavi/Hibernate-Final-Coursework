@@ -5,8 +5,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import org.example.lk.ijse.Entity.User;
 
-public class RegisterTheSystem {
+public class RegisterTheSystem extends UserService{
 
     @FXML
     private Text SignUp;
@@ -56,10 +57,28 @@ public class RegisterTheSystem {
     @FXML
     void SignUpOnAction(ActionEvent event) {
 
+
+        String un = usernametxt1.getText();
+        String pw = passwordtxt1.getText();
+        String role = role1.getText();
+
+        User user = new User();
+
+        user.setUsername(un);
+        user.setPassword(pw);
+        user.setRole(role);
+
+        UserService userService = new UserService();
+
+        userService.registerUser(user.getUsername(), user.getPassword(), user.getRole());
+
+
     }
 
     @FXML
     void loginOnAction(ActionEvent event) {
+
+
 
     }
 

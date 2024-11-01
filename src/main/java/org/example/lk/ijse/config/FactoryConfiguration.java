@@ -1,4 +1,5 @@
 package org.example.lk.ijse.config;
+
 import org.example.lk.ijse.Entity.Student;
 import org.example.lk.ijse.Entity.User;
 import org.hibernate.Session;
@@ -9,28 +10,43 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class FactoryConfiguration {
-
-    private static  FactoryConfiguration factoryConfiguration;
+    private static FactoryConfiguration factoryConfiguration;
     private final SessionFactory sessionFactory;
 
-   private FactoryConfiguration() throws IOException {
+    private FactoryConfiguration() throws IOException {
+        try {
+            Configuration configuration = new Configuration();
+            Properties properties = new Properties();
 
-       Configuration configuration = new Configuration();
-       Properties properties = new Properties();
-       properties.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("hibernate.properties"));
-       configuration.setProperties(properties);
-       configuration.addAnnotatedClass(Student.class);
-       configuration.addAnnotatedClass(User.class);
-       sessionFactory = configuration.buildSessionFactory();
+            // Load properties from hibernate.properties
+            properties.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("hibernate.properties"));
+            configuration.setProperties(properties);
 
-   }
+            // Add annotated classes
+            configuration.addAnnotatedClass(Student.class);
+            configuration.addAnnotatedClass(User.class);
 
-   public static FactoryConfiguration getInstance() throws IOException {
-       return (factoryConfiguration == null) ? factoryConfiguration = new FactoryConfiguration():factoryConfiguration;
-   }
+            sessionFactory = configuration.buildSessionFactory();
+        } catch (IOException e) {
+            throw new IOException("Failed to load hibernate.properties", e);
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to create SessionFactory", e);
+        }
+    }
 
-   public Session getSession(){
-       return sessionFactory.openSession();
-   }
+    public static FactoryConfiguration getInstance() throws IOException {
+        if (factoryConfiguration == null) {
+            factoryConfiguration = new FactoryConfiguration();
+        }
+        return factoryConfiguration;
+    }
 
+
+    public Session getSession() {
+        return sessionFactory.openSession();
+    }
+
+    public static SessionFactory getSessionFactory() {
+        return factoryConfiguration.sessionFactory;
+    }
 }

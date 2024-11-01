@@ -10,18 +10,6 @@ import org.hibernate.Transaction;
 
 public class Main extends Application {
     public static void main(String[] args) {
-
-
-        UserService userService = new UserService();
-
-        // Example data
-        String username = "user123";
-        String password = "password123";
-        String role = "Admin";
-
-        userService.registerUser(username, password,role);
-        System.out.println("User registered successfully!");
-
         launch(args);
     }
 
