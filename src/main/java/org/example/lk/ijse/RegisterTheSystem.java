@@ -48,7 +48,7 @@ public class RegisterTheSystem extends UserService {
 
         User user = new User();
         user.setUsername(username);
-        user.setPassword(password); // Storing plain password temporarily (will be encrypted)
+        user.setPassword(password);
         user.setRole(role);
 
         UserService userService = new UserService();
@@ -60,7 +60,6 @@ public class RegisterTheSystem extends UserService {
         User user = findUserByUsername(loginUsername.getText());
 
         if (user != null && new BCryptPasswordEncoder().matches(loginpw.getText(), user.getPassword())) {
-            // Correctly verifying the hashed password
             Stage stage = new Stage();
             stage.setScene(new Scene(FXMLLoader.load(this.getClass().getResource("/View/MainForm.fxml"))));
             stage.show();
