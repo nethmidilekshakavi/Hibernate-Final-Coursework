@@ -2,10 +2,17 @@ package org.example.lk.ijse;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import org.example.lk.ijse.DAO.impl.UserDaoImpl;
 import org.example.lk.ijse.Entity.User;
+
+import java.io.IOException;
 
 public class RegisterTheSystem extends UserService{
 
@@ -73,13 +80,37 @@ public class RegisterTheSystem extends UserService{
         userService.registerUser(user.getUsername(), user.getPassword(), user.getRole());
 
 
+
     }
 
     @FXML
-    void loginOnAction(ActionEvent event) {
+    void loginOnAction(ActionEvent event) throws IOException {
 
+        User user = findUserByUsername(loginUsername.getText());
+
+
+        if (user != null && loginpw.getText().equals(user.getPassword())) {
+            Stage stage = new Stage();
+            stage.setScene(new Scene(FXMLLoader.load(this.getClass().getResource("/View/MainForm.fxml"))));
+            stage.show();
+            stage.centerOnScreen();
+            stage.setTitle("Dashboard");
+        } else {
+            System.out.printf("Oops! Invalid username or password.");
+        }
+    }
+
+    //find username
+    private User findUserByUsername(String textun) {
+
+        UserDaoImpl userDao = new
+                UserDaoImpl();
+
+      return   userDao.getUserByUsername(textun);
 
 
     }
 
 }
+
+
