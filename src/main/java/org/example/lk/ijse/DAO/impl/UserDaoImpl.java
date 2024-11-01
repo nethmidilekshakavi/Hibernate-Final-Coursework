@@ -15,9 +15,9 @@ public class UserDaoImpl {
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
-                transaction.rollback();
+                transaction.rollback(); // Roll back if there was an error
             }
-            e.printStackTrace();
+            e.printStackTrace(); // Consider logging this instead of printing
         }
     }
 
@@ -27,10 +27,8 @@ public class UserDaoImpl {
                     .setParameter("username", username)
                     .uniqueResult();
         } catch (Exception e) {
-            e.printStackTrace();
+            e.printStackTrace(); // Consider logging this instead of printing
             return null;
         }
     }
-
 }
-
