@@ -10,6 +10,18 @@ import org.hibernate.Transaction;
 
 public class Main extends Application {
     public static void main(String[] args) {
+
+
+        UserService userService = new UserService();
+
+        // Example data
+        String username = "user123";
+        String password = "password123";
+        String role = "Admin";
+
+        userService.registerUser(username, password,role);
+        System.out.println("User registered successfully!");
+
         launch(args);
     }
 
@@ -30,7 +42,7 @@ public class Main extends Application {
         }
 
         // Load JavaFX main form
-        primaryStage.setScene(new Scene(FXMLLoader.load(this.getClass().getResource("/View/MainForm.fxml"))));
+        primaryStage.setScene(new Scene(FXMLLoader.load(this.getClass().getResource("/View/RegisterTheSystem.fxml"))));
         primaryStage.show();
         primaryStage.centerOnScreen();
         primaryStage.setTitle("Login Page");
