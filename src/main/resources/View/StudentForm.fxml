@@ -16,11 +16,11 @@
             <Font name="Bookman Old Style" size="32.0" />
          </font>
       </Text>
-      <TextField fx:id="firstNametxt" layoutX="71.0" layoutY="236.0" prefHeight="26.0" prefWidth="398.0" />
-      <TextField fx:id="lastnametxt" layoutX="71.0" layoutY="310.0" prefHeight="26.0" prefWidth="398.0" />
-      <TextField fx:id="addresstxt" layoutX="71.0" layoutY="379.0" prefHeight="26.0" prefWidth="398.0" />
-      <TextField fx:id="emailtxt" layoutX="660.0" layoutY="378.0" prefHeight="26.0" prefWidth="398.0" />
-      <TextField fx:id="phonenumbertxt" layoutX="660.0" layoutY="310.0" prefHeight="26.0" prefWidth="398.0" />
+      <TextField fx:id="firstNametxt" layoutX="71.0" layoutY="236.0" onKeyReleased="#firstnameKeyRelese" prefHeight="26.0" prefWidth="398.0" />
+      <TextField fx:id="lastnametxt" layoutX="71.0" layoutY="310.0" onKeyReleased="#lastnameKeyRelese" prefHeight="26.0" prefWidth="398.0" />
+      <TextField fx:id="addresstxt" layoutX="71.0" layoutY="379.0" onKeyReleased="#addressKeyRelese" prefHeight="26.0" prefWidth="398.0" />
+      <TextField fx:id="emailtxt" layoutX="660.0" layoutY="378.0" onKeyReleased="#emailKeyRelese" prefHeight="26.0" prefWidth="398.0" />
+      <TextField fx:id="phonenumbertxt" layoutX="660.0" layoutY="310.0" onKeyReleased="#mobilekeyRelese" prefHeight="26.0" prefWidth="398.0" />
       <DatePicker fx:id="datecombo" layoutX="660.0" layoutY="222.0" prefHeight="28.0" prefWidth="291.0" promptText="Date" />
       <Text fx:id="fntext" layoutX="71.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name">
          <font>
@@ -63,7 +63,7 @@
         </columns>
       </TableView>
       <Text fx:id="idtext" layoutX="71.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID :" />
-      <TextField fx:id="idtxt" layoutX="100.0" layoutY="142.0" prefHeight="26.0" prefWidth="65.0" />
+      <TextField fx:id="idtxt" layoutX="100.0" layoutY="142.0" onKeyPressed="#loadTheTextField" onKeyReleased="#idkeyRelese" prefHeight="26.0" prefWidth="65.0" />
       <Text fx:id="studentdetails" layoutX="65.0" layoutY="525.0" strokeType="OUTSIDE" strokeWidth="0.0" text="--Student Details--">
          <font>
             <Font name="Consolas Italic" size="21.0" />

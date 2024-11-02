@@ -27,8 +27,21 @@ public class UserDaoImpl {
                     .setParameter("username", username)
                     .uniqueResult();
         } catch (Exception e) {
-            e.printStackTrace(); // Consider logging this instead of printing
+            e.printStackTrace();
             return null;
         }
     }
+
+    /*public User getUserByRole(String role) {
+        try (Session session = FactoryConfiguration.getInstance().getSession()) {
+            return session.createQuery("FROM User WHERE role = :role", User.class)
+                    .setParameter("role", role)
+                    .uniqueResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }*/
+
+
 }

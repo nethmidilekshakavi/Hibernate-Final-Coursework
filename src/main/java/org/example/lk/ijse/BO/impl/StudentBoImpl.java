@@ -37,10 +37,11 @@ public class StudentBoImpl implements StudentBo {
     }
 
     @Override
-    public Student serachbyIDS(int sid) throws IOException {
-        Student student = studentDao.searchByCID(sid);
+    public List<Student> SearchSID(int sid) throws IOException {
 
-        return new Student(student.getId(),student.getFirstName(),student.getLastName(),student.getAddress(),student.getEmail(),student.getPhoneNumber(),student.getEnrollmentDate());
+        return studentDao.SearchSID(sid);
+
     }
+
 
 }

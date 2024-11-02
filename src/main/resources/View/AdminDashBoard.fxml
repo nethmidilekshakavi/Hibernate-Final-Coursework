@@ -134,7 +134,7 @@
             <Font name="Candara Bold" size="24.0" />
          </font>
       </Text>
-      <Text fx:id="date" fill="#121312" layoutX="54.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="61.875">
+      <Text fx:id="" fill="#121312" layoutX="54.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="61.875">
          <font>
             <Font name="Candara Bold" size="24.0" />
          </font>
@@ -154,6 +154,11 @@
       <Text fx:id="desc51" layoutX="961.0" layoutY="259.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&quot;Explore global flavors and culinary techniques with this 1-year International Cuisine course, designed to master diverse recipes, cooking methods, and presentation skills from around the world" wrappingWidth="214.4000244140625">
          <font>
             <Font size="11.0" />
+         </font>
+      </Text>
+      <Text fx:id="WhoisLog" layoutX="52.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="112.17816162109375">
+         <font>
+            <Font size="25.0" />
          </font>
       </Text>
    </children>

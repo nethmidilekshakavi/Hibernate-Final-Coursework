@@ -23,7 +23,7 @@
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Button>
-            <Button fx:id="llogoutbtn" layoutX="69.0" layoutY="723.0" mnemonicParsing="false" onAction="#logOutTheSystem" prefHeight="39.0" prefWidth="74.0" style="-fx-background-color: #5dbea3; -fx-background-radius: 10;" text="LOGUOT" textFill="#f2ecec">
+            <Button fx:id="logout" layoutX="69.0" layoutY="723.0" mnemonicParsing="false" onAction="#logOutTheSystem" prefHeight="39.0" prefWidth="74.0" style="-fx-background-color: #5dbea3; -fx-background-radius: 10;" text="LOGUOT" textFill="#f2ecec">
                <font>
                   <Font name="Dyuthi Regular" size="13.0" />
                </font>

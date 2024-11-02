@@ -5,8 +5,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -38,10 +40,6 @@ public class MainForm implements Initializable {
 
     }
 
-    @FXML
-    void LogOutOnAction(ActionEvent event) {
-
-    }
 
     @FXML
     void StudentManageOnAction(ActionEvent event) throws IOException {
@@ -71,6 +69,20 @@ public class MainForm implements Initializable {
     public void PaymentManagmentOnAction(ActionEvent actionEvent) {
     }
 
-    public void logOutTheSystem(ActionEvent actionEvent) {
+
+    @FXML
+    void logOutTheSystem(ActionEvent event) throws IOException {
+        Parent parent = FXMLLoader.load(getClass().getResource("/View/RegisterTheSystem.fxml"));
+        Scene scene = new Scene(parent);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
+        stage.centerOnScreen();
+        stage.setTitle("Login");
+
+        Stage currentStage = (Stage) ButtonPane.getScene().getWindow();
+        currentStage.close();
     }
-}
+
+    }
+

@@ -8,6 +8,7 @@ import org.hibernate.Transaction;
 import org.hibernate.query.NativeQuery;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class StudentDaoImpl implements StudentDao {
@@ -26,6 +27,8 @@ public class StudentDaoImpl implements StudentDao {
 
 
         return false;
+
+
     }
 
 
@@ -49,7 +52,7 @@ public class StudentDaoImpl implements StudentDao {
         Transaction transaction = session.beginTransaction();
 
         NativeQuery nativeQuery = session.createNativeQuery("delete from Student where id = ?1");
-        nativeQuery.setParameter(1,entity);
+        nativeQuery.setParameter(1, entity);
 
         nativeQuery.executeUpdate();
 
@@ -74,23 +77,25 @@ public class StudentDaoImpl implements StudentDao {
         return list;
     }
 
-    @Override
-    public Student searchByCID(int id) throws IOException {
 
+    @Override
+    public List<Student> SearchSID(int sid) throws IOException {
+        List<Student> studentModels = new ArrayList<>();
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
+        try {
+            studentModels = session.createQuery("FROM Student WHERE id = :sid", Student.class)
+                    .setParameter("sid", sid)
+                    .getResultList();
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) transaction.rollback(); // Rollback on error
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
 
-
-
-        Object customers = session.createQuery("FROM Student WHERE id = :sid", Student.class)
-                .setParameter("sid", id);
-
-
-        transaction.commit();
-        session.close();
-
-        return (Student) customers;
+        return studentModels;
     }
-
 }

@@ -5,26 +5,34 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import org.example.lk.ijse.BO.BOFactory;
 import org.example.lk.ijse.BO.custom.StudentBo;
 import org.example.lk.ijse.DTO.TM.StudentTM;
 import org.example.lk.ijse.Entity.Student;
+import org.example.lk.ijse.util.Regex;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
 public class StudentController implements Initializable {
+
+
 
     @FXML
     private TableView<StudentTM> StudentTable;
@@ -107,24 +115,11 @@ public class StudentController implements Initializable {
 
     @FXML
     void deleteOnActionStudent(ActionEvent event) {
-      /*  int id = Integer.parseInt(idtxt.getText());
 
-        boolean s = false;
-
-        s = studentBo.deleteStudent(id);
-
-
-        if (s){
-            new Alert(Alert.AlertType.ERROR,"Student not delete").show();
-        }
-        else {
-            new Alert(Alert.AlertType.CONFIRMATION,"Student delete Success").show();
-
-        }*/
     }
 
     @FXML
-    void saveOnActionStudent(ActionEvent event) {
+    void saveOnActionStudent(ActionEvent event) throws IOException, SQLException {
 
         int id = 0;
         String fn = firstNametxt.getText();
@@ -153,14 +148,13 @@ public class StudentController implements Initializable {
 
            new Alert(Alert.AlertType.ERROR,"Student save UnSuccess");
        }
-
-
+       loadallvalues();
     }
 
 
 
     @FXML
-    void updateOnActionStudent(ActionEvent event) {
+    void updateOnActionStudent(ActionEvent event) throws SQLException, IOException {
         int id = Integer.parseInt(idtxt.getText());
         String fn = firstNametxt.getText();
         String ln = lastnametxt.getText();
@@ -188,7 +182,7 @@ public class StudentController implements Initializable {
 
             new Alert(Alert.AlertType.ERROR,"Student Update UnSuccess").show();
         }
-
+loadallvalues();
     }
 
     public void loadallvalues() throws SQLException, IOException {
@@ -249,7 +243,7 @@ public class StudentController implements Initializable {
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }
-                        if (deleted) {
+                        if (!deleted) {
                             Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
                             successAlert.setTitle("Success");
                             successAlert.setHeaderText(null);
@@ -277,6 +271,8 @@ public class StudentController implements Initializable {
 
         }
 
+
+
     }
     public void setValues(){
         colid.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -300,6 +296,60 @@ public class StudentController implements Initializable {
             throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    @FXML
+    void mobilekeyRelese(KeyEvent event) {
+/*
+        Regex.setTextColor(org.example.lk.ijse.util.TextField.MOBILE,phonenumbertxt);
+*/
+
+    }
+    @FXML
+    void idkeyRelese(KeyEvent event) {
+/*
+        Regex.setTextColor(org.example.lk.ijse.util.TextField.ID,idtxt);
+*/
+    }
+
+    @FXML
+    void lastnameKeyRelese(KeyEvent event) {
+/*
+        Regex.setTextColor(org.example.lk.ijse.util.TextField.LNAME,lastnametxt);
+*/
+    }
+    @FXML
+    void emailKeyRelese(KeyEvent event) {
+/*
+        Regex.setTextColor(org.example.lk.ijse.util.TextField.EMAIL,emailtxt);
+*/
+    }
+
+    @FXML
+    void firstnameKeyRelese(KeyEvent event) {
+/*
+        Regex.setTextColor(org.example.lk.ijse.util.TextField.FNAME,firstNametxt);
+*/
+    }
+
+    @FXML
+    void addressKeyRelese(KeyEvent event) {
+
+    }
+
+    public void loadTheTextField(KeyEvent keyEvent) throws IOException {
+        if (keyEvent.getCode().equals(KeyCode.ENTER)){
+            int id = Integer.parseInt(idtxt.getText());
+            ArrayList<Student> students = (ArrayList<Student>) studentBo.SearchSID(id);
+
+            firstNametxt.setText(students.get(0).getFirstName());
+            lastnametxt.setText(students.get(0).getLastName());
+            addresstxt.setText(students.get(0).getAddress());
+            phonenumbertxt.setText(students.get(0).getPhoneNumber());
+            emailtxt.setText(students.get(0).getEmail());
+
+
         }
     }
 }

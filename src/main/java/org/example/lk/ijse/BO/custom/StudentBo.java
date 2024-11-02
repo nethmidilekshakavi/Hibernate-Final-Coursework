@@ -16,5 +16,5 @@ public interface StudentBo extends SuperBo {
 
     List<Student> getAllStudent() throws IOException;
 
-    Student serachbyIDS(int sid) throws IOException;
+    List<Student> SearchSID(int sid) throws IOException;
 }

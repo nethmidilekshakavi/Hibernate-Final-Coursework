@@ -59,19 +59,36 @@ public class RegisterTheSystem extends UserService {
     void loginOnAction(ActionEvent event) throws IOException {
         User user = findUserByUsername(loginUsername.getText());
 
+
+
+
+
         if (user != null && new BCryptPasswordEncoder().matches(loginpw.getText(), user.getPassword())) {
             Stage stage = new Stage();
             stage.setScene(new Scene(FXMLLoader.load(this.getClass().getResource("/View/MainForm.fxml"))));
             stage.show();
             stage.centerOnScreen();
             stage.setTitle("Dashboard");
+
+
         } else {
             System.out.println("Oops! Invalid username or password.");
         }
+
+        Stage currentStage = (Stage) login.getScene().getWindow();
+        currentStage.close();
+
     }
 
     private User findUserByUsername(String username) {
         UserDaoImpl userDao = new UserDaoImpl();
         return userDao.getUserByUsername(username);
     }
+
+
+
+
+
+
+
 }

@@ -15,5 +15,6 @@ public interface StudentDao extends CrudDao<Student> {
 
     List<Student> getaAll() throws IOException;
 
-    Student searchByCID(int id) throws IOException;
+
+    List<Student> SearchSID(int sid) throws IOException;
 }

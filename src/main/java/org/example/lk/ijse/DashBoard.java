@@ -3,19 +3,22 @@ package org.example.lk.ijse;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import org.example.lk.ijse.DAO.impl.UserDaoImpl;
+import org.example.lk.ijse.Entity.User;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ResourceBundle;
 
-public class AdminDashBoard implements Initializable {
+public class DashBoard implements Initializable{
 
         @FXML
         private AnchorPane Emptypane;
@@ -130,21 +133,20 @@ public class AdminDashBoard implements Initializable {
 
         @FXML
         private Text welcommedesc;
+
+        @FXML
+        private Text WhoisLog;
+
+
         @Override
         public void initialize(URL location, ResourceBundle resources) {
-                getDate();
-                getTime();
-        }
 
-        private void getTime() {
-                LocalTime localTime = LocalTime.now();
-                time.setText(localTime.toString());
-                System.out.println(localTime);
-        }
 
-        private void getDate() {
-                LocalDate now = LocalDate.now();
-                date.setText(now.toString());
-                System.out.println(now);
+
+
+
         }
 }
+
+
+
