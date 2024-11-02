@@ -36,8 +36,9 @@ public class MainForm implements Initializable {
     private Button DashBoardbtn;
 
     @FXML
-    void CourseManagmentOnAction(ActionEvent event) {
-
+    void CourseManagmentOnAction(ActionEvent event) throws IOException {
+        Parent parent = FXMLLoader.load(getClass().getResource("/View/CourseForm.fxml"));
+        Emptypane.getChildren().setAll(parent);
     }
 
 
@@ -84,5 +85,9 @@ public class MainForm implements Initializable {
         currentStage.close();
     }
 
+    public void UserManageOnAction(ActionEvent actionEvent) throws IOException {
+        Parent parent = FXMLLoader.load(getClass().getResource("/View/UserForm.fxml"));
+        Emptypane.getChildren().setAll(parent);
     }
+}
 

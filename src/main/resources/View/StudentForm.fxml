@@ -5,52 +5,64 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane fx:id="studentForm" prefHeight="793.0" prefWidth="1352.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.lk.ijse.Controller.StudentController">
    <children>
-      <Text fx:id="topic" layoutX="427.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="🍽️-STUDENT MANAGMENT-🧑‍🍳">
+      <Text fx:id="topic" layoutX="426.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="🍽️-STUDENT MANAGMENT-🧑‍🍳">
          <font>
             <Font name="Bookman Old Style" size="32.0" />
          </font>
       </Text>
-      <TextField fx:id="firstNametxt" layoutX="71.0" layoutY="236.0" onKeyReleased="#firstnameKeyRelese" prefHeight="26.0" prefWidth="398.0" />
-      <TextField fx:id="lastnametxt" layoutX="71.0" layoutY="310.0" onKeyReleased="#lastnameKeyRelese" prefHeight="26.0" prefWidth="398.0" />
-      <TextField fx:id="addresstxt" layoutX="71.0" layoutY="379.0" onKeyReleased="#addressKeyRelese" prefHeight="26.0" prefWidth="398.0" />
-      <TextField fx:id="emailtxt" layoutX="660.0" layoutY="378.0" onKeyReleased="#emailKeyRelese" prefHeight="26.0" prefWidth="398.0" />
-      <TextField fx:id="phonenumbertxt" layoutX="660.0" layoutY="310.0" onKeyReleased="#mobilekeyRelese" prefHeight="26.0" prefWidth="398.0" />
-      <DatePicker fx:id="datecombo" layoutX="660.0" layoutY="222.0" prefHeight="28.0" prefWidth="291.0" promptText="Date" />
-      <Text fx:id="fntext" layoutX="71.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name">
+      <TextField fx:id="firstNametxt" layoutX="71.0" layoutY="301.0" onKeyReleased="#firstnameKeyRelese" prefHeight="26.0" prefWidth="398.0" />
+      <TextField fx:id="lastnametxt" layoutX="71.0" layoutY="375.0" onKeyReleased="#lastnameKeyRelese" prefHeight="26.0" prefWidth="398.0" />
+      <TextField fx:id="addresstxt" layoutX="71.0" layoutY="444.0" onKeyReleased="#addressKeyRelese" prefHeight="26.0" prefWidth="398.0" />
+      <TextField fx:id="emailtxt" layoutX="788.0" layoutY="378.0" onKeyReleased="#emailKeyRelese" prefHeight="26.0" prefWidth="398.0" />
+      <TextField fx:id="phonenumbertxt" layoutX="788.0" layoutY="310.0" onKeyReleased="#mobilekeyRelese" prefHeight="26.0" prefWidth="398.0" />
+      <DatePicker fx:id="datecombo" layoutX="788.0" layoutY="222.0" prefHeight="28.0" prefWidth="398.0" promptText="Date" />
+      <Text fx:id="fntext" layoutX="71.0" layoutY="287.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name">
          <font>
             <Font size="14.0" />
          </font>
       </Text>
-      <Text fx:id="lntext" layoutX="71.0" layoutY="297.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name">
+      <Text fx:id="lntext" layoutX="71.0" layoutY="362.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name">
          <font>
             <Font size="14.0" />
          </font>
       </Text>
-      <Text fx:id="addresstext" layoutX="71.0" layoutY="365.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address">
+      <Text fx:id="addresstext" layoutX="71.0" layoutY="430.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address">
          <font>
             <Font size="14.0" />
          </font>
       </Text>
-      <Text fx:id="emailtext" layoutX="660.0" layoutY="368.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email">
+      <Text fx:id="emailtext" layoutX="788.0" layoutY="368.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email">
          <font>
             <Font size="14.0" />
          </font>
       </Text>
-      <Text fx:id="pntext" layoutX="660.0" layoutY="298.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone Number">
+      <Text fx:id="pntext" layoutX="788.0" layoutY="298.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone Number">
          <font>
             <Font size="14.0" />
          </font>
       </Text>
-      <Button layoutX="72.0" layoutY="441.0" mnemonicParsing="false" onAction="#saveOnActionStudent" prefHeight="26.0" prefWidth="94.0" text="Save" />
-      <Button layoutX="194.0" layoutY="441.0" mnemonicParsing="false" onAction="#updateOnActionStudent" prefHeight="26.0" prefWidth="94.0" text="Update" />
-      <Button layoutX="308.0" layoutY="441.0" mnemonicParsing="false" onAction="#clearOnActionStudent" prefHeight="26.0" prefWidth="94.0" text="Clear" />
-      <TableView fx:id="StudentTable" layoutX="53.0" layoutY="551.0" prefHeight="200.0" prefWidth="1239.0">
+      <Button layoutX="788.0" layoutY="436.0" mnemonicParsing="false" onAction="#saveOnActionStudent" prefHeight="38.0" prefWidth="94.0" style="-fx-background-color: #F3C623;" text="Save">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+         <effect>
+            <DropShadow />
+         </effect></Button>
+      <Button layoutX="905.0" layoutY="436.0" mnemonicParsing="false" onAction="#clearOnActionStudent" prefHeight="38.0" prefWidth="94.0" style="-fx-background-color: #7AB2D3;" text="Clear">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+         <effect>
+            <DropShadow />
+         </effect></Button>
+      <TableView fx:id="StudentTable" layoutX="53.0" layoutY="551.0" prefHeight="200.0" prefWidth="1164.0">
         <columns>
           <TableColumn fx:id="colid" prefWidth="75.0" text="ID" />
           <TableColumn fx:id="colfirstname" prefWidth="126.39993286132812" text="First Name" />
@@ -58,16 +70,17 @@
             <TableColumn fx:id="coladdress" prefWidth="177.59994506835938" text="Address" />
             <TableColumn fx:id="colemail" prefWidth="188.800048828125" text="Email" />
             <TableColumn fx:id="colnumber" prefWidth="192.0" text="Phone Number" />
-            <TableColumn fx:id="updatebtnrow" prefWidth="173.60009765625" text="Update" />
-            <TableColumn fx:id="deletebtnrow" prefWidth="160.7999267578125" text="Delete" />
+            <TableColumn fx:id="updatebtnrow" prefWidth="131.20001220703125" text="Update" />
+            <TableColumn fx:id="deletebtnrow" prefWidth="127.199951171875" text="Delete" />
         </columns>
       </TableView>
-      <Text fx:id="idtext" layoutX="71.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID :" />
-      <TextField fx:id="idtxt" layoutX="100.0" layoutY="142.0" onKeyPressed="#loadTheTextField" onKeyReleased="#idkeyRelese" prefHeight="26.0" prefWidth="65.0" />
+      <Text fx:id="idtext" layoutX="71.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID :" />
+      <TextField fx:id="idtxt" layoutX="100.0" layoutY="217.0" onKeyPressed="#loadTheTextField" onKeyReleased="#idkeyRelese" prefHeight="26.0" prefWidth="65.0" />
       <Text fx:id="studentdetails" layoutX="65.0" layoutY="525.0" strokeType="OUTSIDE" strokeWidth="0.0" text="--Student Details--">
          <font>
             <Font name="Consolas Italic" size="21.0" />
          </font>
       </Text>
+      <Text fx:id="text" layoutX="71.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="This section allows you to manage student records effectively. You can add, update, and delete student information, including personal details such as name, address, email, and phone number. The user-friendly interface displays a comprehensive table of students, making it easy to view and manage their information at a glance." wrappingWidth="1163.9999999999998" />
    </children>
 </AnchorPane>

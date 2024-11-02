@@ -1,11 +1,16 @@
 package org.example.lk.ijse.DAO.impl;
 
+import org.example.lk.ijse.DAO.cutom.UserDao;
 import org.example.lk.ijse.Entity.User;
 import org.example.lk.ijse.config.FactoryConfiguration;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.NativeQuery;
 
-public class UserDaoImpl {
+import java.io.IOException;
+import java.util.List;
+
+public class UserDaoImpl implements UserDao {
 
     public void saveUser(User user) {
         Transaction transaction = null;
@@ -32,16 +37,59 @@ public class UserDaoImpl {
         }
     }
 
-    /*public User getUserByRole(String role) {
-        try (Session session = FactoryConfiguration.getInstance().getSession()) {
-            return session.createQuery("FROM User WHERE role = :role", User.class)
-                    .setParameter("role", role)
-                    .uniqueResult();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }*/
+    @Override
+    public List<User> getaAll() throws IOException {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        List<User> list = session.createQuery("from User ", User.class).list();
+
+        transaction.commit();
+        session.close();
+
+        return list;
+    }
+
+    @Override
+    public boolean save(User entity) throws IOException {
+        return false;
+    }
 
 
+
+
+    @Override
+    public boolean update(User dto) throws IOException {
+
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        session.update(dto);
+
+        transaction.commit();
+        session.close();
+
+        return false;
+    }
+
+    @Override
+    public boolean delete(int id) throws IOException {
+        return false;
+    }
+
+    @Override
+    public boolean delete(Long entity) throws IOException {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        NativeQuery nativeQuery = session.createNativeQuery("delete from users where id = ?1");
+        nativeQuery.setParameter(1, entity);
+
+        nativeQuery.executeUpdate();
+
+        transaction.commit();
+        session.close();
+
+        return false;
+    }
 }

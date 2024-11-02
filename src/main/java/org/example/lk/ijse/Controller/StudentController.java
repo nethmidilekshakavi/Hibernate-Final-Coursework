@@ -8,6 +8,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
@@ -113,10 +115,8 @@ public class StudentController implements Initializable {
 
     }
 
-    @FXML
-    void deleteOnActionStudent(ActionEvent event) {
 
-    }
+
 
     @FXML
     void saveOnActionStudent(ActionEvent event) throws IOException, SQLException {
@@ -151,39 +151,6 @@ public class StudentController implements Initializable {
        loadallvalues();
     }
 
-
-
-    @FXML
-    void updateOnActionStudent(ActionEvent event) throws SQLException, IOException {
-        int id = Integer.parseInt(idtxt.getText());
-        String fn = firstNametxt.getText();
-        String ln = lastnametxt.getText();
-        String address = addresstxt.getText();
-        String email = emailtxt.getText();
-        String number = phonenumbertxt.getText();
-        LocalDate enrollmentDate = datecombo.getValue();
-
-
-        Student student = new Student(id,fn,ln,address,email,number,enrollmentDate);
-
-        boolean s = false;
-
-        try{
-
-            s = studentBo.updateStudent(student);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        if (s){
-            new Alert(Alert.AlertType.CONFIRMATION,"Customer Update Success").show();
-        }else {
-
-            new Alert(Alert.AlertType.ERROR,"Student Update UnSuccess").show();
-        }
-loadallvalues();
-    }
 
     public void loadallvalues() throws SQLException, IOException {
 
@@ -269,11 +236,49 @@ loadallvalues();
                 });
             });
 
+            //Update Student=======
+
+            observableList.get(i).getUpdate().setOnAction(actionEvent -> {
+                int uid = Integer.parseInt(idtxt.getText());
+                String fn = firstNametxt.getText();
+                String ln = lastnametxt.getText();
+                String address = addresstxt.getText();
+                String email = emailtxt.getText();
+                String number = phonenumbertxt.getText();
+                LocalDate enrollmentDate = datecombo.getValue();
+
+
+                Student student = new Student(uid,fn,ln,address,email,number,enrollmentDate);
+
+                boolean s = false;
+
+                try{
+
+                    s = studentBo.updateStudent(student);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                if (!s){
+                    new Alert(Alert.AlertType.CONFIRMATION,"Student Update Success").show();
+                }else {
+
+                    new Alert(Alert.AlertType.ERROR,"Student Update UnSuccess").show();
+                }
+                try {
+                    loadallvalues();
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            });
         }
-
-
-
     }
+
+
+
     public void setValues(){
         colid.setCellValueFactory(new PropertyValueFactory<>("id"));
         colfirstname.setCellValueFactory(new PropertyValueFactory<>("firstName"));

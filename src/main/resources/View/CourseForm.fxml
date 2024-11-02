@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.lk.ijse.Controller.CourseForm">
+   <children>
+      <AnchorPane fx:id="CourseForm" layoutX="10.0" layoutY="10.0" prefHeight="793.0" prefWidth="1352.0">
+         <children>
+            <Text fx:id="topic" layoutX="426.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="🍽-COURSE MANAGMENT-📖">
+               <font>
+                  <Font name="Bookman Old Style" size="32.0" />
+               </font>
+            </Text>
+            <TextField fx:id="ProgramNametxt" layoutX="71.0" layoutY="339.0" onKeyReleased="#firstnameKeyRelese" prefHeight="26.0" prefWidth="398.0" />
+            <TextField fx:id="durationtxt" layoutX="71.0" layoutY="424.0" onKeyReleased="#lastnameKeyRelese" prefHeight="26.0" prefWidth="398.0" />
+            <TextField fx:id="feetxt" layoutX="788.0" layoutY="275.0" onKeyReleased="#mobilekeyRelese" prefHeight="26.0" prefWidth="398.0" />
+            <Text fx:id="name" layoutX="71.0" layoutY="325.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Program Name">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Text fx:id="Duration" layoutX="71.0" layoutY="411.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Duration">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Text fx:id="fee" layoutX="788.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fee (LKR)">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Button layoutX="788.0" layoutY="333.0" mnemonicParsing="false" onAction="#saveOnActionCourse" prefHeight="38.0" prefWidth="94.0" style="-fx-background-color: #F3C623;" text="Save">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Button>
+            <Button layoutX="905.0" layoutY="333.0" mnemonicParsing="false" onAction="#clearOnActionCourse" prefHeight="38.0" prefWidth="94.0" style="-fx-background-color: #7AB2D3;" text="Clear">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Button>
+            <TableView fx:id="CourseTable" layoutX="53.0" layoutY="551.0" prefHeight="200.0" prefWidth="1164.0">
+               <columns>
+                  <TableColumn fx:id="colid" prefWidth="138.3999900817871" text="Program ID" />
+                  <TableColumn fx:id="colName" prefWidth="244.00001525878906" text="Program Name" />
+                  <TableColumn fx:id="colDuration" prefWidth="204.79998779296875" text="Duration" />
+                  <TableColumn fx:id="colfee" prefWidth="192.0" text="Fee (LKR)" />
+                  <TableColumn fx:id="updatebtnrow" prefWidth="198.4000244140625" text="Update" />
+                  <TableColumn fx:id="deletebtnrow" prefWidth="185.60009765625" text="Delete" />
+               </columns>
+            </TableView>
+            <Text fx:id="id" layoutX="71.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Program ID">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <TextField fx:id="Programidtxt" layoutX="71.0" layoutY="250.0" onKeyPressed="#loadTheTextField" onKeyReleased="#idkeyRelese" prefHeight="26.0" prefWidth="398.0" />
+            <Text fx:id="ProgramDetails" layoutX="65.0" layoutY="525.0" strokeType="OUTSIDE" strokeWidth="0.0" text="--Program Details--">
+               <font>
+                  <Font name="Consolas Italic" size="21.0" />
+               </font>
+            </Text>
+            <Text fx:id="text" layoutX="71.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="A Course Management System streamlines the process of creating, organizing, and administering educational courses. It allows institutions to efficiently handle course registrations, manage course materials, track student progress, and facilitate communication between students and instructors. The system enhances productivity and ensures a smooth educational experience for both staff and learners." wrappingWidth="1163.9999999999998" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
