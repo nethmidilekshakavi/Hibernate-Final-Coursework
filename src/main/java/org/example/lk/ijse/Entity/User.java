@@ -1,5 +1,4 @@
 package org.example.lk.ijse.Entity;
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
