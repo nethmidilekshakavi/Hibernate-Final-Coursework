@@ -13,6 +13,9 @@ import lombok.NoArgsConstructor;
 public class Course {
 
         @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private int id;
+
         private String programId;
 
         private String programName;

@@ -2,12 +2,14 @@ package org.example.lk.ijse.DAO.impl;
 
 import org.example.lk.ijse.DAO.cutom.CourseDao;
 import org.example.lk.ijse.Entity.Course;
-import org.example.lk.ijse.Entity.Student;
 import org.example.lk.ijse.config.FactoryConfiguration;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.NativeQuery;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CourseDaoImpl implements CourseDao {
 
@@ -31,6 +33,16 @@ public class CourseDaoImpl implements CourseDao {
 
     @Override
     public boolean update(Course entity) throws IOException {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        session.update(entity);
+
+
+        transaction.commit();
+        session.close();
+
+
         return false;
     }
 
@@ -39,5 +51,57 @@ public class CourseDaoImpl implements CourseDao {
         return false;
     }
 
+    @Override
+    public boolean delete(String entity) throws IOException {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        NativeQuery nativeQuery = session.createNativeQuery("delete from courses where programId = ?1");
+        nativeQuery.setParameter(1, entity);
+
+        nativeQuery.executeUpdate();
+
+        transaction.commit();
+        session.close();
+
+        return false;
+    }
+
+    @Override
+    public List<Course> getaAll() throws IOException {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        List<Course> list = session.createQuery("from Course ", Course.class).list();
+
+
+        transaction.commit();
+        session.close();
+
+
+        return list;
+    }
+
+
+    @Override
+    public List<Course> SearchCID(String cid) throws IOException {
+        List<Course> courseList = new ArrayList<>();
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        try {
+            courseList = session.createQuery("FROM Course WHERE programId = :cid", Course.class)
+                    .setParameter("cid", cid)
+                    .getResultList();
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) transaction.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+
+        return courseList;
+    }
 
 }

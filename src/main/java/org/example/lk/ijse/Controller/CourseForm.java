@@ -1,21 +1,38 @@
 package org.example.lk.ijse.Controller;
 
+import com.jfoenix.controls.JFXButton;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.fxml.Initializable;
+import javafx.scene.Cursor;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import org.example.lk.ijse.BO.BOFactory;
+import org.example.lk.ijse.BO.custom.CourseBO;
+import org.example.lk.ijse.DTO.TM.CourseTM;
+import org.example.lk.ijse.Entity.Course;
+import org.example.lk.ijse.Entity.Student;
 
-public class CourseForm {
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
+
+public class CourseForm implements Initializable {
 
     @FXML
     private AnchorPane CourseForm;
 
     @FXML
-    private TableView<?> CourseTable;
+    private TableView<CourseTM> CourseTable;
 
     @FXML
     private Text Duration;
@@ -30,19 +47,19 @@ public class CourseForm {
     private TextField Programidtxt;
 
     @FXML
-    private TableColumn<?, ?> colDuration;
+    private TableColumn<String, CourseTM> colDuration;
 
     @FXML
-    private TableColumn<?, ?> colName;
+    private TableColumn<String, CourseTM> colName;
 
     @FXML
-    private TableColumn<?, ?> colfee;
+    private TableColumn<Double, CourseTM> colfee;
 
     @FXML
-    private TableColumn<?, ?> colid;
+    private TableColumn<String, CourseTM> colid;
 
     @FXML
-    private TableColumn<?, ?> deletebtnrow;
+    private TableColumn<CourseTM, JFXButton> deletebtnrow;
 
     @FXML
     private TextField durationtxt;
@@ -66,7 +83,7 @@ public class CourseForm {
     private Text topic;
 
     @FXML
-    private TableColumn<?, ?> updatebtnrow;
+    private TableColumn<CourseTM, JFXButton> updatebtnrow;
 
     @FXML
     void clearOnActionCourse(ActionEvent event) {
@@ -98,9 +115,195 @@ public class CourseForm {
 
     }
 
+    CourseBO courseBO = (CourseBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.COURSE);
+
     @FXML
-    void saveOnActionCourse(ActionEvent event) {
+    void saveOnActionCourse(ActionEvent event) throws IOException {
+
+        int id = 0;
+        String pid = Programidtxt.getText();
+        String pname = ProgramNametxt.getText();
+        String duration = durationtxt.getText();
+        double fee = Double.parseDouble(feetxt.getText());
+
+        Course course = new Course(id,pid, pname, duration, fee);
+
+        boolean c = false;
+
+        try {
+
+            c = courseBO.saveCourse(course);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if (c) {
+            new Alert(Alert.AlertType.CONFIRMATION, "Customer SAVE Success");
+        } else {
+
+            new Alert(Alert.AlertType.ERROR, "Student save UnSuccess");
+        }
+        loadallvalues();
 
     }
 
+    private void loadallvalues() throws IOException {
+
+        List<Course> allcourse = courseBO.getAllCourse();
+
+
+        for (Course course : allcourse) {
+            System.out.println(course.getId() + course.getProgramId() + ": " + course.getProgramName() + " - " + course.getDuration() + " - " + course.getFee());
+        }
+
+
+        ObservableList<CourseTM> observableList = FXCollections.observableArrayList();
+
+        for (int i = 0; i < allcourse.size(); i++) {
+            CourseTM courseTM = new CourseTM(
+                    allcourse.get(i).getId(),
+                    allcourse.get(i).getProgramId(),
+                    allcourse.get(i).getProgramName(),
+                    allcourse.get(i).getFee(),
+                    allcourse.get(i).getDuration(),
+                    new JFXButton("delete"), new JFXButton("update")
+            );
+
+            observableList.add(courseTM);
+        }
+
+        CourseTable.setItems(observableList);
+
+        for (int i = 0; i < observableList.size(); i++) {
+            observableList.get(i).getUpdate().setStyle("-fx-background-color: rgba(16, 176, 72)");
+            observableList.get(i).getUpdate().setPrefWidth(130);
+            observableList.get(i).getUpdate().setPrefHeight(30);
+            observableList.get(i).getUpdate().setCursor(Cursor.HAND);
+            observableList.get(i).getDelete().setStyle("-fx-background-color: rgba(166, 7, 33)");
+            observableList.get(i).getDelete().setCursor(Cursor.HAND);
+            observableList.get(i).getDelete().setPrefWidth(120);
+            observableList.get(i).getDelete().setPrefHeight(30);
+            observableList.get(i).getUpdate().setTextFill(Color.WHITE);
+            observableList.get(i).getDelete().setTextFill(Color.WHITE);
+        }
+        for (int i = 0; i < observableList.size(); i++) {
+            String id = observableList.get(i).getProgramID();
+            observableList.get(i).getDelete().setOnAction(actionEvent -> {
+
+                Alert confirmDialog = new Alert(Alert.AlertType.CONFIRMATION);
+                confirmDialog.setTitle("Confirm Deletion");
+                confirmDialog.setHeaderText("Are you sure you want to delete this Course?");
+                confirmDialog.setContentText("Press OK to confirm or Cancel to abort.");
+
+                confirmDialog.showAndWait().ifPresent(response -> {
+                    if (response == ButtonType.OK) {
+                        //deleteCourse
+                        boolean deleted = false;
+                        try {
+                            deleted = courseBO.deleteCourse(id);
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                        if (!deleted) {
+                            Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+                            successAlert.setTitle("Success");
+                            successAlert.setHeaderText(null);
+                            successAlert.setContentText("Course Deleted Successfully");
+                            successAlert.showAndWait();
+                            // Reload values after successful deletion
+                        } else {
+                            // Handle deletion failure
+                            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                            errorAlert.setTitle("Error");
+                            errorAlert.setHeaderText(null);
+                            errorAlert.setContentText("Failed to delete course.");
+                            errorAlert.showAndWait();
+                        }
+                        try {
+                            loadallvalues();
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                });
+            });
+
+            //Update Course=======
+
+            observableList.get(i).getUpdate().setOnAction(actionEvent -> {
+                int ccid = 0;
+                String cid = Programidtxt.getText();
+                String name = ProgramNametxt.getText();
+                String duration = durationtxt.getText();
+                double fee = Double.parseDouble(feetxt.getText());
+
+
+                Course course = new Course(ccid,cid, name, duration, fee);
+
+                boolean c = false;
+
+                try {
+
+                    c = courseBO.updateCourse(course);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                if (!c) {
+                    new Alert(Alert.AlertType.CONFIRMATION, "Course Update Success").show();
+                } else {
+
+                    new Alert(Alert.AlertType.ERROR, "Course Update UnSuccess").show();
+                }
+                try {
+                    loadallvalues();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            });
+        }
+    }
+
+
+    public void setValues() {
+        colid.setCellValueFactory(new PropertyValueFactory<>("programId"));
+        colDuration.setCellValueFactory(new PropertyValueFactory<>("duration"));
+        colfee.setCellValueFactory(new PropertyValueFactory<>("fee"));
+        colName.setCellValueFactory(new PropertyValueFactory<>("programName"));
+        deletebtnrow.setCellValueFactory(new PropertyValueFactory<CourseTM, JFXButton>("Delete"));
+        updatebtnrow.setCellValueFactory(new PropertyValueFactory<CourseTM, JFXButton>("Update"));
+
+    }
+
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        try {
+            loadallvalues();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        setValues();
+    }
+
+
+    public void loadTheTextFiled(KeyEvent keyEvent) throws IOException {
+        if (keyEvent.getCode().equals(KeyCode.ENTER)) {
+            String id = Programidtxt.getText();
+            ArrayList<Course> courses = (ArrayList<Course>) courseBO.SearchCID(id);
+
+            Programidtxt.setText(courses.get(0).getProgramId());
+            ProgramNametxt.setText(courses.get(0).getProgramName());
+            durationtxt.setText(courses.get(0).getDuration());
+            feetxt.setText(String.valueOf(courses.get(0).getFee()));
+
+
+        }
+    }
 }
+
+
+
