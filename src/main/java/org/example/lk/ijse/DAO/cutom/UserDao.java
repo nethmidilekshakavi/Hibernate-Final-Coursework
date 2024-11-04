@@ -9,5 +9,7 @@ public interface UserDao extends CrudDao<User> {
 
     List<User> getaAll() throws IOException;
 
-    boolean delete(Long entity) throws IOException;
+    boolean delete(int entity) throws IOException;
+
+    List<User> SearchUID(int uid) throws IOException;
 }

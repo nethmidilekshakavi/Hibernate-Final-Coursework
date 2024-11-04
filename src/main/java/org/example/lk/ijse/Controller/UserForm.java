@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
@@ -16,11 +17,16 @@ import javafx.scene.text.Text;
 import org.example.lk.ijse.BO.BOFactory;
 import org.example.lk.ijse.BO.custom.UserBO;
 import org.example.lk.ijse.DTO.TM.UserTM;
+import org.example.lk.ijse.Entity.Student;
 import org.example.lk.ijse.Entity.User;
+import org.example.lk.ijse.config.FactoryConfiguration;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -88,9 +94,18 @@ public class UserForm implements Initializable {
 
 
     @FXML
-    void loadTheTextField(KeyEvent event) {
+    public void loadTheTextField(KeyEvent keyEvent) throws IOException {
+        if (keyEvent.getCode().equals(KeyCode.ENTER)){
+            String id = String.valueOf(Integer.parseInt(idtext.getText()));
+            ArrayList<User> students = (ArrayList<User>) userBO.SearchUID(Integer.parseInt(id));
 
+            usernametxt.setText(students.get(0).getUsername());
+            passwroddtxt.setText(students.get(0).getPassword());
+            roletxt.setText(students.get(0).getRole());
+
+        }
     }
+
 
     @FXML
     void saveOnActionStudent(ActionEvent event) {
@@ -136,7 +151,7 @@ public class UserForm implements Initializable {
             observableList.get(i).getDelete().setTextFill(Color.WHITE);
         }
         for (int i = 0; i < observableList.size(); i++) {
-            Long id = observableList.get(i).getUserID();
+            int id = observableList.get(i).getUserID();
             observableList.get(i).getDelete().setOnAction(actionEvent -> {
 
                 Alert confirmDialog = new Alert(Alert.AlertType.CONFIRMATION);
@@ -182,7 +197,7 @@ public class UserForm implements Initializable {
             //Update Student=======
 
             observableList.get(i).getUpdate().setOnAction(actionEvent -> {
-                Long uid = Long.valueOf(userid.getText());
+                int uid = Integer.parseInt(userid.getText());
                 String un = usernametxt.getText();
                 String pw = passwroddtxt.getText();
                 String role = roletxt.getText();

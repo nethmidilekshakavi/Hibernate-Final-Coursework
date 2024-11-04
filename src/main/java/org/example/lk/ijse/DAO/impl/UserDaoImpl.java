@@ -8,6 +8,7 @@ import org.hibernate.Transaction;
 import org.hibernate.query.NativeQuery;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserDaoImpl implements UserDao {
@@ -72,13 +73,10 @@ public class UserDaoImpl implements UserDao {
         return false;
     }
 
-    @Override
-    public boolean delete(int id) throws IOException {
-        return false;
-    }
+
 
     @Override
-    public boolean delete(Long entity) throws IOException {
+    public boolean delete(int entity) throws IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
@@ -91,5 +89,26 @@ public class UserDaoImpl implements UserDao {
         session.close();
 
         return false;
+    }
+
+    @Override
+    public List<User> SearchUID(int uid) throws IOException {
+        List<User> users = new ArrayList<>();
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        try {
+            users = session.createQuery("FROM User WHERE id = :uid", User.class)
+                    .setParameter("id", uid)
+                    .getResultList();
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) transaction.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+
+        return users;
     }
 }

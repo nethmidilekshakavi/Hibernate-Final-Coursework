@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class UserTM extends org.example.lk.ijse.Controller.UserForm {
 
-    private  Long userID;
+    private  int userID;
     private  String UserName;
     private String UserPassword;
     private  String UserRole;

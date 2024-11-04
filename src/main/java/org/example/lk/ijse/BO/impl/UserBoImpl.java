@@ -26,7 +26,14 @@ public class UserBoImpl implements UserBO {
     }
 
     @Override
-    public boolean deleteUser(Long id) throws IOException {
+    public boolean deleteUser(int id) throws IOException {
         return userDao.delete(Math.toIntExact(id));
+    }
+
+    @Override
+    public List<User> SearchUID(int uid) throws IOException {
+
+        return userDao.SearchUID(uid);
+
     }
 }

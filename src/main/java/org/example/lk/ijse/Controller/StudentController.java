@@ -349,16 +349,13 @@ clearTextFiled();
 
     public void loadTheTextField(KeyEvent keyEvent) throws IOException {
         if (keyEvent.getCode().equals(KeyCode.ENTER)){
-            int id = Integer.parseInt(idtxt.getText());
-            ArrayList<Student> students = (ArrayList<Student>) studentBo.SearchSID(id);
-
+             String id = String.valueOf(Integer.parseInt(idtxt.getText()));
+            ArrayList<Student> students = (ArrayList<Student>) studentBo.SearchSID(Integer.parseInt(id));
             firstNametxt.setText(students.get(0).getFirstName());
             lastnametxt.setText(students.get(0).getLastName());
             addresstxt.setText(students.get(0).getAddress());
             phonenumbertxt.setText(students.get(0).getPhoneNumber());
             emailtxt.setText(students.get(0).getEmail());
-
-
         }
     }
 
