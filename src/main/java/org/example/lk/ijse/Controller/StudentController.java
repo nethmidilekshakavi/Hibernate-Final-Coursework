@@ -131,6 +131,7 @@ clearTextFiled();
         LocalDate enrollmentDate = datecombo.getValue();
 
 
+
         Student student = new Student(id,fn,ln,address,email,number,enrollmentDate);
 
         boolean s = false;

@@ -4,6 +4,8 @@ import org.example.lk.ijse.BO.SuperBo;
 import org.example.lk.ijse.Entity.Student;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public interface StudentBo extends SuperBo {
@@ -17,4 +19,5 @@ public interface StudentBo extends SuperBo {
     List<Student> getAllStudent() throws IOException;
 
     List<Student> SearchSID(int sid) throws IOException;
+
 }

@@ -4,6 +4,8 @@ import org.example.lk.ijse.CrudDao;
 import org.example.lk.ijse.Entity.Student;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public interface StudentDao extends CrudDao<Student> {
@@ -17,4 +19,5 @@ public interface StudentDao extends CrudDao<Student> {
 
 
     List<Student> SearchSID(int sid) throws IOException;
+
 }

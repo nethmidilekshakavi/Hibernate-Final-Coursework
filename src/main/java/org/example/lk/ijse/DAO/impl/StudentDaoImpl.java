@@ -1,5 +1,6 @@
 package org.example.lk.ijse.DAO.impl;
 
+import org.example.lk.ijse.DAO.DaoFactory;
 import org.example.lk.ijse.DAO.cutom.StudentDao;
 import org.example.lk.ijse.Entity.Student;
 import org.example.lk.ijse.config.FactoryConfiguration;
@@ -8,10 +9,12 @@ import org.hibernate.Transaction;
 import org.hibernate.query.NativeQuery;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class StudentDaoImpl implements StudentDao {
+
 
     @Override
     public boolean save(Student Dto) throws IOException {
@@ -90,7 +93,7 @@ public class StudentDaoImpl implements StudentDao {
                     .getResultList();
             transaction.commit();
         } catch (Exception e) {
-            if (transaction != null) transaction.rollback(); // Rollback on error
+            if (transaction != null) transaction.rollback();
             e.printStackTrace();
         } finally {
             session.close();
@@ -98,4 +101,6 @@ public class StudentDaoImpl implements StudentDao {
 
         return studentModels;
     }
+
+
 }

@@ -5,6 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -23,5 +27,9 @@ public class Course {
         private String duration;
 
         private double fee;
+
+
+      /*  @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true)
+        private Set<Registration> registrations = new HashSet<>();*/
 
 }

@@ -9,9 +9,19 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import org.example.lk.ijse.BO.BOFactory;
+import org.example.lk.ijse.BO.custom.StudentBo;
+import org.example.lk.ijse.Entity.Course;
+import org.example.lk.ijse.Entity.Student;
+
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class PaymentForm {
 
+    @FXML
+    private TableColumn<?, ?> deleteBtn;
     @FXML
     private Text Amountduetxt;
 
@@ -108,5 +118,7 @@ public class PaymentForm {
     void clearOnActionRegistaion(ActionEvent event) {
 
     }
+
+
 
 }

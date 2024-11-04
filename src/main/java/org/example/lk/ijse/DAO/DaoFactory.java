@@ -1,6 +1,7 @@
 package org.example.lk.ijse.DAO;
 
 import org.example.lk.ijse.DAO.impl.CourseDaoImpl;
+import org.example.lk.ijse.DAO.impl.RegistrationDaoImpl;
 import org.example.lk.ijse.DAO.impl.StudentDaoImpl;
 import org.example.lk.ijse.DAO.impl.UserDaoImpl;
 
@@ -15,7 +16,7 @@ public class DaoFactory {
     }
 
     public enum DAOTypes {
-        STUDENT,USER,COURSE
+        STUDENT,USER,COURSE,REGISTRATION
     }
 
     public SuperDao getDAO(DAOTypes types){
@@ -28,6 +29,9 @@ public class DaoFactory {
             }
             case COURSE -> {
                 return new CourseDaoImpl();
+            }
+            case REGISTRATION -> {
+                return new RegistrationDaoImpl();
             }
         }
         return null;

@@ -5,6 +5,8 @@ import org.example.lk.ijse.DAO.cutom.StudentDao;
 import org.example.lk.ijse.Entity.Student;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class StudentBoImpl implements StudentBo {
@@ -42,6 +44,10 @@ public class StudentBoImpl implements StudentBo {
         return studentDao.SearchSID(sid);
 
     }
+
+
+
+
 
 
 }
