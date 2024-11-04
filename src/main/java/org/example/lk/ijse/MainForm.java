@@ -65,7 +65,9 @@ public class MainForm implements Initializable {
         Emptypane.getChildren().setAll(parent);
     }
 
-    public void PaymentManagmentOnAction(ActionEvent actionEvent) {
+    public void PaymentManagmentOnAction(ActionEvent actionEvent) throws IOException {
+        Parent parent= FXMLLoader.load(getClass().getResource("/view/Payment.fxml"));
+        Emptypane.getChildren().setAll(parent);
     }
 
 

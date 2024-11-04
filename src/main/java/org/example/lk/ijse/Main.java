@@ -30,7 +30,7 @@ public class Main extends Application {
         }
 
         // Load JavaFX main form
-        primaryStage.setScene(new Scene(FXMLLoader.load(this.getClass().getResource("/View/RegisterTheSystem.fxml"))));
+        primaryStage.setScene(new Scene(FXMLLoader.load(this.getClass().getResource("/View/MainForm.fxml"))));
         primaryStage.show();
         primaryStage.centerOnScreen();
         primaryStage.setTitle("Login Page");

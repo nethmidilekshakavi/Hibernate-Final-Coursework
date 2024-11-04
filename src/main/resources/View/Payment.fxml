@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.lk.ijse.Controller.PaymentForm">
+   <children>
+      <AnchorPane fx:id="RegistaionFome" layoutX="-8.0" prefHeight="804.0" prefWidth="1370.0">
+         <children>
+            <Text fx:id="topic" layoutX="426.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="🍽️-REGISTATION FORM-🧑‍🍳">
+               <font>
+                  <Font name="Bookman Old Style" size="32.0" />
+               </font>
+            </Text>
+            <DatePicker fx:id="datecombo" layoutX="814.0" layoutY="160.0" prefHeight="28.0" prefWidth="298.0" promptText="Date" />
+            <Button layoutX="823.0" layoutY="436.0" mnemonicParsing="false" onAction="#RegisterComfirmOnAction" prefHeight="38.0" prefWidth="125.0" style="-fx-background-color: #F3C623;" text="Register Comfirm">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Button>
+            <Button layoutX="971.0" layoutY="436.0" mnemonicParsing="false" onAction="#clearOnActionRegistaion" prefHeight="38.0" prefWidth="94.0" style="-fx-background-color: #7AB2D3;" text="Clear">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Button>
+            <TableView fx:id="StudentTable" layoutX="53.0" layoutY="551.0" prefHeight="200.0" prefWidth="1216.0">
+               <columns>
+                  <TableColumn fx:id="colsid" prefWidth="86.39995956420898" text="SID" />
+                  <TableColumn fx:id="colsname" prefWidth="139.2000274658203" text="Student Name" />
+                  <TableColumn fx:id="colcid" prefWidth="76.79998779296875" text="CID" />
+                  <TableColumn fx:id="colcname" prefWidth="162.39996337890625" text="Course Name" />
+                  <TableColumn fx:id="coldate" prefWidth="178.40008544921875" text="Date" />
+                  <TableColumn fx:id="colduration" prefWidth="190.39990234375" text="Duration" />
+                  <TableColumn fx:id="colPayment" prefWidth="190.39990234375" text="Payment" />
+                  <TableColumn fx:id="coldueAmonut" prefWidth="190.39990234375" text="Due Amonut" />
+               </columns>
+            </TableView>
+            <Text fx:id="studentdetails" layoutX="65.0" layoutY="525.0" strokeType="OUTSIDE" strokeWidth="0.0" text="--Registaion Details--">
+               <font>
+                  <Font name="Consolas Italic" size="21.0" />
+               </font>
+            </Text>
+            <Text fx:id="registaionNOtxt" layoutX="171.0" layoutY="224.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="42.136688232421875">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <ComboBox fx:id="StudentIDComboBox" layoutX="69.0" layoutY="237.0" prefHeight="26.0" prefWidth="398.0" />
+            <Text fx:id="studentid" layoutX="71.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Student ID :">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <ComboBox fx:id="StudentIDComboCourseComboBox" layoutX="69.0" layoutY="381.0" prefHeight="26.0" prefWidth="398.0" />
+            <Text fx:id="courseid" layoutX="71.0" layoutY="369.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Course ID :">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <TextField fx:id="Paymenttxt" layoutX="814.0" layoutY="251.0" prefHeight="26.0" prefWidth="298.0" />
+            <Text fx:id="payment" layoutX="818.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Payment :">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Text fx:id="studentName" layoutX="71.0" layoutY="311.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="140.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Text fx:id="studentMobile" layoutX="300.0" layoutY="310.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="140.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Text fx:id="courseName" layoutX="69.0" layoutY="452.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="140.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Text fx:id="CourseDuration" layoutX="298.0" layoutY="451.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="140.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Text fx:id="fee" layoutX="524.0" layoutY="452.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="140.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Text fx:id="RegistationNumbertxt" layoutX="181.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0">
+               <font>
+                  <Font name="System Bold" size="21.0" />
+               </font>
+            </Text>
+            <Text fx:id="payment1" layoutX="818.0" layoutY="330.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Amount Due :">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Text fx:id="Amountduetxt" layoutX="819.0" layoutY="368.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="85.64746093750023">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <Text fx:id="RegistertaionNumber" layoutX="66.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Registaion NO:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>
