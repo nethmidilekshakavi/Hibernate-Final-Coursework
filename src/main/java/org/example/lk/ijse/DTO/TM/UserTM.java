@@ -13,8 +13,8 @@ public class UserTM extends org.example.lk.ijse.Controller.UserForm {
 
     private  Long userID;
     private  String UserName;
-    private  String UserRole;
     private String UserPassword;
+    private  String UserRole;
     private JFXButton delete;
     private JFXButton update;
 }

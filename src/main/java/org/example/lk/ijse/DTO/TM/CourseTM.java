@@ -9,8 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class CourseTM extends org.example.lk.ijse.Controller.CourseForm {
-
-    private int id;
     private String ProgramID;
     private String ProgramName;
     private double fee;

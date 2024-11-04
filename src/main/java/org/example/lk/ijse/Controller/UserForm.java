@@ -220,10 +220,10 @@ public class UserForm implements Initializable {
 
 
     public void setValues(){
-        colid.setCellValueFactory(new PropertyValueFactory<>("id"));
-        colUserPassword.setCellValueFactory(new PropertyValueFactory<>("password"));
-        colUserRole.setCellValueFactory(new PropertyValueFactory<>("role"));
-        colUserName.setCellValueFactory(new PropertyValueFactory<>("username"));
+        colid.setCellValueFactory(new PropertyValueFactory<>("userID"));
+        colUserName.setCellValueFactory(new PropertyValueFactory<>("UserName"));
+        colUserPassword.setCellValueFactory(new PropertyValueFactory<>("UserPassword"));
+        colUserRole.setCellValueFactory(new PropertyValueFactory<>("UserRole"));
         deletebtnrow.setCellValueFactory(new PropertyValueFactory<UserTM, JFXButton>("Delete"));
         updatebtnrow.setCellValueFactory(new PropertyValueFactory<UserTM, JFXButton>("Update"));
 

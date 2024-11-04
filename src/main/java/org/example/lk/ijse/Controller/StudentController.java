@@ -113,7 +113,7 @@ public class StudentController implements Initializable {
 
     @FXML
     void clearOnActionStudent(ActionEvent event) {
-
+clearTextFiled();
     }
 
 
@@ -150,6 +150,7 @@ public class StudentController implements Initializable {
            new Alert(Alert.AlertType.ERROR,"Student save UnSuccess");
        }
        loadallvalues();
+       clearTextFiled();
     }
 
 
@@ -274,6 +275,8 @@ public class StudentController implements Initializable {
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
+
+                clearTextFiled();
             });
         }
     }
@@ -357,6 +360,18 @@ public class StudentController implements Initializable {
 
 
         }
+    }
+
+
+    public void clearTextFiled(){
+
+        idtxt.setText("");
+        firstNametxt.setText("");
+        lastnametxt.setText("");
+        addresstxt.setText("");
+        phonenumbertxt.setText("");
+        emailtxt.setText("");
+
     }
 
 }

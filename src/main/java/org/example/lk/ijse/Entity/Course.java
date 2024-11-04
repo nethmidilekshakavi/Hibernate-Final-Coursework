@@ -12,10 +12,10 @@ import lombok.NoArgsConstructor;
 @Table(name = "courses")
 public class Course {
 
-        @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private int id;
 
+        @Id
         private String programId;
 
         private String programName;

@@ -18,8 +18,6 @@ import org.example.lk.ijse.BO.BOFactory;
 import org.example.lk.ijse.BO.custom.CourseBO;
 import org.example.lk.ijse.DTO.TM.CourseTM;
 import org.example.lk.ijse.Entity.Course;
-import org.example.lk.ijse.Entity.Student;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -56,7 +54,7 @@ public class CourseForm implements Initializable {
     private TableColumn<Double, CourseTM> colfee;
 
     @FXML
-    private TableColumn<String, CourseTM> colid;
+    private TableColumn<?, ?> colProgramID;
 
     @FXML
     private TableColumn<CourseTM, JFXButton> deletebtnrow;
@@ -87,6 +85,8 @@ public class CourseForm implements Initializable {
 
     @FXML
     void clearOnActionCourse(ActionEvent event) {
+
+        clearTextFiled();
 
     }
 
@@ -145,6 +145,7 @@ public class CourseForm implements Initializable {
             new Alert(Alert.AlertType.ERROR, "Student save UnSuccess");
         }
         loadallvalues();
+        clearTextFiled();
 
     }
 
@@ -162,7 +163,6 @@ public class CourseForm implements Initializable {
 
         for (int i = 0; i < allcourse.size(); i++) {
             CourseTM courseTM = new CourseTM(
-                    allcourse.get(i).getId(),
                     allcourse.get(i).getProgramId(),
                     allcourse.get(i).getProgramName(),
                     allcourse.get(i).getFee(),
@@ -262,13 +262,14 @@ public class CourseForm implements Initializable {
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
+                clearTextFiled();
             });
         }
     }
 
 
     public void setValues() {
-        colid.setCellValueFactory(new PropertyValueFactory<>("programId"));
+        colProgramID.setCellValueFactory(new PropertyValueFactory<>("ProgramID"));
         colDuration.setCellValueFactory(new PropertyValueFactory<>("duration"));
         colfee.setCellValueFactory(new PropertyValueFactory<>("fee"));
         colName.setCellValueFactory(new PropertyValueFactory<>("programName"));
@@ -302,6 +303,13 @@ public class CourseForm implements Initializable {
 
 
         }
+    }
+
+    public void clearTextFiled(){
+        Programidtxt.setText("");
+        ProgramNametxt.setText("");
+        durationtxt.setText("");
+        feetxt.setText("");
     }
 }
 
