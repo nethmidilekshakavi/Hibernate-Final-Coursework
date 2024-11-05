@@ -3,8 +3,10 @@ package org.example.lk.ijse.BO.impl;
 import org.example.lk.ijse.BO.custom.RegistrationBO;
 import org.example.lk.ijse.DAO.DaoFactory;
 import org.example.lk.ijse.DAO.cutom.CourseDao;
+import org.example.lk.ijse.DAO.cutom.RegistrationDao;
 import org.example.lk.ijse.DAO.cutom.StudentDao;
 import org.example.lk.ijse.Entity.Course;
+import org.example.lk.ijse.Entity.Registration;
 import org.example.lk.ijse.Entity.Student;
 
 import java.io.IOException;
@@ -15,6 +17,7 @@ public class RegistrationBOImpl implements RegistrationBO {
 
     CourseDao courseDao = (CourseDao) DaoFactory.getDaoFactory().getDAO(DaoFactory.DAOTypes.COURSE);
     StudentDao studentDao = (StudentDao) DaoFactory.getDaoFactory().getDAO(DaoFactory.DAOTypes.STUDENT);
+    RegistrationDao registrationDao = (RegistrationDao) DaoFactory.getDaoFactory().getDAO(DaoFactory.DAOTypes.REGISTRATION);
 
 
     @Override
@@ -92,6 +95,10 @@ public class RegistrationBOImpl implements RegistrationBO {
         return courseDao.searchByCId(cid);
     }
 
+    @Override
+    public boolean saveRegistration(Registration entity) throws IOException {
+        return registrationDao.save(new Registration(entity.getId(),entity.getEnrollmentDate(),entity.getPayment(),entity.getDueAmount(),entity.getStudentName(),entity.getProgramName(),entity.getDuration(),entity.getStudent(),entity.getCourse()));
+    }
 
 
 }

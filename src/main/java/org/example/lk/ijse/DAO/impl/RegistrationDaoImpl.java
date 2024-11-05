@@ -12,10 +12,22 @@ import java.io.IOException;
 
 public class RegistrationDaoImpl implements RegistrationDao {
     @Override
-    public boolean save(Registration entity) throws IOException {
-        return false;
-    }
+    public boolean save(Registration Dto) throws IOException {
 
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        session.save(Dto);
+
+
+        transaction.commit();
+        session.close();
+
+
+        return false;
+
+
+    }
     @Override
     public boolean update(Registration entity) throws IOException {
         return false;

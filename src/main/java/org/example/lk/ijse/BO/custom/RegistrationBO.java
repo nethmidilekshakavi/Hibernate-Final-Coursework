@@ -2,6 +2,7 @@ package org.example.lk.ijse.BO.custom;
 
 import org.example.lk.ijse.BO.SuperBo;
 import org.example.lk.ijse.Entity.Course;
+import org.example.lk.ijse.Entity.Registration;
 import org.example.lk.ijse.Entity.Student;
 
 import java.io.IOException;
@@ -35,4 +36,6 @@ public interface RegistrationBO extends SuperBo {
 
 
     Course serachbyCIDs(String cid) throws SQLException, ClassNotFoundException;
+
+    boolean saveRegistration(Registration entity) throws IOException;
 }

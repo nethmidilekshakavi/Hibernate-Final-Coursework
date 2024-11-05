@@ -34,6 +34,9 @@ public class Student {
         @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
         private List<Registration> registrations = new ArrayList<>();
 
+        public Student(Integer studentId) {
+
+        }
 }
 
 

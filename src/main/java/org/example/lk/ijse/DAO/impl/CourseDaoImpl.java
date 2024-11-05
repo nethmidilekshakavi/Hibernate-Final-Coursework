@@ -107,32 +107,27 @@ public class CourseDaoImpl implements CourseDao {
 
     @Override
     public Course searchByCId(String id) {
-        // Get the current session from Hibernate
         Session session = FactoryConfiguration.getSessionFactory().openSession();
         Transaction transaction = null;
         Course course = null;
 
         try {
-            // Begin transaction
             transaction = session.beginTransaction();
 
-            // Create HQL query to find Customer by ID
+            // find Customer by ID
             String hql = "FROM Course WHERE programId = :id";
             Query<Course> query = session.createQuery(hql, Course.class);
             query.setParameter("id", id);
-
-            // Execute query and get the result
             course = query.uniqueResult();
 
-            // Commit transaction
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
             }
-            e.printStackTrace(); // Handle the exception properly in your application
+            e.printStackTrace();
         } finally {
-            session.close(); // Close the session
+            session.close();
         }
 
         return course;

@@ -104,34 +104,26 @@ public class StudentDaoImpl implements StudentDao {
 
     @Override
     public Student searchById(int id) {
-        // Get the current session from Hibernate
         Session session = FactoryConfiguration.getSessionFactory().openSession();
         Transaction transaction = null;
         Student student = null;
 
         try {
-            // Begin transaction
             transaction = session.beginTransaction();
-
-            // Create HQL query to find Customer by ID
+            // find student
             String hql = "FROM Student WHERE id = :id";
             Query<Student> query = session.createQuery(hql, Student.class);
             query.setParameter("id", id);
-
-            // Execute query and get the result
             student = query.uniqueResult();
-
-            // Commit transaction
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
             }
-            e.printStackTrace(); // Handle the exception properly in your application
+            e.printStackTrace();
         } finally {
-            session.close(); // Close the session
+            session.close();
         }
-
         return student;
     }
 

@@ -5,11 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import org.example.lk.ijse.BO.BOFactory;
@@ -26,6 +22,7 @@ import org.example.lk.ijse.Entity.Student;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -121,6 +118,9 @@ public class PaymentForm implements Initializable {
     @FXML
     private Text topic;
 
+    private ObservableList<Registration> oblist = FXCollections.observableArrayList();
+
+
 
     RegistrationBO registrationBO = (RegistrationBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.REGISTRATION);
 
@@ -128,8 +128,50 @@ public class PaymentForm implements Initializable {
 
     @FXML
     void RegisterComfirmOnAction(ActionEvent event) {
+        try {
+            Long id = 0L;
+            Integer studentId = StudentIDComboBox.getValue();
+            String courseId = StudentIDComboCourseComboBox.getValue();
+            String studentFullName = studentName.getText();
+            String courseFullName = courseName.getText();
+            String courseDuration = CourseDuration.getText();
+            double payment = Double.parseDouble(Paymenttxt.getText());
+            double totalFee = Double.parseDouble(fee.getText());
+            double dueAmount = totalFee - payment;
+            LocalDate date = datecombo.getValue();
 
+            // Load existing Student and Course entities from the database
+            Student student = registrationBO.serachbyIDS(studentId);
+            Course course = registrationBO.serachbyCIDs(courseId);
+
+            if (student == null) {
+                // Handle the case where the student is not found
+                new Alert(Alert.AlertType.ERROR, "Student not found!").show();
+                return;
+            }
+            if (course == null) {
+                new Alert(Alert.AlertType.ERROR, "Course not found!").show();
+                return;
+            }
+
+
+            Registration registration = new Registration(
+                    id, date, payment, dueAmount, studentFullName, courseFullName, courseDuration, student, course
+            );
+
+            //save
+            boolean isSaved = registrationBO.saveRegistration(registration);
+
+            if (!isSaved) {
+                new Alert(Alert.AlertType.CONFIRMATION, "Registration saved successfully!").show();
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Failed to save registration.").show();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+
 
     @FXML
     void clearOnActionRegistaion(ActionEvent event) {
@@ -165,6 +207,7 @@ public class PaymentForm implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         getProgramID();
         getStudentIds();
+
 
     }
 
