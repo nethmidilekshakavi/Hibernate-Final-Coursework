@@ -37,7 +37,7 @@
                   <DropShadow />
                </effect>
             </Button>
-            <TableView fx:id="StudentTable" layoutX="53.0" layoutY="551.0" prefHeight="200.0" prefWidth="1243.0">
+            <TableView fx:id="RegisterTable" layoutX="53.0" layoutY="551.0" prefHeight="200.0" prefWidth="1243.0">
                <columns>
                   <TableColumn fx:id="colsid" prefWidth="86.39995956420898" text="SID" />
                   <TableColumn fx:id="colsname" prefWidth="139.2000274658203" text="Student Name" />

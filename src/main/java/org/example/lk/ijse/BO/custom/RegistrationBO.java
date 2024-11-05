@@ -40,4 +40,6 @@ public interface RegistrationBO extends SuperBo {
     boolean saveRegistration(Registration entity) throws IOException;
 
     List<Registration> getAllRegistrationDetails() throws IOException;
+
+    boolean deleteRegistration(Long id) throws IOException;
 }

@@ -6,13 +6,16 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import org.example.lk.ijse.BO.BOFactory;
 import org.example.lk.ijse.BO.custom.RegistrationBO;
 import org.example.lk.ijse.DTO.TM.RegistrationTM;
+import org.example.lk.ijse.DTO.TM.StudentTM;
 import org.example.lk.ijse.Entity.Course;
 import org.example.lk.ijse.Entity.Registration;
 import org.example.lk.ijse.Entity.Student;
@@ -52,8 +55,7 @@ public class RegistrationController implements Initializable {
     @FXML
     private ComboBox<String> StudentIDComboCourseComboBox;
 
-    @FXML
-    private TableView<RegistrationTM> StudentTable;
+
 
     @FXML
     private TableColumn<Double, RegistrationTM> colPayment;
@@ -114,12 +116,15 @@ public class RegistrationController implements Initializable {
     private Text topic;
 
     @FXML
+    private TableView<RegistrationTM> RegisterTable;
+
+    @FXML
     private TableColumn<String, RegistrationTM> colProgram;
 
     RegistrationBO registrationBO = (RegistrationBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.REGISTRATION);
 
     @FXML
-    void RegisterComfirmOnAction(ActionEvent event) {
+    void RegisterComfirmOnAction(ActionEvent event) throws SQLException, IOException {
         try {
             Long id = 0L;
             Integer studentId = StudentIDComboBox.getValue();
@@ -148,6 +153,8 @@ public class RegistrationController implements Initializable {
                 return;
             }
 
+            ObservableList<StudentTM> observableList = FXCollections.observableArrayList();
+
 
             Registration registration = new Registration(
                     id, date, payment, dueAmount, studentFName, courseFullName, courseDuration, student, course
@@ -164,8 +171,11 @@ public class RegistrationController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
+        loadallvalues();
+        clearTextFiled();
 
+
+    }
 
     public void loadallvalues() throws SQLException, IOException {
 
@@ -180,6 +190,7 @@ public class RegistrationController implements Initializable {
 
         for (int i = 0; i < alldetails.size(); i++) {
             RegistrationTM registrationTM = new RegistrationTM(
+                    alldetails.get(i).getId(),
                     alldetails.get(i).getStudent().getId(),
                     alldetails.get(i).getStudentName(),
                     alldetails.get(i).getCourse().getProgramId(),
@@ -194,8 +205,68 @@ public class RegistrationController implements Initializable {
             observableList.add(registrationTM);
         }
 
-        StudentTable.setItems(observableList);
 
+        RegisterTable.setItems(observableList);
+
+        for (int i = 0; i < observableList.size(); i++) {
+            observableList.get(i).getDelete().setStyle("-fx-background-color: rgba(166, 7, 33)");
+            observableList.get(i).getDelete().setCursor(Cursor.HAND);
+            observableList.get(i).getDelete().setPrefWidth(120);
+            observableList.get(i).getDelete().setPrefHeight(30);
+            observableList.get(i).getDelete().setTextFill(Color.WHITE);
+        }
+        for (int i = 0; i < observableList.size(); i++) {
+            Long id = observableList.get(i).getId();
+            observableList.get(i).getDelete().setOnAction(actionEvent -> {
+
+                Alert confirmDialog = new Alert(Alert.AlertType.CONFIRMATION);
+                confirmDialog.setTitle("Confirm Deletion");
+                confirmDialog.setHeaderText("Are you sure you want to delete this customer?");
+                confirmDialog.setContentText("Press OK to confirm or Cancel to abort.");
+
+                confirmDialog.showAndWait().ifPresent(response -> {
+                    if (response == ButtonType.OK) {
+                        //deleteCustomer
+                        boolean deleted = false;
+                        try {
+                            deleted = registrationBO.deleteRegistration(id);
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                        if (!deleted) {
+                            Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+                            successAlert.setTitle("Success");
+                            successAlert.setHeaderText(null);
+                            successAlert.setContentText("Customer Deleted Successfully");
+                            successAlert.showAndWait();
+                            // Reload values after successful deletion
+                        } else {
+                            // Handle deletion failure
+                            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                            errorAlert.setTitle("Error");
+                            errorAlert.setHeaderText(null);
+                            errorAlert.setContentText("Failed to delete customer.");
+                            errorAlert.showAndWait();
+                        }
+                        try {
+                            loadallvalues();
+                        } catch (SQLException e) {
+                            throw new RuntimeException(e);
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                        try {
+                            loadallvalues();
+                        } catch (SQLException e) {
+                            throw new RuntimeException(e);
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                });
+            });
+
+        }
     }
 
     public void setValues(){
@@ -216,6 +287,8 @@ public class RegistrationController implements Initializable {
 
     @FXML
     void clearOnActionRegistaion(ActionEvent event) {
+
+        clearTextFiled();
 
     }
 
@@ -244,21 +317,6 @@ public class RegistrationController implements Initializable {
     }
 
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        getProgramID();
-        getStudentIds();
-        try {
-            loadallvalues();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        setValues();
-
-    }
 
     //set Customer Details
     public void comboStudetList(ActionEvent actionEvent) {
@@ -292,7 +350,30 @@ public class RegistrationController implements Initializable {
 
 
     public void clearTextFiled(){
+        studentid.setText("");
+        courseid.setText("");
+        courseName.setText("");
+        payment.setText("");
+        Amountduetxt.setText("");
+        fee.setText("");
+        studentName.setText("");
+        Amountduetxt.setText("");
+        studentMobile.setText("");
+        CourseDuration.setText("");
+    }
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        getProgramID();
+        getStudentIds();
+        try {
+            loadallvalues();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
+        setValues();
     }
 }

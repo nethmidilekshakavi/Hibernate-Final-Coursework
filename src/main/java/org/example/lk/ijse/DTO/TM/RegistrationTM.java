@@ -13,6 +13,7 @@ import java.util.Date;
 @Data
 public class RegistrationTM {
 
+    private Long id;
     private int sid;
     private String studentName;
     private String courseid;
@@ -22,5 +23,6 @@ public class RegistrationTM {
     private double payment;
     private double dueAmount;
     private JFXButton delete;
+
 
 }

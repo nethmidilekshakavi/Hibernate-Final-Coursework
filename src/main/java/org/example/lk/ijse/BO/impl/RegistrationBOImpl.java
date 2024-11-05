@@ -109,4 +109,10 @@ public class RegistrationBOImpl implements RegistrationBO {
 
     }
 
+    @Override
+    public boolean deleteRegistration(Long id) throws IOException {
+        return registrationDao.delete(id);
+    }
+
+
 }
