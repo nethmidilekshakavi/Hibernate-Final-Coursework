@@ -15,4 +15,5 @@ public interface CourseDao extends CrudDao<Course> {
 
     List<Course> SearchCID(String cid) throws IOException;
 
+    Course searchByCId(String id);
 }

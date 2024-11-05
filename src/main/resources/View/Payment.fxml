@@ -78,29 +78,29 @@
                   <Font size="14.0" />
                </font>
             </Text>
-            <Text fx:id="studentName" layoutX="71.0" layoutY="311.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="140.0">
+            <Text fx:id="studentName" fill="#168e2e" layoutX="71.0" layoutY="317.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="140.0">
                <font>
-                  <Font size="14.0" />
+                  <Font name="System Bold" size="22.0" />
                </font>
             </Text>
-            <Text fx:id="studentMobile" layoutX="300.0" layoutY="310.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="140.0">
+            <Text fx:id="studentMobile" fill="#168e2e" layoutX="300.0" layoutY="316.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="140.0">
                <font>
-                  <Font size="14.0" />
+                  <Font name="System Bold" size="22.0" />
                </font>
             </Text>
-            <Text fx:id="courseName" layoutX="69.0" layoutY="452.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="140.0">
+            <Text fx:id="courseName" fill="#d92727" layoutX="69.0" layoutY="472.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="140.0">
                <font>
-                  <Font size="14.0" />
+                  <Font size="27.0" />
                </font>
             </Text>
-            <Text fx:id="CourseDuration" layoutX="298.0" layoutY="451.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="140.0">
+            <Text fx:id="CourseDuration" fill="#d92727" layoutX="298.0" layoutY="471.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="140.0">
                <font>
-                  <Font size="14.0" />
+                  <Font size="27.0" />
                </font>
             </Text>
-            <Text fx:id="fee" layoutX="524.0" layoutY="452.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="140.0">
+            <Text fx:id="fee" fill="#d92727" layoutX="524.0" layoutY="472.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="140.0">
                <font>
-                  <Font size="14.0" />
+                  <Font size="27.0" />
                </font>
             </Text>
             <Text fx:id="RegistationNumbertxt" layoutX="181.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0">

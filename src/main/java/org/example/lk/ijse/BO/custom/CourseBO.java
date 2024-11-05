@@ -4,6 +4,7 @@ import org.example.lk.ijse.BO.SuperBo;
 import org.example.lk.ijse.Entity.Course;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 public interface CourseBO extends SuperBo {
@@ -16,4 +17,7 @@ public interface CourseBO extends SuperBo {
     List<Course> getAllCourse() throws IOException;
 
     List<Course> SearchCID(String cid) throws IOException;
+
+
+    Course serachbyCIDs(String cid) throws SQLException, ClassNotFoundException;
 }

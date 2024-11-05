@@ -6,6 +6,7 @@ import org.example.lk.ijse.DAO.cutom.CourseDao;
 import org.example.lk.ijse.Entity.Course;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 public class CourseBOImpl implements CourseBO {
@@ -43,6 +44,9 @@ public class CourseBOImpl implements CourseBO {
 
     }
 
-
+    @Override
+    public Course serachbyCIDs(String cid) throws SQLException, ClassNotFoundException {
+        return courseDao.searchByCId(cid);
+    }
 
 }

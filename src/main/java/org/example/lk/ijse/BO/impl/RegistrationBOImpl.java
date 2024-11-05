@@ -87,6 +87,10 @@ public class RegistrationBOImpl implements RegistrationBO {
     }
 
 
+    @Override
+    public Course serachbyCIDs(String cid) throws SQLException, ClassNotFoundException {
+        return courseDao.searchByCId(cid);
+    }
 
 
 

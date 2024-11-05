@@ -2,7 +2,6 @@ package org.example.lk.ijse.DAO.impl;
 
 import org.example.lk.ijse.DAO.cutom.CourseDao;
 import org.example.lk.ijse.Entity.Course;
-import org.example.lk.ijse.Entity.Student;
 import org.example.lk.ijse.config.FactoryConfiguration;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -105,5 +104,39 @@ public class CourseDaoImpl implements CourseDao {
 
         return courseList;
     }
+
+    @Override
+    public Course searchByCId(String id) {
+        // Get the current session from Hibernate
+        Session session = FactoryConfiguration.getSessionFactory().openSession();
+        Transaction transaction = null;
+        Course course = null;
+
+        try {
+            // Begin transaction
+            transaction = session.beginTransaction();
+
+            // Create HQL query to find Customer by ID
+            String hql = "FROM Course WHERE programId = :id";
+            Query<Course> query = session.createQuery(hql, Course.class);
+            query.setParameter("id", id);
+
+            // Execute query and get the result
+            course = query.uniqueResult();
+
+            // Commit transaction
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace(); // Handle the exception properly in your application
+        } finally {
+            session.close(); // Close the session
+        }
+
+        return course;
+    }
+
 
 }

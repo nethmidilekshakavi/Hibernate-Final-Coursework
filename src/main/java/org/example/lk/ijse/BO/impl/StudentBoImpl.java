@@ -45,8 +45,8 @@ public class StudentBoImpl implements StudentBo {
     }
 
     @Override
-    public Student serachbyIDS(int cid) throws SQLException, ClassNotFoundException {
-        return studentDao.searchById(cid);
+    public Student serachbyIDS(int sid) throws SQLException, ClassNotFoundException {
+        return studentDao.searchById(sid);
     }
 
 

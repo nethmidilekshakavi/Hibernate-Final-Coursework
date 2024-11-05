@@ -102,30 +102,6 @@ public class StudentDaoImpl implements StudentDao {
     }
 
 
-
-
-   /* @Override
-    public Student searchByIDs(int id) throws IOException {
-        List<Student> stuids = new ArrayList<>();
-        Session session = FactoryConfiguration.getInstance().getSession();
-        Transaction transaction = session.beginTransaction();
-
-        try {
-            stuids = session.createQuery("SELECT s.id FROM Student s", Student.class)
-                    .setParameter("sid", id)
-                    .getResultList();
-            transaction.commit();
-        } catch (Exception e) {
-            if (transaction != null) transaction.rollback();
-            e.printStackTrace();
-        } finally {
-            session.close();
-        }
-
-        return (Student) stuids;
-
-    }
-*/
     @Override
     public Student searchById(int id) {
         // Get the current session from Hibernate

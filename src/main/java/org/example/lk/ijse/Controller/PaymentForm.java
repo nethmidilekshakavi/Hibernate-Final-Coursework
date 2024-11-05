@@ -173,7 +173,7 @@ public class PaymentForm implements Initializable {
 
         Integer sid = StudentIDComboBox.getValue();
         try{
-            Student student = (Student) registrationBO.serachbyIDS(sid);
+            Student student = registrationBO.serachbyIDS(sid);
                 studentName.setText(student.getFirstName());
             System.out.printf(student.getFirstName());
                 studentMobile.setText(student.getPhoneNumber());
@@ -188,11 +188,10 @@ public class PaymentForm implements Initializable {
 
         String cid = StudentIDComboCourseComboBox.getValue();
         try{
-            Course course = (Course) registrationBO.SearchCID(cid);
-            courseName.setText(course.getProgramName());
-            fee.setText(String.valueOf(course.getFee()));
-            CourseDuration.setText(course.getDuration());
-
+            Course course = registrationBO.serachbyCIDs(cid);
+           courseName.setText(course.getProgramName());
+           fee.setText(String.valueOf(course.getFee()));
+           CourseDuration.setText(course.getDuration());
 
         } catch (Exception e) {
             e.printStackTrace();
