@@ -1,7 +1,10 @@
 package org.example.lk.ijse.Controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
@@ -9,10 +12,24 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import org.example.lk.ijse.BO.BOFactory;
+import org.example.lk.ijse.BO.custom.CourseBO;
+import org.example.lk.ijse.BO.custom.RegistrationBO;
 import org.example.lk.ijse.BO.custom.StudentBo;
 import org.example.lk.ijse.DAO.DaoFactory;
+import org.example.lk.ijse.DAO.cutom.RegistrationDao;
+import org.example.lk.ijse.DTO.TM.RegistrationTM;
+import org.example.lk.ijse.Entity.Course;
+import org.example.lk.ijse.Entity.Student;
 
-public class PaymentForm {
+import java.io.IOException;
+import java.net.URL;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
+
+public class PaymentForm implements Initializable {
 
     @FXML
     private TableColumn<?, ?> deleteBtn;
@@ -35,10 +52,10 @@ public class PaymentForm {
     private Text RegistertaionNumber;
 
     @FXML
-    private ComboBox<?> StudentIDComboBox;
+    private ComboBox<Integer> StudentIDComboBox;
 
     @FXML
-    private ComboBox<?> StudentIDComboCourseComboBox;
+    private ComboBox<String> StudentIDComboCourseComboBox;
 
     @FXML
     private TableView<?> StudentTable;
@@ -104,6 +121,8 @@ public class PaymentForm {
     private Text topic;
 
 
+    RegistrationBO registrationBO = (RegistrationBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.REGISTRATION);
+
 
 
     @FXML
@@ -116,19 +135,36 @@ public class PaymentForm {
 
     }
 
-    //getAllCustomerID
-/*    private void getStudentIds() {
+    private void getStudentIds() {
         try {
-            ArrayList<Student> allstu = (ArrayList<Student>) studentBo.getAllIDs();
-            for (CustomerModel c : allcus) {
-                nicList.getItems().add(String.valueOf(c.getC_ID()));
+            List<Student> allstu = registrationBO.getAllStudent();
+            for (Student s : allstu) {
+
+                boolean b = StudentIDComboBox.getItems().add(s.getId());
             }
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
+        }  catch (Exception e) {
+            e.printStackTrace();
         }
-    }*/
+    }
 
+    private void getProgramID() {
+        try {
+            List<Course> allprogramID = registrationBO.getAllCourse();
+            for (Course c : allprogramID) {
+
+                boolean b = StudentIDComboCourseComboBox.getItems().add(c.getProgramId());
+            }
+        }  catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        getProgramID();
+        getStudentIds();
+
+
+    }
 }

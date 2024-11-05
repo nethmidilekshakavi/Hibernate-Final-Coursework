@@ -1,8 +1,4 @@
 package org.example.lk.ijse.DTO;
-
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,7 +10,6 @@ import java.time.LocalDate;
 @Data
 public class RegistrationDto {
 
-
     private Long id;
 
     private LocalDate enrollmentDate;
@@ -22,4 +17,11 @@ public class RegistrationDto {
     private Double Payment;
 
     private Double DueAmount;
+
+    private String studentName;
+
+    private String ProgramName;
+
+    private String duration;
+
 }
