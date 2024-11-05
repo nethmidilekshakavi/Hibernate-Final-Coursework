@@ -9,14 +9,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
-import org.example.lk.ijse.BO.BOFactory;
 import org.example.lk.ijse.BO.custom.StudentBo;
-import org.example.lk.ijse.Entity.Course;
-import org.example.lk.ijse.Entity.Student;
-
-import java.io.IOException;
-import java.sql.SQLException;
-import java.util.ArrayList;
+import org.example.lk.ijse.DAO.DaoFactory;
 
 public class PaymentForm {
 
@@ -109,6 +103,9 @@ public class PaymentForm {
     @FXML
     private Text topic;
 
+
+
+
     @FXML
     void RegisterComfirmOnAction(ActionEvent event) {
 
@@ -119,6 +116,19 @@ public class PaymentForm {
 
     }
 
+    //getAllCustomerID
+/*    private void getStudentIds() {
+        try {
+            ArrayList<Student> allstu = (ArrayList<Student>) studentBo.getAllIDs();
+            for (CustomerModel c : allcus) {
+                nicList.getItems().add(String.valueOf(c.getC_ID()));
+            }
 
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }*/
 
 }

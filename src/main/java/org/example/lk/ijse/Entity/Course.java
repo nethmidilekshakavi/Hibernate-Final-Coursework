@@ -5,9 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -29,7 +28,6 @@ public class Course {
         private double fee;
 
 
-      /*  @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true)
-        private Set<Registration> registrations = new HashSet<>();*/
-
+         @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true)
+        private List<Registration> registrations = new ArrayList<>();
 }

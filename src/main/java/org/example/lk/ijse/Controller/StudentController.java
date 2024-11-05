@@ -22,6 +22,7 @@ import org.example.lk.ijse.BO.BOFactory;
 import org.example.lk.ijse.BO.custom.StudentBo;
 import org.example.lk.ijse.DTO.TM.StudentTM;
 import org.example.lk.ijse.Entity.Course;
+import org.example.lk.ijse.Entity.Registration;
 import org.example.lk.ijse.Entity.Student;
 import org.example.lk.ijse.util.Regex;
 
@@ -129,10 +130,11 @@ clearTextFiled();
         String email = emailtxt.getText();
         String number = phonenumbertxt.getText();
         LocalDate enrollmentDate = datecombo.getValue();
+        List<Registration> list = new ArrayList<>();
 
 
 
-        Student student = new Student(id,fn,ln,address,email,number,enrollmentDate);
+        Student student = new Student(id,fn,ln,address,email,number,enrollmentDate,list);
 
         boolean s = false;
 
@@ -249,10 +251,10 @@ clearTextFiled();
                 String email = emailtxt.getText();
                 String number = phonenumbertxt.getText();
                 LocalDate enrollmentDate = datecombo.getValue();
+                List<Registration> list = new ArrayList<>();
 
 
-                Student student = new Student(uid,fn,ln,address,email,number,enrollmentDate);
-
+                Student student = new Student(uid,fn,ln,address,email,number,enrollmentDate,list);
                 boolean s = false;
 
                 try{

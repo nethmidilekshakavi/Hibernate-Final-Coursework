@@ -1,6 +1,5 @@
 package org.example.lk.ijse.DAO.impl;
 
-import org.example.lk.ijse.DAO.DaoFactory;
 import org.example.lk.ijse.DAO.cutom.StudentDao;
 import org.example.lk.ijse.Entity.Student;
 import org.example.lk.ijse.config.FactoryConfiguration;
@@ -9,7 +8,6 @@ import org.hibernate.Transaction;
 import org.hibernate.query.NativeQuery;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -100,6 +98,31 @@ public class StudentDaoImpl implements StudentDao {
         }
 
         return studentModels;
+    }
+
+
+
+
+    @Override
+    public Student searchByIDs(int id) throws IOException {
+        List<Student> stuids = new ArrayList<>();
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        try {
+            stuids = session.createQuery("SELECT s.id FROM Student s", Student.class)
+                    .setParameter("sid", id)
+                    .getResultList();
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) transaction.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+
+        return (Student) stuids;
+
     }
 
 

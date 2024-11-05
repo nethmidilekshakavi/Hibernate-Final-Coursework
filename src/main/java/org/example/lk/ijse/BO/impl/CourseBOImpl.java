@@ -14,12 +14,12 @@ public class CourseBOImpl implements CourseBO {
 
     @Override
     public boolean saveCourse(Course entity) throws IOException {
-        return courseDao.save(new Course(entity.getId(),entity.getProgramId(),entity.getProgramName(),entity.getDuration(),entity.getFee()));
+        return courseDao.save(new Course(entity.getId(),entity.getProgramId(),entity.getProgramName(),entity.getDuration(),entity.getFee(),entity.getRegistrations()));
     }
 
     @Override
     public boolean updateCourse(Course entity) throws IOException {
-        return courseDao.update(new Course(entity.getId(),entity.getProgramId(),entity.getProgramName(),entity.getDuration(),entity.getFee()));
+        return courseDao.update(new Course(entity.getId(),entity.getProgramId(),entity.getProgramName(),entity.getDuration(),entity.getFee(),entity.getRegistrations()));
     }
 
     @Override

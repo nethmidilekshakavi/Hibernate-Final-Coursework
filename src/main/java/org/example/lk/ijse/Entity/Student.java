@@ -6,7 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @AllArgsConstructor
@@ -31,8 +33,8 @@ public class Student {
 
         private LocalDate enrollmentDate;
 
-   /*     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
-        private Set<Registration> registrations = new HashSet<>();*/
+        @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
+        private List<Registration> registrations = new ArrayList<>();
 
 }
 

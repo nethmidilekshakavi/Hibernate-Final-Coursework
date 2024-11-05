@@ -22,6 +22,12 @@ public class Registration {
 
     private Double DueAmount;
 
+    private String studentName;
+
+    private String ProgramName;
+
+    private String duration;
+
     @ManyToOne
     @JoinColumn(name = "student_id", nullable = false)
     private Student student;

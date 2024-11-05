@@ -18,6 +18,7 @@ import org.example.lk.ijse.BO.BOFactory;
 import org.example.lk.ijse.BO.custom.CourseBO;
 import org.example.lk.ijse.DTO.TM.CourseTM;
 import org.example.lk.ijse.Entity.Course;
+import org.example.lk.ijse.Entity.Registration;
 import org.example.lk.ijse.Entity.Student;
 
 import java.io.IOException;
@@ -128,8 +129,10 @@ public class CourseForm implements Initializable {
         String pname = ProgramNametxt.getText();
         String duration = durationtxt.getText();
         double fee = Double.parseDouble(feetxt.getText());
+        List<Registration> list = new ArrayList<>();
 
-        Course course = new Course(id,pid, pname, duration, fee);
+
+        Course course = new Course(id,pid, pname, duration, fee,list);
 
         boolean c = false;
 
@@ -240,9 +243,10 @@ public class CourseForm implements Initializable {
                 String name = ProgramNametxt.getText();
                 String duration = durationtxt.getText();
                 double fee = Double.parseDouble(feetxt.getText());
+                List<Registration> list = new ArrayList<>();
 
 
-                Course course = new Course(ccid,cid, name, duration, fee);
+                Course course = new Course(ccid,cid, name, duration, fee,list);
 
                 boolean c = false;
 

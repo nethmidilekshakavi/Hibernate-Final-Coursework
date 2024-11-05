@@ -37,17 +37,17 @@
                   <DropShadow />
                </effect>
             </Button>
-            <TableView fx:id="StudentTable" layoutX="53.0" layoutY="551.0" prefHeight="200.0" prefWidth="1278.0">
+            <TableView fx:id="StudentTable" layoutX="53.0" layoutY="551.0" prefHeight="200.0" prefWidth="1243.0">
                <columns>
                   <TableColumn fx:id="colsid" prefWidth="86.39995956420898" text="SID" />
                   <TableColumn fx:id="colsname" prefWidth="139.2000274658203" text="Student Name" />
                   <TableColumn fx:id="colcid" prefWidth="76.79998779296875" text="CID" />
                   <TableColumn fx:id="colcname" prefWidth="162.39996337890625" text="Course Name" />
                   <TableColumn fx:id="coldate" prefWidth="178.40008544921875" text="Date" />
-                  <TableColumn fx:id="colduration" prefWidth="190.39990234375" text="Duration" />
-                  <TableColumn fx:id="colPayment" prefWidth="190.39990234375" text="Payment" />
-                  <TableColumn fx:id="coldueAmonut" prefWidth="155.2000732421875" text="Due Amonut" />
-                  <TableColumn fx:id="deleteBtn" prefWidth="96.7999267578125" text="Delete" />
+                  <TableColumn fx:id="colduration" prefWidth="136.800048828125" text="Duration" />
+                  <TableColumn fx:id="colPayment" prefWidth="164.0" text="Payment" />
+                  <TableColumn fx:id="coldueAmonut" prefWidth="166.39996337890625" text="Due Amonut" />
+                  <TableColumn fx:id="deleteBtn" prefWidth="129.60009765625" text="Delete" />
                </columns>
             </TableView>
             <Text fx:id="studentdetails" layoutX="65.0" layoutY="525.0" strokeType="OUTSIDE" strokeWidth="0.0" text="--Registaion Details--">

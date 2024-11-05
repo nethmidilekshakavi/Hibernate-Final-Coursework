@@ -5,8 +5,6 @@ import org.example.lk.ijse.DAO.cutom.StudentDao;
 import org.example.lk.ijse.Entity.Student;
 
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class StudentBoImpl implements StudentBo {
@@ -15,13 +13,13 @@ public class StudentBoImpl implements StudentBo {
 
     @Override
     public boolean saveStudent(Student entity) throws IOException {
-         return studentDao.save(new Student(entity.getId(),entity.getFirstName(),entity.getLastName(),entity.getAddress(),entity.getEmail(),entity.getPhoneNumber(),entity.getEnrollmentDate()));
+         return studentDao.save(new Student(entity.getId(),entity.getFirstName(),entity.getLastName(),entity.getAddress(),entity.getEmail(),entity.getPhoneNumber(),entity.getEnrollmentDate(),entity.getRegistrations()));
     }
 
 
     @Override
     public boolean updateStudent(Student entity) throws IOException {
-        return studentDao.update(new Student(entity.getId(),entity.getFirstName(),entity.getLastName(),entity.getAddress(),entity.getEmail(),entity.getPhoneNumber(),entity.getEnrollmentDate()));
+        return studentDao.update(new Student(entity.getId(),entity.getFirstName(),entity.getLastName(),entity.getAddress(),entity.getEmail(),entity.getPhoneNumber(),entity.getEnrollmentDate(),entity.getRegistrations()));
     }
 
     @Override
@@ -44,7 +42,6 @@ public class StudentBoImpl implements StudentBo {
         return studentDao.SearchSID(sid);
 
     }
-
 
 
 
