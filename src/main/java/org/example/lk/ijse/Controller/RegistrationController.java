@@ -1,19 +1,17 @@
 package org.example.lk.ijse.Controller;
 
+import com.jfoenix.controls.JFXButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import org.example.lk.ijse.BO.BOFactory;
-import org.example.lk.ijse.BO.custom.CourseBO;
 import org.example.lk.ijse.BO.custom.RegistrationBO;
-import org.example.lk.ijse.BO.custom.StudentBo;
-import org.example.lk.ijse.DAO.DaoFactory;
-import org.example.lk.ijse.DAO.cutom.RegistrationDao;
 import org.example.lk.ijse.DTO.TM.RegistrationTM;
 import org.example.lk.ijse.Entity.Course;
 import org.example.lk.ijse.Entity.Registration;
@@ -23,14 +21,13 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class PaymentForm implements Initializable {
+public class RegistrationController implements Initializable {
 
     @FXML
-    private TableColumn<?, ?> deleteBtn;
+    private TableColumn<RegistrationTM, JFXButton> deleteBtn;
     @FXML
     private Text Amountduetxt;
 
@@ -56,31 +53,29 @@ public class PaymentForm implements Initializable {
     private ComboBox<String> StudentIDComboCourseComboBox;
 
     @FXML
-    private TableView<?> StudentTable;
+    private TableView<RegistrationTM> StudentTable;
 
     @FXML
-    private TableColumn<?, ?> colPayment;
+    private TableColumn<Double, RegistrationTM> colPayment;
 
     @FXML
-    private TableColumn<?, ?> colcid;
+    private TableColumn<String, RegistrationTM> colcid;
 
-    @FXML
-    private TableColumn<?, ?> colcname;
 
     @FXML
     private TableColumn<?, ?> coldate;
 
     @FXML
-    private TableColumn<?, ?> coldueAmonut;
+    private TableColumn<Double, RegistrationTM> coldueAmonut;
 
     @FXML
-    private TableColumn<?, ?> colduration;
+    private TableColumn<String, RegistrationTM> colduration;
 
     @FXML
-    private TableColumn<?, ?> colsid;
+    private TableColumn<Integer, RegistrationTM> colsid;
 
     @FXML
-    private TableColumn<?, ?> colsname;
+    private TableColumn<String, RegistrationTM> colsname;
 
     @FXML
     private Text courseName;
@@ -118,13 +113,10 @@ public class PaymentForm implements Initializable {
     @FXML
     private Text topic;
 
-    private ObservableList<Registration> oblist = FXCollections.observableArrayList();
-
-
+    @FXML
+    private TableColumn<String, RegistrationTM> colProgram;
 
     RegistrationBO registrationBO = (RegistrationBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.REGISTRATION);
-
-
 
     @FXML
     void RegisterComfirmOnAction(ActionEvent event) {
@@ -132,20 +124,22 @@ public class PaymentForm implements Initializable {
             Long id = 0L;
             Integer studentId = StudentIDComboBox.getValue();
             String courseId = StudentIDComboCourseComboBox.getValue();
-            String studentFullName = studentName.getText();
+            String studentFName = studentName.getText();
             String courseFullName = courseName.getText();
             String courseDuration = CourseDuration.getText();
             double payment = Double.parseDouble(Paymenttxt.getText());
             double totalFee = Double.parseDouble(fee.getText());
-            double dueAmount = totalFee - payment;
+            double dueAmount = totalFee - payment; //due Amount
+
+            Amountduetxt.setText(String.valueOf(dueAmount));
+
             LocalDate date = datecombo.getValue();
 
-            // Load existing Student and Course entities from the database
+            // Load  Student and Course entities from the database
             Student student = registrationBO.serachbyIDS(studentId);
             Course course = registrationBO.serachbyCIDs(courseId);
 
             if (student == null) {
-                // Handle the case where the student is not found
                 new Alert(Alert.AlertType.ERROR, "Student not found!").show();
                 return;
             }
@@ -156,7 +150,7 @@ public class PaymentForm implements Initializable {
 
 
             Registration registration = new Registration(
-                    id, date, payment, dueAmount, studentFullName, courseFullName, courseDuration, student, course
+                    id, date, payment, dueAmount, studentFName, courseFullName, courseDuration, student, course
             );
 
             //save
@@ -171,6 +165,53 @@ public class PaymentForm implements Initializable {
             e.printStackTrace();
         }
     }
+
+
+    public void loadallvalues() throws SQLException, IOException {
+
+        List<Registration> alldetails = registrationBO.getAllRegistrationDetails();
+
+
+        for (Registration registration : alldetails) {
+        }
+
+
+        ObservableList<RegistrationTM> observableList = FXCollections.observableArrayList();
+
+        for (int i = 0; i < alldetails.size(); i++) {
+            RegistrationTM registrationTM = new RegistrationTM(
+                    alldetails.get(i).getStudent().getId(),
+                    alldetails.get(i).getStudentName(),
+                    alldetails.get(i).getCourse().getProgramId(),
+                    alldetails.get(i).getCourse().getProgramName(),
+                    alldetails.get(i).getEnrollmentDate(),
+                    alldetails.get(i).getDuration(),
+                    alldetails.get(i).getPayment(),
+                    alldetails.get(i).getDueAmount(),
+                    new JFXButton("delete")
+            );
+
+            observableList.add(registrationTM);
+        }
+
+        StudentTable.setItems(observableList);
+
+    }
+
+    public void setValues(){
+        colsid.setCellValueFactory(new PropertyValueFactory<>("sid"));
+        colsname.setCellValueFactory(new PropertyValueFactory<>("studentName"));
+        colcid.setCellValueFactory(new PropertyValueFactory<>("courseid"));
+        colProgram.setCellValueFactory(new PropertyValueFactory<>("courseName"));
+        coldate.setCellValueFactory(new PropertyValueFactory<>("date"));
+        colduration.setCellValueFactory(new PropertyValueFactory<>("duration"));
+        colPayment.setCellValueFactory(new PropertyValueFactory<>("payment"));
+        coldueAmonut.setCellValueFactory(new PropertyValueFactory<>("dueAmount"));
+        deleteBtn.setCellValueFactory(new PropertyValueFactory<RegistrationTM, JFXButton>("Delete"));
+
+
+    }
+
 
 
     @FXML
@@ -207,7 +248,15 @@ public class PaymentForm implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         getProgramID();
         getStudentIds();
+        try {
+            loadallvalues();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
+        setValues();
 
     }
 
@@ -239,5 +288,11 @@ public class PaymentForm implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+
+    public void clearTextFiled(){
+
+
     }
 }

@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @AllArgsConstructor
@@ -14,9 +15,9 @@ public class RegistrationTM {
 
     private int sid;
     private String studentName;
-    private int courseid;
+    private String courseid;
     private String courseName;
-    private Date date;
+    private LocalDate date;
     private String duration;
     private double payment;
     private double dueAmount;

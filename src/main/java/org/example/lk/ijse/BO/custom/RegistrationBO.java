@@ -38,4 +38,6 @@ public interface RegistrationBO extends SuperBo {
     Course serachbyCIDs(String cid) throws SQLException, ClassNotFoundException;
 
     boolean saveRegistration(Registration entity) throws IOException;
+
+    List<Registration> getAllRegistrationDetails() throws IOException;
 }

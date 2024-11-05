@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.lk.ijse.Controller.PaymentForm">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.lk.ijse.Controller.RegistrationController">
    <children>
       <AnchorPane fx:id="RegistaionFome" layoutX="-8.0" prefHeight="804.0" prefWidth="1370.0">
          <children>
@@ -42,7 +42,7 @@
                   <TableColumn fx:id="colsid" prefWidth="86.39995956420898" text="SID" />
                   <TableColumn fx:id="colsname" prefWidth="139.2000274658203" text="Student Name" />
                   <TableColumn fx:id="colcid" prefWidth="76.79998779296875" text="CID" />
-                  <TableColumn fx:id="colcname" prefWidth="162.39996337890625" text="Course Name" />
+                  <TableColumn fx:id="colProgram" prefWidth="162.39996337890625" text="Course Name" />
                   <TableColumn fx:id="coldate" prefWidth="178.40008544921875" text="Date" />
                   <TableColumn fx:id="colduration" prefWidth="136.800048828125" text="Duration" />
                   <TableColumn fx:id="colPayment" prefWidth="164.0" text="Payment" />
@@ -113,7 +113,7 @@
                   <Font size="14.0" />
                </font>
             </Text>
-            <Text fx:id="Amountduetxt" fill="#c72222" layoutX="856.0" layoutY="378.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="85.64746093750023">
+            <Text fx:id="Amountduetxt" fill="#c72222" layoutX="861.0" layoutY="377.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="254.009765625">
                <font>
                   <Font name="System Bold" size="21.0" />
                </font>

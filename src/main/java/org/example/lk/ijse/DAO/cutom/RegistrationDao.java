@@ -9,4 +9,5 @@ import java.util.List;
 
 public interface RegistrationDao extends CrudDao<Registration> {
 
+    List<Registration> getaAll() throws IOException;
 }

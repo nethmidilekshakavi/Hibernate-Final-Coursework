@@ -17,11 +17,7 @@ import javafx.scene.text.Text;
 import org.example.lk.ijse.BO.BOFactory;
 import org.example.lk.ijse.BO.custom.UserBO;
 import org.example.lk.ijse.DTO.TM.UserTM;
-import org.example.lk.ijse.Entity.Student;
 import org.example.lk.ijse.Entity.User;
-import org.example.lk.ijse.config.FactoryConfiguration;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 
 import java.io.IOException;
 import java.net.URL;
@@ -30,7 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class UserForm implements Initializable {
+public class UserController implements Initializable {
 
     @FXML
     private AnchorPane UserForm;

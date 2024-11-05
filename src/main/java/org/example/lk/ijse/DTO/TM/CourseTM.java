@@ -3,12 +3,13 @@ import com.jfoenix.controls.JFXButton;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.example.lk.ijse.Controller.CourseController;
 
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class CourseTM extends org.example.lk.ijse.Controller.CourseForm {
+public class CourseTM extends CourseController {
     private String ProgramID;
     private String ProgramName;
     private double fee;

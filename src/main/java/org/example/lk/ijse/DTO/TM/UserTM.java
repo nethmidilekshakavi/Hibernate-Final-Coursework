@@ -4,12 +4,13 @@ import com.jfoenix.controls.JFXButton;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.example.lk.ijse.Controller.UserController;
 
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class UserTM extends org.example.lk.ijse.Controller.UserForm {
+public class UserTM extends UserController {
 
     private  int userID;
     private  String UserName;

@@ -19,16 +19,14 @@ import org.example.lk.ijse.BO.custom.CourseBO;
 import org.example.lk.ijse.DTO.TM.CourseTM;
 import org.example.lk.ijse.Entity.Course;
 import org.example.lk.ijse.Entity.Registration;
-import org.example.lk.ijse.Entity.Student;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.Set;
 
-public class CourseForm implements Initializable {
+public class CourseController implements Initializable {
 
     @FXML
     private AnchorPane CourseForm;

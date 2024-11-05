@@ -100,5 +100,13 @@ public class RegistrationBOImpl implements RegistrationBO {
         return registrationDao.save(new Registration(entity.getId(),entity.getEnrollmentDate(),entity.getPayment(),entity.getDueAmount(),entity.getStudentName(),entity.getProgramName(),entity.getDuration(),entity.getStudent(),entity.getCourse()));
     }
 
+    @Override
+    public List<Registration> getAllRegistrationDetails() throws IOException {
+
+        List<Registration> alldetails = registrationDao.getaAll();
+
+        return alldetails;
+
+    }
 
 }
