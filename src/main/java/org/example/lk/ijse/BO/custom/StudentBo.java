@@ -20,4 +20,5 @@ public interface StudentBo extends SuperBo {
 
     List<Student> SearchSID(int sid) throws IOException;
 
+    Student serachbyIDS(int cid) throws SQLException, ClassNotFoundException;
 }

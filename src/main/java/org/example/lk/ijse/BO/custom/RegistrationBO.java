@@ -5,6 +5,7 @@ import org.example.lk.ijse.Entity.Course;
 import org.example.lk.ijse.Entity.Student;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 public interface RegistrationBO extends SuperBo {
@@ -29,4 +30,6 @@ public interface RegistrationBO extends SuperBo {
     List<Student> getAllStudent() throws IOException;
 
     List<Student> SearchSID(int sid) throws IOException;
+
+    Student serachbyIDS(int cid) throws SQLException, ClassNotFoundException;
 }

@@ -60,13 +60,13 @@
                   <Font size="20.0" />
                </font>
             </Text>
-            <ComboBox fx:id="StudentIDComboBox" layoutX="69.0" layoutY="237.0" prefHeight="26.0" prefWidth="398.0" />
+            <ComboBox fx:id="StudentIDComboBox" layoutX="69.0" layoutY="237.0" onAction="#comboStudetList" prefHeight="26.0" prefWidth="398.0" />
             <Text fx:id="studentid" layoutX="71.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Student ID :">
                <font>
                   <Font size="14.0" />
                </font>
             </Text>
-            <ComboBox fx:id="StudentIDComboCourseComboBox" layoutX="69.0" layoutY="381.0" prefHeight="26.0" prefWidth="398.0" />
+            <ComboBox fx:id="StudentIDComboCourseComboBox" layoutX="69.0" layoutY="381.0" onAction="#comboCourseList" prefHeight="26.0" prefWidth="398.0" />
             <Text fx:id="courseid" layoutX="71.0" layoutY="369.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Course ID :">
                <font>
                   <Font size="14.0" />

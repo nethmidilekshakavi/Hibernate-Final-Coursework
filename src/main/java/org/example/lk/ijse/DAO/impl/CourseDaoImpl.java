@@ -2,10 +2,12 @@ package org.example.lk.ijse.DAO.impl;
 
 import org.example.lk.ijse.DAO.cutom.CourseDao;
 import org.example.lk.ijse.Entity.Course;
+import org.example.lk.ijse.Entity.Student;
 import org.example.lk.ijse.config.FactoryConfiguration;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.NativeQuery;
+import org.hibernate.query.Query;
 
 import java.io.IOException;
 import java.util.ArrayList;

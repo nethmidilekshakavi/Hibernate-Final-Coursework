@@ -20,6 +20,7 @@ import org.example.lk.ijse.DAO.DaoFactory;
 import org.example.lk.ijse.DAO.cutom.RegistrationDao;
 import org.example.lk.ijse.DTO.TM.RegistrationTM;
 import org.example.lk.ijse.Entity.Course;
+import org.example.lk.ijse.Entity.Registration;
 import org.example.lk.ijse.Entity.Student;
 
 import java.io.IOException;
@@ -165,6 +166,36 @@ public class PaymentForm implements Initializable {
         getProgramID();
         getStudentIds();
 
+    }
 
+    //set Customer Details
+    public void comboStudetList(ActionEvent actionEvent) {
+
+        Integer sid = StudentIDComboBox.getValue();
+        try{
+            Student student = (Student) registrationBO.serachbyIDS(sid);
+                studentName.setText(student.getFirstName());
+            System.out.printf(student.getFirstName());
+                studentMobile.setText(student.getPhoneNumber());
+
+        } catch (Exception e) {
+           e.printStackTrace();
+        }
+    }
+
+    //set Course Details
+    public void comboCourseList(ActionEvent actionEvent) {
+
+        String cid = StudentIDComboCourseComboBox.getValue();
+        try{
+            Course course = (Course) registrationBO.SearchCID(cid);
+            courseName.setText(course.getProgramName());
+            fee.setText(String.valueOf(course.getFee()));
+            CourseDuration.setText(course.getDuration());
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -6,6 +6,7 @@ import org.example.lk.ijse.config.FactoryConfiguration;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.NativeQuery;
+import org.hibernate.query.Query;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -103,7 +104,7 @@ public class StudentDaoImpl implements StudentDao {
 
 
 
-    @Override
+   /* @Override
     public Student searchByIDs(int id) throws IOException {
         List<Student> stuids = new ArrayList<>();
         Session session = FactoryConfiguration.getInstance().getSession();
@@ -124,7 +125,39 @@ public class StudentDaoImpl implements StudentDao {
         return (Student) stuids;
 
     }
+*/
+    @Override
+    public Student searchById(int id) {
+        // Get the current session from Hibernate
+        Session session = FactoryConfiguration.getSessionFactory().openSession();
+        Transaction transaction = null;
+        Student student = null;
 
+        try {
+            // Begin transaction
+            transaction = session.beginTransaction();
+
+            // Create HQL query to find Customer by ID
+            String hql = "FROM Student WHERE id = :id";
+            Query<Student> query = session.createQuery(hql, Student.class);
+            query.setParameter("id", id);
+
+            // Execute query and get the result
+            student = query.uniqueResult();
+
+            // Commit transaction
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace(); // Handle the exception properly in your application
+        } finally {
+            session.close(); // Close the session
+        }
+
+        return student;
+    }
 
 
 

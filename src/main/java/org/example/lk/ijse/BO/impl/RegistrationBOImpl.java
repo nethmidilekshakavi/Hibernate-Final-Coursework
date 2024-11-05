@@ -3,12 +3,12 @@ package org.example.lk.ijse.BO.impl;
 import org.example.lk.ijse.BO.custom.RegistrationBO;
 import org.example.lk.ijse.DAO.DaoFactory;
 import org.example.lk.ijse.DAO.cutom.CourseDao;
-import org.example.lk.ijse.DAO.cutom.RegistrationDao;
 import org.example.lk.ijse.DAO.cutom.StudentDao;
 import org.example.lk.ijse.Entity.Course;
 import org.example.lk.ijse.Entity.Student;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 public class RegistrationBOImpl implements RegistrationBO {
@@ -80,6 +80,12 @@ public class RegistrationBOImpl implements RegistrationBO {
         return studentDao.SearchSID(sid);
 
     }
+
+    @Override
+    public Student serachbyIDS(int cid) throws SQLException, ClassNotFoundException {
+        return studentDao.searchById(cid);
+    }
+
 
 
 
