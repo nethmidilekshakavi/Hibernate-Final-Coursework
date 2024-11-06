@@ -10,6 +10,10 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.example.lk.ijse.DAO.impl.UserDaoImpl;
 import org.example.lk.ijse.Entity.User;
+import org.example.lk.ijse.config.FactoryConfiguration;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.io.IOException;
@@ -84,8 +88,6 @@ public class RegisterTheSystem extends UserService {
         UserDaoImpl userDao = new UserDaoImpl();
         return userDao.getUserByUsername(username);
     }
-
-
 
 
 

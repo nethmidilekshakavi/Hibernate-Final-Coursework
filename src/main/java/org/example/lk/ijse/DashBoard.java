@@ -6,6 +6,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import org.example.lk.ijse.Entity.User;
 import org.example.lk.ijse.config.FactoryConfiguration;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -17,9 +18,6 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
-
-import static com.mysql.cj.protocol.a.MysqlTextValueDecoder.getDate;
-import static com.mysql.cj.protocol.a.MysqlTextValueDecoder.getTime;
 
 public class DashBoard implements Initializable {
 
@@ -144,6 +142,7 @@ public class DashBoard implements Initializable {
         public void initialize(URL location, ResourceBundle resources) {
                 getDate();
                 getTime();
+
                 try {
                         getStudentCount();
                 } catch (IOException e) {
@@ -222,5 +221,8 @@ public class DashBoard implements Initializable {
 
                 return count;
         }
+
+
+
 
 }

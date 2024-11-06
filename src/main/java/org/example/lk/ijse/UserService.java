@@ -24,18 +24,5 @@ public class UserService {
         return user;
     }
 
-    /*@Override
-    public boolean update(Student dto) throws IOException {
-
-        Session session = FactoryConfiguration.getInstance().getSession();
-        Transaction transaction = session.beginTransaction();
-
-        session.update(dto);
-
-        transaction.commit();
-        session.close();
-
-        return false;
-    }*/
 
 }

@@ -89,10 +89,6 @@ public class UserController implements Initializable {
 
     UserBO userBO = (UserBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.USER);
 
-
-
-
-
     @FXML
     void saveOnActionStudent(ActionEvent event) {
 
@@ -214,6 +210,7 @@ public class UserController implements Initializable {
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
+                ClearTextFiled();
             });
         }
     }
@@ -250,5 +247,14 @@ public class UserController implements Initializable {
             throw new RuntimeException(e);
         }
         setValues();
+    }
+
+    public void ClearTextFiled(){
+
+        userid.setText("");
+        usernametxt.setText("");
+        passwroddtxt.setText("");
+        roletxt.setText("");
+
     }
 }
