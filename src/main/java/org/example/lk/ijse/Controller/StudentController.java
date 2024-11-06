@@ -19,6 +19,7 @@ import org.example.lk.ijse.BO.custom.StudentBo;
 import org.example.lk.ijse.DTO.TM.StudentTM;
 import org.example.lk.ijse.Entity.Registration;
 import org.example.lk.ijse.Entity.Student;
+import org.example.lk.ijse.util.Regex;
 
 import java.io.IOException;
 import java.net.URL;
@@ -199,10 +200,9 @@ clearTextFiled();
                 confirmDialog.setTitle("Confirm Deletion");
                 confirmDialog.setHeaderText("Are you sure you want to delete this customer?");
                 confirmDialog.setContentText("Press OK to confirm or Cancel to abort.");
-
                 confirmDialog.showAndWait().ifPresent(response -> {
                     if (response == ButtonType.OK) {
-                        //deleteCustomer
+                        //deleteStudent
                         boolean deleted = false;
                         try {
                             deleted = studentBo.deleteStudent(id);
@@ -289,7 +289,6 @@ clearTextFiled();
         colemail.setCellValueFactory(new PropertyValueFactory<>("email"));
         deletebtnrow.setCellValueFactory(new PropertyValueFactory<StudentTM, JFXButton>("Delete"));
         updatebtnrow.setCellValueFactory(new PropertyValueFactory<StudentTM, JFXButton>("Update"));
-
     }
 
 
@@ -307,41 +306,29 @@ clearTextFiled();
 
     @FXML
     void mobilekeyRelese(KeyEvent event) {
-/*
         Regex.setTextColor(org.example.lk.ijse.util.TextField.MOBILE,phonenumbertxt);
-*/
 
     }
     @FXML
     void idkeyRelese(KeyEvent event) {
-/*
-        Regex.setTextColor(org.example.lk.ijse.util.TextField.ID,idtxt);
-*/
     }
 
     @FXML
     void lastnameKeyRelese(KeyEvent event) {
-/*
         Regex.setTextColor(org.example.lk.ijse.util.TextField.LNAME,lastnametxt);
-*/
     }
     @FXML
     void emailKeyRelese(KeyEvent event) {
-/*
         Regex.setTextColor(org.example.lk.ijse.util.TextField.EMAIL,emailtxt);
-*/
     }
 
     @FXML
     void firstnameKeyRelese(KeyEvent event) {
-/*
         Regex.setTextColor(org.example.lk.ijse.util.TextField.FNAME,firstNametxt);
-*/
     }
 
     @FXML
     void addressKeyRelese(KeyEvent event) {
-
     }
 
     public void loadTheTextField(KeyEvent keyEvent) throws IOException {
@@ -356,16 +343,13 @@ clearTextFiled();
         }
     }
 
-
     public void clearTextFiled(){
-
         idtxt.setText("");
         firstNametxt.setText("");
         lastnametxt.setText("");
         addresstxt.setText("");
         phonenumbertxt.setText("");
         emailtxt.setText("");
-
     }
 
 }

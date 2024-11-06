@@ -50,7 +50,7 @@ public class MainForm implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("/view/AdminDashBoard.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/view/DashBoard.fxml"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -61,7 +61,7 @@ public class MainForm implements Initializable {
 
     @FXML
     void DashBoradOnAction(ActionEvent event) throws IOException {
-        Parent parent= FXMLLoader.load(getClass().getResource("/view/AdminDashBoard.fxml"));
+        Parent parent= FXMLLoader.load(getClass().getResource("/view/DashBoard.fxml"));
         Emptypane.getChildren().setAll(parent);
     }
 

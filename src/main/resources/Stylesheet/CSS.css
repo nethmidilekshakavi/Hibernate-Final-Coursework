@@ -1,0 +1,10 @@
+.shadowed{
+    -fx-effect:drop shadow(gaussian,rgba(0,0,0,0.7),50,0,0,0);
+}
+.login{
+    -fx-background-color: #41B06E;
+}
+.ABC{
+    -fx-text-fill: #faa300;
+    -fx-wrap-text: #ffffff;
+}

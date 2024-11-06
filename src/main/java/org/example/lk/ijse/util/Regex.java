@@ -22,7 +22,6 @@ public class Regex {
             case EMAIL:
                 filed = "^([A-z])([A-z0-9.]){1,}[@]([A-z0-9]){1,10}[.]([A-z]){2,5}$";
 
-
         }
         Pattern pattern = Pattern.compile(filed);
 

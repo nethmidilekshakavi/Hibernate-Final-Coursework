@@ -25,7 +25,7 @@
                </font></Button>
             <Button fx:id="logout" layoutX="69.0" layoutY="723.0" mnemonicParsing="false" onAction="#logOutTheSystem" prefHeight="39.0" prefWidth="74.0" style="-fx-background-color: #5dbea3; -fx-background-radius: 10;" text="LOGUOT" textFill="#f2ecec">
                <font>
-                  <Font name="Dyuthi Regular" size="13.0" />
+                  <Font name="System Bold" size="13.0" />
                </font>
             </Button>
             <ImageView fx:id="logoutbtnpic" fitHeight="29.0" fitWidth="30.0" layoutX="86.0" layoutY="748.0" style="-fx-rotate: 180;">

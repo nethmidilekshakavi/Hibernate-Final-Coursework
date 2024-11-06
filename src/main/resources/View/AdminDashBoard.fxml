@@ -124,21 +124,6 @@
             <Font name="Calibri Bold" size="19.0" />
          </font>
       </Text>
-      <Text fx:id="date" fill="#121312" layoutX="44.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="61.875">
-         <font>
-            <Font name="Candara Bold" size="24.0" />
-         </font>
-      </Text>
-      <Text fx:id="time" fill="#121312" layoutX="44.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="61.875">
-         <font>
-            <Font name="Candara Bold" size="24.0" />
-         </font>
-      </Text>
-      <Text fx:id="" fill="#121312" layoutX="54.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="61.875">
-         <font>
-            <Font name="Candara Bold" size="24.0" />
-         </font>
-      </Text>
       <ImageView fx:id="pic41" fitHeight="150.0" fitWidth="134.0" layoutX="964.0" layoutY="110.0">
          <image>
             <Image url="@../Assert/ba4f5670c8cdc234001069e87812bd0e.jpg" />
@@ -156,10 +141,8 @@
             <Font size="11.0" />
          </font>
       </Text>
-      <Text fx:id="WhoisLog" layoutX="52.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="112.17816162109375">
-         <font>
-            <Font size="25.0" />
-         </font>
-      </Text>
+      <Text fx:id="Time" layoutX="52.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="112.17816162109375" />
+      <Text fx:id="Date" layoutX="52.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="112.17816162109375" />
+      <Text fx:id="WhosLog" layoutX="388.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="112.17816162109375" />
    </children>
 </AnchorPane>

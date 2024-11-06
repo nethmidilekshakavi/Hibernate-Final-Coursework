@@ -1,27 +1,33 @@
 package org.example.lk.ijse;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
-import org.example.lk.ijse.DAO.impl.UserDaoImpl;
-import org.example.lk.ijse.Entity.User;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ResourceBundle;
 
-public class DashBoard implements Initializable{
+import static com.mysql.cj.protocol.a.MysqlTextValueDecoder.getDate;
+import static com.mysql.cj.protocol.a.MysqlTextValueDecoder.getTime;
+
+public class DashBoard implements Initializable {
+
+        @FXML
+        private Text Date;
 
         @FXML
         private AnchorPane Emptypane;
+
+        @FXML
+        private Text Time;
+
+        @FXML
+        private Text WhosLog;
 
         @FXML
         private Text admin;
@@ -43,9 +49,6 @@ public class DashBoard implements Initializable{
 
         @FXML
         private Text coursecountxtx;
-
-        @FXML
-        private Text date;
 
         @FXML
         private Text desc1;
@@ -126,27 +129,24 @@ public class DashBoard implements Initializable{
         private Text studentcounttxt;
 
         @FXML
-        private Text time;
-
-        @FXML
         private Text welcometopic;
 
         @FXML
         private Text welcommedesc;
 
-        @FXML
-        private Text WhoisLog;
-
-
         @Override
         public void initialize(URL location, ResourceBundle resources) {
+                getDate();
+                getTime();
+        }
 
+        private void getTime() {
+                LocalTime now = LocalTime.now();
+                Time.setText(String.valueOf(now));
+        }
 
-
-
-
+        private void getDate() {
+                LocalDate now  = LocalDate.now();
+                Date.setText(String.valueOf(now));
         }
 }
-
-
-

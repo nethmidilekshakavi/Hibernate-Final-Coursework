@@ -107,6 +107,9 @@ public class RegistrationController implements Initializable {
     private Text studentName;
 
     @FXML
+    private Text Paidtxt;
+
+    @FXML
     private Text studentdetails;
 
     @FXML
@@ -135,12 +138,18 @@ public class RegistrationController implements Initializable {
             double payment = Double.parseDouble(Paymenttxt.getText());
             double totalFee = Double.parseDouble(fee.getText());
             double dueAmount = totalFee - payment; //due Amount
-
             Amountduetxt.setText(String.valueOf(dueAmount));
+
+            if (dueAmount == 0){
+                Paidtxt.setText("Paid !");
+            }
+            else {
+                Paidtxt.setText("");
+            }
+
 
             LocalDate date = datecombo.getValue();
 
-            // Load  Student and Course entities from the database
             Student student = registrationBO.serachbyIDS(studentId);
             Course course = registrationBO.serachbyCIDs(courseId);
 
@@ -226,7 +235,7 @@ public class RegistrationController implements Initializable {
 
                 confirmDialog.showAndWait().ifPresent(response -> {
                     if (response == ButtonType.OK) {
-                        //deleteCustomer
+                        //deleteRegistration
                         boolean deleted = false;
                         try {
                             deleted = registrationBO.deleteRegistration(id);
@@ -354,12 +363,11 @@ public class RegistrationController implements Initializable {
         courseid.setText("");
         courseName.setText("");
         payment.setText("");
-        Amountduetxt.setText("");
         fee.setText("");
         studentName.setText("");
-        Amountduetxt.setText("");
         studentMobile.setText("");
         CourseDuration.setText("");
+        Paymenttxt.setText("");
     }
 
     @Override

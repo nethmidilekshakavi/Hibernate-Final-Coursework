@@ -19,6 +19,7 @@ import org.example.lk.ijse.BO.custom.CourseBO;
 import org.example.lk.ijse.DTO.TM.CourseTM;
 import org.example.lk.ijse.Entity.Course;
 import org.example.lk.ijse.Entity.Registration;
+import org.example.lk.ijse.util.Regex;
 
 import java.io.IOException;
 import java.net.URL;
@@ -87,19 +88,15 @@ public class CourseController implements Initializable {
 
     @FXML
     void clearOnActionCourse(ActionEvent event) {
-
         clearTextFiled();
-
     }
 
     @FXML
     void firstnameKeyRelese(KeyEvent event) {
-
     }
 
     @FXML
     void idkeyRelese(KeyEvent event) {
-
     }
 
     @FXML
@@ -114,7 +111,6 @@ public class CourseController implements Initializable {
 
     @FXML
     void mobilekeyRelese(KeyEvent event) {
-
     }
 
     CourseBO courseBO = (CourseBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.COURSE);
@@ -161,7 +157,6 @@ public class CourseController implements Initializable {
         for (Course course : allcourse) {
             System.out.println(course.getId() + course.getProgramId() + ": " + course.getProgramName() + " - " + course.getDuration() + " - " + course.getFee());
         }
-
 
         ObservableList<CourseTM> observableList = FXCollections.observableArrayList();
 
