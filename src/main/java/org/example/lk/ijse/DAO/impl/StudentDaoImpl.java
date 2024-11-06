@@ -49,20 +49,32 @@ public class StudentDaoImpl implements StudentDao {
     }
 
     @Override
-    public boolean delete(int entity) throws IOException {
+    public boolean delete(int entityId) throws IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
-        Transaction transaction = session.beginTransaction();
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
 
-        NativeQuery nativeQuery = session.createNativeQuery("delete from Student where id = ?1");
-        nativeQuery.setParameter(1, entity);
+            NativeQuery deleteRegistrationsQuery = session.createNativeQuery("DELETE FROM Registration WHERE student_id = ?1");
+            deleteRegistrationsQuery.setParameter(1, entityId);
+            deleteRegistrationsQuery.executeUpdate();
 
-        nativeQuery.executeUpdate();
+            NativeQuery deleteStudentQuery = session.createNativeQuery("DELETE FROM Student WHERE id = ?1");
+            deleteStudentQuery.setParameter(1, entityId);
+            deleteStudentQuery.executeUpdate();
 
-        transaction.commit();
-        session.close();
-
-        return false;
+            transaction.commit();
+            return true; // Deletion successful
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback(); // Roll back in case of an error
+            }
+            throw new IOException("Error deleting Student entity", e);
+        } finally {
+            session.close();
+        }
     }
+
 
     @Override
     public List<Student> getaAll() throws IOException {

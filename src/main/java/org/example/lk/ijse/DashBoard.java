@@ -10,6 +10,7 @@ import javafx.scene.text.Text;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 import static com.mysql.cj.protocol.a.MysqlTextValueDecoder.getDate;
@@ -141,8 +142,10 @@ public class DashBoard implements Initializable {
         }
 
         private void getTime() {
-                LocalTime now = LocalTime.now();
-                Time.setText(String.valueOf(now));
+                LocalTime localTime = LocalTime.now(); // Current time
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+                String formattedTime = localTime.format(formatter); // Format the time
+                Time.setText(formattedTime);
         }
 
         private void getDate() {

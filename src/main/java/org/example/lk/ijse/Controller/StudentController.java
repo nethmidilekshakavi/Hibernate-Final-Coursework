@@ -19,12 +19,16 @@ import org.example.lk.ijse.BO.custom.StudentBo;
 import org.example.lk.ijse.DTO.TM.StudentTM;
 import org.example.lk.ijse.Entity.Registration;
 import org.example.lk.ijse.Entity.Student;
+import org.example.lk.ijse.Mail.mail;
 import org.example.lk.ijse.util.Regex;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -141,12 +145,48 @@ clearTextFiled();
            e.printStackTrace();
        }
 
-       if (s){
-           new Alert(Alert.AlertType.CONFIRMATION,"Customer SAVE Success");
-       }else {
+       //Email Send
 
-           new Alert(Alert.AlertType.ERROR,"Student save UnSuccess");
-       }
+        /*if (s) {
+            new Alert(Alert.AlertType.CONFIRMATION, "Student saved successfully").show();
+            mail mail = new mail();
+            mail.setMsg("Welcome to the Culinary Academy - Hotel Course 🧑‍🍳🍽️\n" +
+                    "\n" +
+                    "Dear [ " + fn + "" + ln + "]" + "\n" +
+                    "\n" +
+                    "Welcome to the Culinary Academy! We are thrilled to have you join our Hotel Course and become part of our vibrant and dynamic learning community.\n" +
+                    "\n" +
+                    "At the Culinary Academy, we pride ourselves on providing a comprehensive and engaging educational experience. Our Hotel Course is designed to equip you with the essential skills and knowledge needed to excel in the hospitality industry, combining theoretical learning with practical applications.\n" +
+                    "\n" +
+                    "What to Expect:\n" +
+                    "Interactive Classes: Learn from experienced instructors with hands-on training.\n" +
+                    "Real-World Experiences: Participate in simulations and industry projects to develop your practical skills.\n" +
+                    "Supportive Community: Collaborate with fellow students and access resources for personal and professional growth.\n" +
+                    "We are excited to embark on this journey with you and help you achieve your aspirations in the hospitality sector.\n" +
+                    "\n" +
+                    "If you have any questions or need assistance, please do not hesitate to reach out to our support team.\n" +
+                    "\n" +
+                    "Wishing you great success and a memorable learning experience at the Culinary Academy!\n" +
+                    "\n" +
+                    "Warm Regards,\n" +
+                    "[Nethmi Dileksha]\n" +
+                    "Culinary Academy Team" + fn + " " + ln +
+                    "\nYour Student NUMBER : " +
+                    "\nTime : " + Time.valueOf(LocalTime.now()) +
+                    "\nDate : " + Date.valueOf(LocalDate.now()) +
+                    "\nThank You! \uD83D\uDE0A"
+            );
+            mail.setTo(emailtxt.getText());
+            mail.setSubject("Alert");
+
+            Thread thread = new Thread(mail);
+            thread.start();
+
+            new Alert(Alert.AlertType.CONFIRMATION, "Student saved successfully").show();
+
+        } else {
+            new Alert(Alert.AlertType.ERROR, "something went wrong").show();
+        }*/
        loadallvalues();
        clearTextFiled();
     }
@@ -209,7 +249,7 @@ clearTextFiled();
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }
-                        if (!deleted) {
+                        if (deleted) {
                             Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
                             successAlert.setTitle("Success");
                             successAlert.setHeaderText(null);

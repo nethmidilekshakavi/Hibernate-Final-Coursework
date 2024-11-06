@@ -17,6 +17,7 @@ import javafx.scene.text.Text;
 import org.example.lk.ijse.BO.BOFactory;
 import org.example.lk.ijse.BO.custom.UserBO;
 import org.example.lk.ijse.DTO.TM.UserTM;
+import org.example.lk.ijse.Entity.Student;
 import org.example.lk.ijse.Entity.User;
 
 import java.io.IOException;
@@ -89,18 +90,7 @@ public class UserController implements Initializable {
     UserBO userBO = (UserBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.USER);
 
 
-    @FXML
-    public void loadTheTextField(KeyEvent keyEvent) throws IOException {
-        if (keyEvent.getCode().equals(KeyCode.ENTER)){
-            String id = String.valueOf(Integer.parseInt(idtext.getText()));
-            ArrayList<User> students = (ArrayList<User>) userBO.SearchUID(Integer.parseInt(id));
 
-            usernametxt.setText(students.get(0).getUsername());
-            passwroddtxt.setText(students.get(0).getPassword());
-            roletxt.setText(students.get(0).getRole());
-
-        }
-    }
 
 
     @FXML
@@ -154,7 +144,6 @@ public class UserController implements Initializable {
                 confirmDialog.setTitle("Confirm Deletion");
                 confirmDialog.setHeaderText("Are you sure you want to delete this customer?");
                 confirmDialog.setContentText("Press OK to confirm or Cancel to abort.");
-
                 confirmDialog.showAndWait().ifPresent(response -> {
                     if (response == ButtonType.OK) {
                         //deleteCustomer
@@ -240,6 +229,16 @@ public class UserController implements Initializable {
 
     }
 
+    public void loadTheTextField(KeyEvent keyEvent) throws IOException {
+        if (keyEvent.getCode().equals(KeyCode.ENTER)){
+            int id = Integer.parseInt(userid.getText());
+            List<User> users =
+                    userBO.SearchUID(id);
+            usernametxt.setText(users.get(0).getUsername());
+            passwroddtxt.setText(users.get(0).getPassword());
+            roletxt.setText(users.get(0).getRole());
+        }
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

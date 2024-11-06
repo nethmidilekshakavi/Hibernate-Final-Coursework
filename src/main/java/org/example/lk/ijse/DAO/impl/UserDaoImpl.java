@@ -1,11 +1,13 @@
 package org.example.lk.ijse.DAO.impl;
 
 import org.example.lk.ijse.DAO.cutom.UserDao;
+import org.example.lk.ijse.Entity.Student;
 import org.example.lk.ijse.Entity.User;
 import org.example.lk.ijse.config.FactoryConfiguration;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.NativeQuery;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -57,11 +59,16 @@ public class UserDaoImpl implements UserDao {
     }
 
 
-
-
     @Override
     public boolean update(User dto) throws IOException {
 
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+        // Hash the password before updating
+        String hashedPassword = passwordEncoder.encode(dto.getPassword());
+        dto.setPassword(hashedPassword); // Set the hashed password back to the DTO
+
+        // Start the session and transaction
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
@@ -72,7 +79,6 @@ public class UserDaoImpl implements UserDao {
 
         return false;
     }
-
 
 
     @Override
@@ -99,7 +105,7 @@ public class UserDaoImpl implements UserDao {
 
         try {
             users = session.createQuery("FROM User WHERE id = :uid", User.class)
-                    .setParameter("id", uid)
+                    .setParameter("uid", uid)
                     .getResultList();
             transaction.commit();
         } catch (Exception e) {

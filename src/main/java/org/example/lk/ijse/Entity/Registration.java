@@ -18,23 +18,21 @@ public class Registration {
 
     private LocalDate enrollmentDate;
 
-    private Double Payment;
+    private Double payment;
 
-    private Double DueAmount;
+    private Double dueAmount;
 
     private String studentName;
 
-    private String ProgramName;
+    private String programName;
 
     private String duration;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "student_id", nullable = false)
     private Student student;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "program_id", nullable = false)
     private Course course;
-
-
 }

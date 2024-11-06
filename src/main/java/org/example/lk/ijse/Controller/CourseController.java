@@ -204,7 +204,7 @@ public class CourseController implements Initializable {
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }
-                        if (!deleted) {
+                        if (deleted) {
                             Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
                             successAlert.setTitle("Success");
                             successAlert.setHeaderText(null);

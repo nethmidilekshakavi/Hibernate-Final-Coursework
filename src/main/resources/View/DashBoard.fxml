@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -7,14 +8,27 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane fx:id="Emptypane" prefHeight="814.0" prefWidth="1320.0" style="-fx-background-color: #F5F5F5;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.lk.ijse.DashBoard">
    <children>
-      <Rectangle fx:id="countframe1" arcHeight="5.0" arcWidth="5.0" fill="#d4d5d7" height="71.0" layoutX="362.0" layoutY="49.0" stroke="#faf0f0" strokeType="INSIDE" width="244.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITESMOKE" height="59.0" layoutX="931.0" layoutY="55.0" stroke="#226b8f" strokeType="INSIDE" strokeWidth="2.0" width="253.0">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Rectangle>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITESMOKE" height="59.0" layoutX="44.0" layoutY="56.0" stroke="#226b8f" strokeType="INSIDE" strokeWidth="2.0" width="253.0">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Rectangle>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITESMOKE" height="59.0" layoutX="483.0" layoutY="55.0" stroke="#226b8f" strokeType="INSIDE" strokeWidth="2.0" width="253.0">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Rectangle>
       <Rectangle fx:id="mainFrame" arcHeight="5.0" arcWidth="5.0" fill="#227b94" height="200.0" layoutX="44.0" layoutY="167.0" stroke="#227b94" strokeType="INSIDE" width="739.0" />
       <Rectangle fx:id="countframe" arcHeight="5.0" arcWidth="5.0" fill="#d4d5d7" height="71.0" layoutX="44.0" layoutY="405.0" stroke="#faf0f0" strokeType="INSIDE" width="349.0" />
       <Rectangle fx:id="coountframe2" arcHeight="5.0" arcWidth="5.0" fill="#d4d5d7" height="71.0" layoutX="502.0" layoutY="405.0" stroke="#f2f1f1" strokeType="INSIDE" width="330.0" />
-      <Text fx:id="welcometopic" fill="#faf6f6" layoutX="58.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welocome to Culinary Academy" wrappingWidth="355.495361328125">
+      <Text fx:id="welcometopic" fill="#faf6f6" layoutX="58.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to Culinary Academy" wrappingWidth="355.495361328125">
          <font>
             <Font name="Cambria Bold" size="32.0" />
          </font>
@@ -116,7 +130,7 @@
             <Font size="11.0" />
          </font>
       </Text>
-      <ImageView fx:id="adminpic" fitHeight="71.0" fitWidth="83.0" layoutX="1209.0" layoutY="35.0">
+      <ImageView fx:id="adminpic" fitHeight="71.0" fitWidth="83.0" layoutX="1192.0" layoutY="49.0">
          <image>
             <Image url="@../Assert/icons8-admin-94.png" />
          </image>
@@ -138,17 +152,17 @@
             <Font size="11.0" />
          </font>
       </Text>
-      <Text fx:id="Time" layoutX="58.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="253.4000091552732">
+      <Text fx:id="Time" layoutX="108.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="125.40002441406227">
          <font>
             <Font name="Yu Gothic UI Bold" size="27.0" />
          </font>
       </Text>
-      <Text fx:id="Date" layoutX="381.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="228.17816162109375">
+      <Text fx:id="Date" layoutX="493.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="228.17816162109375">
          <font>
             <Font name="Yu Gothic UI Semibold" size="27.0" />
          </font>
       </Text>
-      <Text fx:id="WhosLog" fill="#227b94" layoutX="989.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="214.4000244140625">
+      <Text fx:id="WhosLog" fill="#227b94" layoutX="950.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="214.4000244140625">
          <font>
             <Font name="System Bold Italic" size="24.0" />
          </font>
