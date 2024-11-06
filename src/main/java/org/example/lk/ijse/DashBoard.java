@@ -6,7 +6,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import org.example.lk.ijse.config.FactoryConfiguration;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -139,6 +144,16 @@ public class DashBoard implements Initializable {
         public void initialize(URL location, ResourceBundle resources) {
                 getDate();
                 getTime();
+                try {
+                        getStudentCount();
+                } catch (IOException e) {
+                        throw new RuntimeException(e);
+                }
+                try {
+                        getCourseCount();
+                } catch (IOException e) {
+                        throw new RuntimeException(e);
+                }
         }
 
         private void getTime() {
@@ -152,4 +167,60 @@ public class DashBoard implements Initializable {
                 LocalDate now  = LocalDate.now();
                 Date.setText(String.valueOf(now));
         }
+
+
+
+
+        public long getStudentCount() throws IOException {
+                Session session = FactoryConfiguration.getInstance().getSession();
+                Transaction transaction = null;
+                long count = 0;
+
+                try {
+                        transaction = session.beginTransaction();
+                        String hql = "SELECT COUNT(s) FROM Student s";
+                        Query<Long> query = session.createQuery(hql, Long.class);
+                        count = query.uniqueResult();
+
+                        studentcounttxt.setText(String.valueOf(count));
+
+                        transaction.commit();
+                } catch (Exception e) {
+                        if (transaction != null) {
+                                transaction.rollback();
+                        }
+                        e.printStackTrace();
+                } finally {
+                        session.close();
+                }
+
+                return count;
+        }
+
+        public long getCourseCount() throws IOException {
+                Session session = FactoryConfiguration.getInstance().getSession();
+                Transaction transaction = null;
+                long count = 0;
+
+                try {
+                        transaction = session.beginTransaction();
+                        String hql = "SELECT COUNT(c) FROM Course c";
+                        Query<Long> query = session.createQuery(hql, Long.class);
+                        count = query.uniqueResult();
+
+                        coursecountxtx.setText(String.valueOf(count));
+
+                        transaction.commit();
+                } catch (Exception e) {
+                        if (transaction != null) {
+                                transaction.rollback();
+                        }
+                        e.printStackTrace();
+                } finally {
+                        session.close();
+                }
+
+                return count;
+        }
+
 }

@@ -62,13 +62,12 @@ public class UserDaoImpl implements UserDao {
     @Override
     public boolean update(User dto) throws IOException {
 
+        //convert to BCripte
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-        // Hash the password before updating
         String hashedPassword = passwordEncoder.encode(dto.getPassword());
-        dto.setPassword(hashedPassword); // Set the hashed password back to the DTO
+        dto.setPassword(hashedPassword);
 
-        // Start the session and transaction
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
