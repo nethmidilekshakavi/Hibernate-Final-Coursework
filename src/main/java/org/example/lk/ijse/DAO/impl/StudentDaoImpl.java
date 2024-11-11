@@ -1,6 +1,8 @@
 package org.example.lk.ijse.DAO.impl;
 
 import org.example.lk.ijse.DAO.cutom.StudentDao;
+import org.example.lk.ijse.DAO.cutom.UserDao;
+import org.example.lk.ijse.DTO.StudentDto;
 import org.example.lk.ijse.Entity.Student;
 import org.example.lk.ijse.config.FactoryConfiguration;
 import org.hibernate.Session;
@@ -13,6 +15,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StudentDaoImpl implements StudentDao {
+   private Student student;
+   private StudentDto studentDto;
+   private UserDao userDao;
 
 
     @Override
@@ -20,6 +25,7 @@ public class StudentDaoImpl implements StudentDao {
 
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
+
 
         session.save(Dto);
 

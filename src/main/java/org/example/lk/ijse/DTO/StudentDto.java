@@ -1,9 +1,5 @@
 package org.example.lk.ijse.DTO;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -30,6 +26,7 @@ public class StudentDto {
     private String phoneNumber;
 
     private LocalDate enrollmentDate;
+    private String user;
 
 /*
         @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)

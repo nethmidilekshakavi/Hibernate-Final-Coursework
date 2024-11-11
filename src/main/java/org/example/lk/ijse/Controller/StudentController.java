@@ -112,6 +112,7 @@ public class StudentController implements Initializable {
 
     StudentBo studentBo = (StudentBo) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.STUDENT);
     UserBO userBO = (UserBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.USER);
+    private
 
 
     @FXML
@@ -132,6 +133,7 @@ clearTextFiled();
         String email = emailtxt.getText();
         String number = phonenumbertxt.getText();
         LocalDate enrollmentDate = datecombo.getValue();
+
         List<Registration> list = new ArrayList<>();
 
 
