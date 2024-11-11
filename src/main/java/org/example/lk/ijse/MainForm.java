@@ -5,9 +5,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import org.example.lk.ijse.Entity.User;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -66,8 +69,19 @@ public class MainForm implements Initializable {
     }
 
     public void PaymentManagmentOnAction(ActionEvent actionEvent) throws IOException {
+
+      /*  User user = new User();
+
+        if (!user.getRole().equals("Admin")){
+            Parent parent= FXMLLoader.load(getClass().getResource("/view/Payment.fxml"));
+            Emptypane.getChildren().setAll(parent);
+        }else {
+            System.out.println("NOT OPEN");
+        }
+*/
         Parent parent= FXMLLoader.load(getClass().getResource("/view/Payment.fxml"));
         Emptypane.getChildren().setAll(parent);
+
     }
 
 

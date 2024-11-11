@@ -20,11 +20,9 @@ public class FactoryConfiguration {
             Configuration configuration = new Configuration();
             Properties properties = new Properties();
 
-            // Load properties from hibernate.properties
             properties.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("hibernate.properties"));
             configuration.setProperties(properties);
 
-            // Add annotated classes
             configuration.addAnnotatedClass(Student.class);
             configuration.addAnnotatedClass(User.class);
             configuration.addAnnotatedClass(Course.class);

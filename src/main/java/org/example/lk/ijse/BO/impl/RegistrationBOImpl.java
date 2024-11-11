@@ -60,7 +60,8 @@ public class RegistrationBOImpl implements RegistrationBO {
 
     @Override
     public boolean updateStudent(Student entity) throws IOException {
-        return studentDao.update(new Student(entity.getId(),entity.getFirstName(),entity.getLastName(),entity.getAddress(),entity.getEmail(),entity.getPhoneNumber(),entity.getEnrollmentDate(),entity.getRegistrations()));
+        return studentDao.update(new Student(entity.getId(),entity.getFirstName(),entity.getLastName(),entity.getAddress(),entity.getEmail(),entity.getPhoneNumber(),entity.getEnrollmentDate(),entity.getRegistrations())
+        );
     }
 
     @Override

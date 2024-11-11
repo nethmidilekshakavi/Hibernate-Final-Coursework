@@ -182,10 +182,11 @@ public class UserController implements Initializable {
                 String un = usernametxt.getText();
                 String pw = passwroddtxt.getText();
                 String role = roletxt.getText();
+                List<Student> students = new ArrayList<>();
 
 
 
-                User user = new User(uid,un,pw,role);
+                User user = new User(uid,un,pw,role,students);
 
                 boolean u = false;
 

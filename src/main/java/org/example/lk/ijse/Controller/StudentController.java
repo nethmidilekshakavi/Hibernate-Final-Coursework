@@ -16,9 +16,11 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import org.example.lk.ijse.BO.BOFactory;
 import org.example.lk.ijse.BO.custom.StudentBo;
+import org.example.lk.ijse.BO.custom.UserBO;
 import org.example.lk.ijse.DTO.TM.StudentTM;
 import org.example.lk.ijse.Entity.Registration;
 import org.example.lk.ijse.Entity.Student;
+import org.example.lk.ijse.Entity.User;
 import org.example.lk.ijse.Mail.mail;
 import org.example.lk.ijse.util.Regex;
 
@@ -109,6 +111,7 @@ public class StudentController implements Initializable {
     private TableColumn<StudentTM, JFXButton> updatebtnrow;
 
     StudentBo studentBo = (StudentBo) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.STUDENT);
+    UserBO userBO = (UserBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.USER);
 
 
     @FXML
@@ -130,6 +133,9 @@ clearTextFiled();
         String number = phonenumbertxt.getText();
         LocalDate enrollmentDate = datecombo.getValue();
         List<Registration> list = new ArrayList<>();
+
+
+
 
 
 
@@ -286,6 +292,7 @@ clearTextFiled();
                 String number = phonenumbertxt.getText();
                 LocalDate enrollmentDate = datecombo.getValue();
                 List<Registration> list = new ArrayList<>();
+
 
 
                 Student student = new Student(uid,fn,ln,address,email,number,enrollmentDate,list);
