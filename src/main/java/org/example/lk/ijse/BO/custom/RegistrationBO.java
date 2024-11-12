@@ -42,4 +42,6 @@ public interface RegistrationBO extends SuperBo {
     List<Registration> getAllRegistrationDetails() throws IOException;
 
     boolean deleteRegistration(Long id) throws IOException;
+
+    Registration serachbyRID(Long rid) throws SQLException, ClassNotFoundException;
 }

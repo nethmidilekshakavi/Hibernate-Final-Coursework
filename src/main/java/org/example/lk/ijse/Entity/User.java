@@ -1,4 +1,5 @@
 package org.example.lk.ijse.Entity;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,7 +12,6 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "users")
-
 public class User {
 
     @Id
@@ -27,7 +27,6 @@ public class User {
     @Column(nullable = false)
     private String role;
 
-    @OneToMany
-    private List<Student> students;
-
+   /* @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Student> students;*/
 }

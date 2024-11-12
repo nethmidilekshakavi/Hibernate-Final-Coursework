@@ -11,11 +11,11 @@
    <children>
       <AnchorPane fx:id="ButtonPane" layoutY="-1.0" prefHeight="818.0" prefWidth="230.0" style="-fx-background-color: #ECDFCC; -fx-background-color: black;">
          <children>
-            <Button fx:id="StudentManagmentBtn" layoutX="22.0" layoutY="398.0" mnemonicParsing="false" onAction="#StudentManageOnAction" prefHeight="50.0" prefWidth="174.0" style="-fx-background-radius: 10px;" text="Student Managment">
+            <Button fx:id="StudentManagmentBtn" layoutX="22.0" layoutY="366.0" mnemonicParsing="false" onAction="#StudentManageOnAction" prefHeight="50.0" prefWidth="174.0" style="-fx-background-radius: 10px;" text="Student Managment">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Button>
-            <Button fx:id="CoourseManagmentbtn" layoutX="24.0" layoutY="497.0" mnemonicParsing="false" onAction="#CourseManagmentOnAction" prefHeight="50.0" prefWidth="174.0" style="-fx-background-radius: 10px;" text="Course Managment🧑‍🍳">
+            <Button fx:id="CoourseManagmentbtn" layoutX="24.0" layoutY="452.0" mnemonicParsing="false" onAction="#CourseManagmentOnAction" prefHeight="50.0" prefWidth="174.0" style="-fx-background-radius: 10px;" text="Course Managment🧑‍🍳">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Button>
@@ -39,12 +39,16 @@
                </font>
             </Text>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-            <Button fx:id="paymentMangmentBTN" layoutX="25.0" layoutY="600.0" mnemonicParsing="false" onAction="#PaymentManagmentOnAction" prefHeight="50.0" prefWidth="174.0" style="-fx-background-radius: 10px;" text="Payment Managment 💵">
+            <Button fx:id="paymentMangmentBTN" layoutX="25.0" layoutY="545.0" mnemonicParsing="false" onAction="#PaymentManagmentOnAction" prefHeight="50.0" prefWidth="174.0" style="-fx-background-radius: 10px;" text="Registration">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Button>
-            <Text layoutX="23.0" layoutY="578.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-            <Button fx:id="User" layoutX="22.0" layoutY="296.0" mnemonicParsing="false" onAction="#UserManageOnAction" prefHeight="50.0" prefWidth="174.0" style="-fx-background-radius: 10px;" text="User Managment">
+            <Button fx:id="User" layoutX="22.0" layoutY="281.0" mnemonicParsing="false" onAction="#UserManageOnAction" prefHeight="50.0" prefWidth="174.0" style="-fx-background-radius: 10px;" text="User Managment">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="payment2btn" layoutX="29.0" layoutY="623.0" mnemonicParsing="false" onAction="#Payment2ManagmentOnAction" prefHeight="50.0" prefWidth="174.0" style="-fx-background-radius: 10px;" text="Payment">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>

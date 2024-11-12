@@ -19,11 +19,13 @@ import org.example.lk.ijse.DTO.TM.StudentTM;
 import org.example.lk.ijse.Entity.Course;
 import org.example.lk.ijse.Entity.Registration;
 import org.example.lk.ijse.Entity.Student;
+import org.springframework.security.core.parameters.P;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -153,6 +155,7 @@ public class RegistrationController implements Initializable {
             Student student = registrationBO.serachbyIDS(studentId);
             Course course = registrationBO.serachbyCIDs(courseId);
 
+
             if (student == null) {
                 new Alert(Alert.AlertType.ERROR, "Student not found!").show();
                 return;
@@ -165,9 +168,7 @@ public class RegistrationController implements Initializable {
             ObservableList<StudentTM> observableList = FXCollections.observableArrayList();
 
 
-            Registration registration = new Registration(
-                    id, date, payment, dueAmount, studentFName, courseFullName, courseDuration, student, course
-            );
+            Registration registration = new Registration(id, date, payment, dueAmount, studentFName, courseFullName, courseDuration, student, course);
 
             //save
             boolean isSaved = registrationBO.saveRegistration(registration);
@@ -206,6 +207,7 @@ public class RegistrationController implements Initializable {
                     alldetails.get(i).getCourse().getProgramName(),
                     alldetails.get(i).getEnrollmentDate(),
                     alldetails.get(i).getDuration(),
+
                     alldetails.get(i).getPayment(),
                     alldetails.get(i).getDueAmount(),
                     new JFXButton("delete")

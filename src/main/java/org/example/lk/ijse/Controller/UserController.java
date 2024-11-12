@@ -186,7 +186,7 @@ public class UserController implements Initializable {
 
 
 
-                User user = new User(uid,un,pw,role,students);
+                User user = new User(uid,un,pw,role);
 
                 boolean u = false;
 

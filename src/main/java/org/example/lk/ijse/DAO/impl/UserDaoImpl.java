@@ -1,5 +1,7 @@
 package org.example.lk.ijse.DAO.impl;
 
+import org.example.lk.ijse.BO.BOFactory;
+import org.example.lk.ijse.BO.custom.StudentBo;
 import org.example.lk.ijse.DAO.cutom.UserDao;
 import org.example.lk.ijse.Entity.Student;
 import org.example.lk.ijse.Entity.User;
@@ -15,20 +17,27 @@ import java.util.List;
 
 public class UserDaoImpl implements UserDao {
 
+    StudentBo studentBo = (StudentBo) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.STUDENT);
+
+    @Override
     public void saveUser(User user) {
         Transaction transaction = null;
         try (Session session = FactoryConfiguration.getInstance().getSession()) {
             transaction = session.beginTransaction();
-            session.save(user);
+
+            session.save(user); // `saveOrUpdate` is safer for both insert and update cases.
+
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
-                transaction.rollback(); // Roll back if there was an error
+                transaction.rollback(); // Rollback on error.
             }
-            e.printStackTrace(); // Consider logging this instead of printing
+            e.printStackTrace(); // Replace with proper logging in a production environment.
         }
     }
 
+
+    @Override
     public User getUserByUsername(String username) {
         try (Session session = FactoryConfiguration.getInstance().getSession()) {
             return session.createQuery("FROM User WHERE username = :username", User.class)
@@ -42,78 +51,62 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List<User> getaAll() throws IOException {
-        Session session = FactoryConfiguration.getInstance().getSession();
-        Transaction transaction = session.beginTransaction();
-
-        List<User> list = session.createQuery("from User ", User.class).list();
-
-        transaction.commit();
-        session.close();
-
-        return list;
+        try (Session session = FactoryConfiguration.getInstance().getSession()) {
+            return session.createQuery("FROM User", User.class).list();
+        }
     }
 
     @Override
     public boolean save(User entity) throws IOException {
+        // Implement this method if needed
         return false;
     }
 
-
     @Override
-    public boolean update(User dto) throws IOException {
+    public boolean update(User user) throws IOException {
+        try (Session session = FactoryConfiguration.getInstance().getSession()) {
+            Transaction transaction = session.beginTransaction();
 
-        //convert to BCripte
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+            // Encrypt the password before saving
+            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
 
-        String hashedPassword = passwordEncoder.encode(dto.getPassword());
-        dto.setPassword(hashedPassword);
+            session.update(user);
+            transaction.commit();
 
-        Session session = FactoryConfiguration.getInstance().getSession();
-        Transaction transaction = session.beginTransaction();
-
-        session.update(dto);
-
-        transaction.commit();
-        session.close();
-
-        return false;
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
-
     @Override
-    public boolean delete(int entity) throws IOException {
-        Session session = FactoryConfiguration.getInstance().getSession();
-        Transaction transaction = session.beginTransaction();
+    public boolean delete(int userId) throws IOException {
+        try (Session session = FactoryConfiguration.getInstance().getSession()) {
+            Transaction transaction = session.beginTransaction();
 
-        NativeQuery nativeQuery = session.createNativeQuery("delete from users where id = ?1");
-        nativeQuery.setParameter(1, entity);
+            NativeQuery<?> nativeQuery = session.createNativeQuery("DELETE FROM users WHERE id = :id");
+            nativeQuery.setParameter("id", userId);
+            nativeQuery.executeUpdate();
 
-        nativeQuery.executeUpdate();
-
-        transaction.commit();
-        session.close();
-
-        return false;
+            transaction.commit();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     @Override
     public List<User> SearchUID(int uid) throws IOException {
-        List<User> users = new ArrayList<>();
-        Session session = FactoryConfiguration.getInstance().getSession();
-        Transaction transaction = session.beginTransaction();
-
-        try {
-            users = session.createQuery("FROM User WHERE id = :uid", User.class)
+        try (Session session = FactoryConfiguration.getInstance().getSession()) {
+            return session.createQuery("FROM User WHERE id = :uid", User.class)
                     .setParameter("uid", uid)
                     .getResultList();
-            transaction.commit();
         } catch (Exception e) {
-            if (transaction != null) transaction.rollback();
             e.printStackTrace();
-        } finally {
-            session.close();
+            return new ArrayList<>();
         }
-
-        return users;
     }
 }

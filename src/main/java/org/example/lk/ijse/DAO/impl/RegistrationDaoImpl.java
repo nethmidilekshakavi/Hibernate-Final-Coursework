@@ -6,6 +6,7 @@ import org.example.lk.ijse.config.FactoryConfiguration;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.NativeQuery;
+import org.hibernate.query.Query;
 
 import java.io.IOException;
 import java.util.List;
@@ -69,6 +70,31 @@ public class RegistrationDaoImpl implements RegistrationDao {
 
 
         return list;
+    }
+
+    @Override
+    public Registration searchByRID(Long id) {
+        Session session = FactoryConfiguration.getSessionFactory().openSession();
+        Transaction transaction = null;
+        Registration registration = null;
+
+        try {
+            transaction = session.beginTransaction();
+            // find student
+            String hql = "FROM Registration WHERE id = :id";
+            Query<Registration> query = session.createQuery(hql, Registration.class);
+            query.setParameter("id", id);
+            registration = query.uniqueResult();
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return registration;
     }
 
 }

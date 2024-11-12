@@ -34,12 +34,10 @@ public class Student {
         @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
         private List<Registration> registrations = new ArrayList<>();
 
-        @ManyToOne
-        private User user;
+        /*@ManyToOne
+        private User user;*/
 
         public Student(Integer studentId, String fn, String ln, String address, String email, String number, LocalDate enrollmentDate, List<Registration> list) {
 
         }
 }
-
-

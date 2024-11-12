@@ -12,4 +12,6 @@ public interface RegistrationDao extends CrudDao<Registration> {
     boolean delete(Long id) throws IOException;
 
     List<Registration> getaAll() throws IOException;
+
+    Registration searchByRID(Long id);
 }

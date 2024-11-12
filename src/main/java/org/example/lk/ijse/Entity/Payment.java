@@ -11,30 +11,19 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Data
 @Entity
-public class Registration {
+public class Payment {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private LocalDate enrollmentDate;
-
     private Double payment;
-
     private Double dueAmount;
-
     private String studentName;
-
     private String programName;
+    private Double duePayment;
 
-    private String duration;
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "student_id", nullable = false)
-    private Student student;
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "program_id", nullable = false)
-    private Course course;
-
-
+    @OneToOne(cascade = CascadeType.ALL)
+    private Registration registration;
 }

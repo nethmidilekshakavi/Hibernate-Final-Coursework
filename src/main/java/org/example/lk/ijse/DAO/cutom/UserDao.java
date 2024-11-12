@@ -7,6 +7,10 @@ import java.util.List;
 
 public interface UserDao extends CrudDao<User> {
 
+    void saveUser(User user);
+
+    User getUserByUsername(String username);
+
     List<User> getaAll() throws IOException;
 
     boolean delete(int entity) throws IOException;

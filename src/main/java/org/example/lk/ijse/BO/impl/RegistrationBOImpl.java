@@ -115,5 +115,10 @@ public class RegistrationBOImpl implements RegistrationBO {
         return registrationDao.delete(id);
     }
 
+    @Override
+    public Registration serachbyRID(Long rid) throws SQLException, ClassNotFoundException {
+        return registrationDao.searchByRID(rid);
+    }
+
 
 }

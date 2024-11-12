@@ -57,15 +57,14 @@ public class RegisterTheSystem extends UserService {
 
         UserService userService = new UserService();
         userService.registerUser(username, password, role);
+
+        clearetextField();
+
     }
 
     @FXML
     void loginOnAction(ActionEvent event) throws IOException {
         User user = findUserByUsername(loginUsername.getText());
-
-
-
-
 
         if (user != null && new BCryptPasswordEncoder().matches(loginpw.getText(), user.getPassword())) {
             Stage stage = new Stage();
@@ -73,7 +72,6 @@ public class RegisterTheSystem extends UserService {
             stage.show();
             stage.centerOnScreen();
             stage.setTitle("Dashboard");
-
 
         } else {
             System.out.println("Oops! Invalid username or password.");
@@ -90,6 +88,11 @@ public class RegisterTheSystem extends UserService {
     }
 
 
+    public void clearetextField(){
+        usernametxt1.setText("");
+        passwordtxt1.setText("");
+        role1.setText("");
+    }
 
 
 
