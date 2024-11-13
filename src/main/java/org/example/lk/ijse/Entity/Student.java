@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,10 +33,9 @@ public class Student {
         @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
         private List<Registration> registrations = new ArrayList<>();
 
-        /*@ManyToOne
-        private User user;*/
+        @ManyToOne(fetch = FetchType.LAZY)
+        @JoinColumn(name = "user_id", nullable = false)
+        private User user;
 
-        public Student(Integer studentId, String fn, String ln, String address, String email, String number, LocalDate enrollmentDate, List<Registration> list) {
 
-        }
 }

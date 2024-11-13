@@ -9,6 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.example.lk.ijse.DAO.impl.UserDaoImpl;
+import org.example.lk.ijse.Entity.Student;
 import org.example.lk.ijse.Entity.User;
 import org.example.lk.ijse.config.FactoryConfiguration;
 import org.hibernate.Session;
@@ -17,6 +18,8 @@ import org.hibernate.query.Query;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RegisterTheSystem extends UserService {
 
@@ -49,18 +52,14 @@ public class RegisterTheSystem extends UserService {
         String username = usernametxt1.getText();
         String password = passwordtxt1.getText();
         String role = role1.getText();
-
-        User user = new User();
-        user.setUsername(username);
-        user.setPassword(password);
-        user.setRole(role);
+        List<Student> students = new ArrayList<>();
 
         UserService userService = new UserService();
-        userService.registerUser(username, password, role);
+        userService.registerUser(username, password, role, students);
 
         clearetextField();
-
     }
+
 
     @FXML
     void loginOnAction(ActionEvent event) throws IOException {

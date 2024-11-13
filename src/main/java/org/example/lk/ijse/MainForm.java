@@ -93,7 +93,7 @@ public class MainForm implements Initializable {
     }
 
     public void Payment2ManagmentOnAction(ActionEvent actionEvent) throws IOException {
-        Parent parent = FXMLLoader.load(getClass().getResource("/View/Payment2.fxml"));
+        Parent parent = FXMLLoader.load(getClass().getResource("/View/paymentForm.fxml"));
         Emptypane.getChildren().setAll(parent);
     }
 }

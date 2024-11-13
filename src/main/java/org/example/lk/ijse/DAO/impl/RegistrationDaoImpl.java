@@ -2,6 +2,7 @@ package org.example.lk.ijse.DAO.impl;
 
 import org.example.lk.ijse.DAO.cutom.RegistrationDao;
 import org.example.lk.ijse.Entity.Registration;
+import org.example.lk.ijse.Entity.Student;
 import org.example.lk.ijse.config.FactoryConfiguration;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -30,6 +31,12 @@ public class RegistrationDaoImpl implements RegistrationDao {
 
 
     }
+
+    @Override
+    public boolean save(Student enitiy) throws IOException {
+        return false;
+    }
+
     @Override
     public boolean update(Registration entity) throws IOException {
         return false;
@@ -96,5 +103,7 @@ public class RegistrationDaoImpl implements RegistrationDao {
         }
         return registration;
     }
+
+
 
 }

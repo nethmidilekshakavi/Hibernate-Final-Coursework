@@ -2,6 +2,7 @@ package org.example.lk.ijse.DAO.impl;
 
 import org.example.lk.ijse.DAO.cutom.CourseDao;
 import org.example.lk.ijse.Entity.Course;
+import org.example.lk.ijse.Entity.Student;
 import org.example.lk.ijse.config.FactoryConfiguration;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -14,22 +15,10 @@ import java.util.List;
 
 public class CourseDaoImpl implements CourseDao {
 
+
     @Override
-    public boolean save(Course Dto) throws IOException {
-
-        Session session = FactoryConfiguration.getInstance().getSession();
-        Transaction transaction = session.beginTransaction();
-
-        session.save(Dto);
-
-
-        transaction.commit();
-        session.close();
-
-
+    public boolean save(Student enitiy) throws IOException {
         return false;
-
-
     }
 
     @Override
@@ -143,6 +132,21 @@ public class CourseDaoImpl implements CourseDao {
         }
 
         return course;
+    }
+
+    @Override
+    public boolean save(Course course) throws IOException {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        session.save(course);
+
+
+        transaction.commit();
+        session.close();
+
+
+        return false;
     }
 
 

@@ -1,29 +1,26 @@
-package org.example.lk.ijse.Entity;
+package org.example.lk.ijse.DTO;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.example.lk.ijse.Entity.Registration;
 
 import java.time.LocalDate;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Entity
-public class Payment {
+public class PaymentDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
+    private Long rid;
     private LocalDate enrollmentDate;
     private Double payment;
     private Double dueAmount;
     private String studentName;
     private String programName;
     private Double duePayment;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    private Registration registration;
 
 }

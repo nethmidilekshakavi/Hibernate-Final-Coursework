@@ -133,9 +133,10 @@ clearTextFiled();
         String number = phonenumbertxt.getText();
         LocalDate enrollmentDate = datecombo.getValue();
         List<Registration> list = new ArrayList<>();
+        User user = new User();
 
+        Student student = new Student(id,fn,ln,address,email,number,enrollmentDate,list,user);
 
-        Student student = new Student(id,fn,ln,address,email,number,enrollmentDate,list);
 
         boolean s = false;
 
@@ -245,12 +246,12 @@ clearTextFiled();
                 String number = phonenumbertxt.getText();
                 LocalDate enrollmentDate = datecombo.getValue();
                 List<Registration> list = new ArrayList<>();
+                User user = new User();
 
 
 
 
-
-                Student student = new Student(uid,fn,ln,address,email,number,enrollmentDate,list);
+                Student student = new Student(uid,fn,ln,address,email,number,enrollmentDate,list,user);
                 boolean s = false;
 
                 try{

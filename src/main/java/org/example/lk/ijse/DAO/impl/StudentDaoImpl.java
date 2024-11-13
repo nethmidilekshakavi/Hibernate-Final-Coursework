@@ -17,23 +17,32 @@ public class StudentDaoImpl implements StudentDao {
 
 
     @Override
-    public boolean save(Student Dto) throws IOException {
-
+    public boolean save(Student dto) throws IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
-        Transaction transaction = session.beginTransaction();
+        Transaction transaction = null;
 
+        try {
+            transaction = session.beginTransaction();
 
+            // Create and save the User entity
+            User user = new User();
+            dto.setUser(user);
+            session.save(user);
 
-        session.save(Dto);
+            // Save the Student entity
+            session.save(dto);
 
-
-        transaction.commit();
-        session.close();
-
-
-        return false;
-
-
+            transaction.commit();
+            return true;  // Indicating success
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+            return false;  // Indicating failure
+        } finally {
+            session.close();
+        }
     }
 
 
@@ -85,7 +94,6 @@ public class StudentDaoImpl implements StudentDao {
         Transaction transaction = session.beginTransaction();
 
         List<Student> list = session.createQuery("from Student ", Student.class).list();
-
 
         transaction.commit();
         session.close();

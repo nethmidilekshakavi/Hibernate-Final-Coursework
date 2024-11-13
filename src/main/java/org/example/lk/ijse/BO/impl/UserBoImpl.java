@@ -22,8 +22,10 @@ public class UserBoImpl implements UserBO {
     }
     @Override
     public boolean updateUser(User entity) throws IOException {
-        return userDao.update(new User(entity.getId(),entity.getUsername(),entity.getPassword(),entity.getRole()));
+        return userDao.update(new User(entity.getId(),entity.getUsername(),entity.getPassword(),entity.getRole(),entity.getStudents()));
     }
+
+
 
     @Override
     public boolean deleteUser(int id) throws IOException {

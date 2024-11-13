@@ -12,6 +12,7 @@ public interface UserBO extends SuperBo {
 
     boolean updateUser(User entity) throws IOException;
 
+
     boolean deleteUser(int id) throws IOException;
 
 

@@ -15,7 +15,8 @@ public class CourseBOImpl implements CourseBO {
 
     @Override
     public boolean saveCourse(Course entity) throws IOException {
-        return courseDao.save(new Course(entity.getId(),entity.getProgramId(),entity.getProgramName(),entity.getDuration(),entity.getFee(),entity.getRegistrations()));
+        return courseDao.save(
+                new Course(entity.getId(),entity.getProgramId(),entity.getProgramName(),entity.getDuration(),entity.getFee(),entity.getRegistrations()));
     }
 
     @Override

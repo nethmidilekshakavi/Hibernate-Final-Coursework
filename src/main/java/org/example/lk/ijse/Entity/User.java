@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
@@ -27,6 +27,6 @@ public class User {
     @Column(nullable = false)
     private String role;
 
-   /* @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Student> students;*/
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Student> students = new ArrayList<>();
 }

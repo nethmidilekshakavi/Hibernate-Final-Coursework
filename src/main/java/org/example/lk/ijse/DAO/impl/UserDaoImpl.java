@@ -20,7 +20,7 @@ public class UserDaoImpl implements UserDao {
     StudentBo studentBo = (StudentBo) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.STUDENT);
 
     @Override
-    public void saveUser(User user) {
+    public boolean saveUser(User user) {
         Transaction transaction = null;
         try (Session session = FactoryConfiguration.getInstance().getSession()) {
             transaction = session.beginTransaction();
@@ -34,6 +34,7 @@ public class UserDaoImpl implements UserDao {
             }
             e.printStackTrace(); // Replace with proper logging in a production environment.
         }
+        return false;
     }
 
 
@@ -57,7 +58,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public boolean save(User entity) throws IOException {
+    public boolean save(Student enitiy) throws IOException {
         // Implement this method if needed
         return false;
     }

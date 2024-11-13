@@ -1,6 +1,7 @@
 package org.example.lk.ijse.BO.custom;
 
 import org.example.lk.ijse.BO.SuperBo;
+import org.example.lk.ijse.Entity.Payment;
 import org.example.lk.ijse.Entity.Registration;
 
 import java.io.IOException;
@@ -12,4 +13,12 @@ public interface PaymentBO extends SuperBo {
     List<Registration> getAllRegistrationDetails() throws IOException;
 
     boolean deleteRegistration(Long id) throws IOException;
+
+    boolean savePayment(Payment entity) throws IOException;
+
+    List<Payment> getAllPayment() throws IOException;
+
+    boolean UpdatePayment(Payment entity) throws IOException;
+
+    boolean deletePayment(Long id) throws IOException;
 }

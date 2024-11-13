@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface UserDao extends CrudDao<User> {
 
-    void saveUser(User user);
+    boolean saveUser(User user);
 
     User getUserByUsername(String username);
 

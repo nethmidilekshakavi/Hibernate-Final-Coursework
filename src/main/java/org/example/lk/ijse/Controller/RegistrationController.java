@@ -149,9 +149,7 @@ public class RegistrationController implements Initializable {
                 Paidtxt.setText("");
             }
 
-
             LocalDate date = datecombo.getValue();
-
             Student student = registrationBO.serachbyIDS(studentId);
             Course course = registrationBO.serachbyCIDs(courseId);
 
