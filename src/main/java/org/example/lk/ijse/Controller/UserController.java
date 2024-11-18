@@ -185,7 +185,7 @@ public class UserController implements Initializable {
                 List<Student> students = new ArrayList<>();
 
 
-                User user = new User(uid,un,pw,role,students);
+                User user = new User(uid,un,pw,role);
 
                 boolean u = false;
 

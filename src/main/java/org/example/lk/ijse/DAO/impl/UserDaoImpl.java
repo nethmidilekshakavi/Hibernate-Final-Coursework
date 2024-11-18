@@ -11,6 +11,7 @@ import org.hibernate.Transaction;
 import org.hibernate.query.NativeQuery;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import javax.management.relation.Role;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,16 +26,17 @@ public class UserDaoImpl implements UserDao {
         try (Session session = FactoryConfiguration.getInstance().getSession()) {
             transaction = session.beginTransaction();
 
-            session.save(user); // `saveOrUpdate` is safer for both insert and update cases.
+            session.save(user);
 
             transaction.commit();
+            return true;
         } catch (Exception e) {
             if (transaction != null) {
-                transaction.rollback(); // Rollback on error.
+                transaction.rollback();
             }
-            e.printStackTrace(); // Replace with proper logging in a production environment.
+            e.printStackTrace();
+            return false;
         }
-        return false;
     }
 
 
@@ -110,4 +112,39 @@ public class UserDaoImpl implements UserDao {
             return new ArrayList<>();
         }
     }
+
+    @Override
+    public User getUserById(int id) {
+        Session session = FactoryConfiguration.getSessionFactory().openSession();
+        User user = null;
+        try {
+            user = session.get(User.class, id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return user;
+    }
+
+    @Override
+    public String getRoleNameById(int id) {
+        Session session = FactoryConfiguration.getSessionFactory().openSession();
+        String roleName = null;
+        try {
+
+            Role role = session.get(Role.class, id);
+            if (role != null) {
+
+                roleName = role.getRoleName();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return roleName;
+    }
+
+
 }

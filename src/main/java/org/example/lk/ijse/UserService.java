@@ -12,17 +12,15 @@ import java.util.List;
 public class UserService {
     private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-    public User registerUser(String username, String plainPassword, String role, List<Student> students) {
+    public User registerUser(String username, String plainPassword, String role) {
         User user = new User();
         user.setUsername(username);
 
-        // Encrypt the plain password using BCrypt
         String encryptedPassword = passwordEncoder.encode(plainPassword);
         user.setPassword(encryptedPassword);
         user.setRole(role);
 
-        // Set students for the user
-        user.setStudents(students);
+
 
         // Save user to the database
         UserDaoImpl userDAO = new UserDaoImpl();

@@ -140,6 +140,7 @@ public class DashBoard implements Initializable {
 
         @Override
         public void initialize(URL location, ResourceBundle resources) {
+                setrole();
                 getDate();
                 getTime();
 
@@ -222,7 +223,9 @@ public class DashBoard implements Initializable {
                 return count;
         }
 
-
+        public void setrole(){
+                WhosLog.setText(RegisterTheSystem.userRole);
+        }
 
 
 }

@@ -384,4 +384,5 @@ public class RegistrationController implements Initializable {
 
         setValues();
     }
+
 }

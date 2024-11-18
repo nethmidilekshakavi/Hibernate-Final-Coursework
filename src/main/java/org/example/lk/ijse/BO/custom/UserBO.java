@@ -17,4 +17,6 @@ public interface UserBO extends SuperBo {
 
 
     List<User> SearchUID(int uid) throws IOException;
+
+    String serchrole(int role) throws IOException;
 }

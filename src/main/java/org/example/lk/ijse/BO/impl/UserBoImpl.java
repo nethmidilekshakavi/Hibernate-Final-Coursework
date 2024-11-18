@@ -15,14 +15,12 @@ public class UserBoImpl implements UserBO {
 
     @Override
     public List<User> getAllUser() throws IOException {
-
         List<User> allUsers = userDao.getaAll();
-
         return allUsers;
     }
     @Override
     public boolean updateUser(User entity) throws IOException {
-        return userDao.update(new User(entity.getId(),entity.getUsername(),entity.getPassword(),entity.getRole(),entity.getStudents()));
+        return userDao.update(new User(entity.getId(),entity.getUsername(),entity.getPassword(),entity.getRole()));
     }
 
 
@@ -36,6 +34,11 @@ public class UserBoImpl implements UserBO {
     public List<User> SearchUID(int uid) throws IOException {
 
         return userDao.SearchUID(uid);
-
     }
+
+    @Override
+    public String serchrole(int role) throws IOException {
+        return  userDao.getRoleNameById(role);
+    }
+
 }

@@ -13,7 +13,12 @@ public interface UserDao extends CrudDao<User> {
 
     List<User> getaAll() throws IOException;
 
+
     boolean delete(int entity) throws IOException;
 
     List<User> SearchUID(int uid) throws IOException;
+
+    User getUserById(int id);
+
+    String getRoleNameById(int id);
 }

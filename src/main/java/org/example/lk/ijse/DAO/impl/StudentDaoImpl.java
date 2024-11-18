@@ -23,13 +23,6 @@ public class StudentDaoImpl implements StudentDao {
 
         try {
             transaction = session.beginTransaction();
-
-            // Create and save the User entity
-            User user = new User();
-            dto.setUser(user);
-            session.save(user);
-
-            // Save the Student entity
             session.save(dto);
 
             transaction.commit();
