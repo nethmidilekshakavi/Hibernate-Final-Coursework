@@ -24,8 +24,10 @@ public class Payment {
     private Double duePayment;
 
 
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "registration_id", nullable = false)
     private Registration registration;
+
 
 
 

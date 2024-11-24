@@ -9,6 +9,8 @@ import org.example.lk.ijse.config.FactoryConfiguration;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.NativeQuery;
+import org.hibernate.query.Query;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -65,29 +67,27 @@ public class PaymentDaoImpl implements PaymentDao {
 
     @Override
     public boolean delete(Long id) throws IOException {
-        Session session = FactoryConfiguration.getInstance().getSession();
-        Transaction transaction = session.beginTransaction();
+        Transaction transaction = null;
+        try (Session session = FactoryConfiguration.getInstance().getSession()) {
+            transaction = session.beginTransaction();
 
-        try {
+            // Delete from Payment table using HQL
+            Query deletePaymentQuery = session.createQuery("DELETE FROM Payment WHERE id = :id");
+            deletePaymentQuery.setParameter("id", id);
 
-
-            // Delete from Registration table
-           NativeQuery deleteRegistrationQuery = session.createNativeQuery("DELETE FROM Payment WHERE id = :id");
-            deleteRegistrationQuery.setParameter("id", id);
-
-
-           deleteRegistrationQuery.executeUpdate();
-
+            int result = deletePaymentQuery.executeUpdate();
             transaction.commit();
-            return true;
+
+            return result > 0; // Return true if at least one row is affected
         } catch (Exception e) {
-            transaction.rollback();
-            e.printStackTrace();
+            if (transaction != null) {
+                transaction.rollback(); // Rollback on error
+            }
+            e.printStackTrace(); // Replace with proper logging in a production environment
             return false;
-        } finally {
-            session.close();
         }
     }
+
 
 
     @Override

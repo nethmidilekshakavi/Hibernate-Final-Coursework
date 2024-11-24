@@ -197,7 +197,7 @@ public class UserController implements Initializable {
                     e.printStackTrace();
                 }
 
-                if (!u){
+                if (u){
                     new Alert(Alert.AlertType.CONFIRMATION,"User Update Success").show();
                 }else {
 
