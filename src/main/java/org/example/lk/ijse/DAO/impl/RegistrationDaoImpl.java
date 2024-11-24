@@ -56,16 +56,27 @@ public class RegistrationDaoImpl implements RegistrationDao {
     public boolean delete(Long id) throws IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
 
-        try {
-            session.beginTransaction();
-            Registration registration = session.get(Registration.class,id);
-            session.remove(registration);
-            session.getTransaction().commit();
+        Transaction transaction = null;
 
-            return true;
+        try {
+            transaction = session.beginTransaction();
+
+            // Load the Student entity
+            Student student = session.get(Student.class, id);
+
+            if (student != null) {
+                // Delete the student; cascade will handle related entities
+                session.delete(student);
+            }
+
+            transaction.commit();
         } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
             e.printStackTrace();
-            session.getTransaction().rollback();
+        } finally {
+            session.close();
         }
         return false;
     }

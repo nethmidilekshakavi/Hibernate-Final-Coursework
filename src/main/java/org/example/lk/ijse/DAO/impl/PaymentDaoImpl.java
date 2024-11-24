@@ -71,8 +71,6 @@ public class PaymentDaoImpl implements PaymentDao {
         try {
 
 
-            registrationDao.delete(id);
-
             // Delete from Registration table
            NativeQuery deleteRegistrationQuery = session.createNativeQuery("DELETE FROM Payment WHERE id = :id");
             deleteRegistrationQuery.setParameter("id", id);

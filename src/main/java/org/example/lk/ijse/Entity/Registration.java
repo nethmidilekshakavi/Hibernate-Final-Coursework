@@ -27,13 +27,23 @@ public class Registration {
 
     private String duration;
 
-    @ManyToOne(cascade = {CascadeType.MERGE , CascadeType.REMOVE})
+   /* @ManyToOne(cascade = {CascadeType.MERGE , CascadeType.REMOVE})
     @JoinColumn(name = "student_id", nullable = false)
     private Student student;
 
     @ManyToOne(cascade = {CascadeType.MERGE,CascadeType.REMOVE})
     @JoinColumn(name = "program_id", nullable = false)
+    private Course course;*/
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "student_id", nullable = false)
+    private Student student;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "program_id", nullable = false)
     private Course course;
+
+
 
 
 

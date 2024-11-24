@@ -31,8 +31,12 @@ public class Student {
 
         private LocalDate enrollmentDate;
 
-        @OneToMany(mappedBy = "student", cascade = {CascadeType.MERGE,CascadeType.REMOVE},orphanRemoval = true)
+      /*  @OneToMany(mappedBy = "student", cascade = {CascadeType.MERGE,CascadeType.REMOVE},orphanRemoval = true)
+        private List<Registration> registrations = new ArrayList<>();*/
+
+        @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
         private List<Registration> registrations = new ArrayList<>();
+
 
         private String role;
 
