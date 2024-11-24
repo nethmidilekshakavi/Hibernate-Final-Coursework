@@ -63,7 +63,7 @@ public class MainForm implements Initializable {
             Parent parent = FXMLLoader.load(getClass().getResource("/View/CourseForm.fxml"));
             Emptypane.getChildren().setAll(parent);
         } else {
-            new Alert(Alert.AlertType.ERROR,"Sorry you can't access!").show();
+            new Alert(Alert.AlertType.ERROR, "Access Denied: You do not have the required permissions to access this feature 🤫.").show();
         }
 
     }
@@ -100,7 +100,7 @@ public class MainForm implements Initializable {
             Parent parent = FXMLLoader.load(getClass().getResource("/View/Payment.fxml"));
             Emptypane.getChildren().setAll(parent);
         } else {
-            new Alert(Alert.AlertType.ERROR,"Sorry you cat't access!").show();
+            new Alert(Alert.AlertType.ERROR, "Access Denied: You do not have the required permissions to access this feature 🤫.").show();
         }
     }
 
@@ -125,7 +125,7 @@ public class MainForm implements Initializable {
             Parent parent = FXMLLoader.load(getClass().getResource("/View/UserForm.fxml"));
             Emptypane.getChildren().setAll(parent);
         } else {
-            new Alert(Alert.AlertType.ERROR,"Sorry you cat't access!").show();
+            new Alert(Alert.AlertType.ERROR, "Access Denied: You do not have the required permissions to access this feature 🤫.").show();
         }
 
     }
@@ -136,7 +136,7 @@ public class MainForm implements Initializable {
             Parent parent = FXMLLoader.load(getClass().getResource("/View/paymentForm.fxml"));
             Emptypane.getChildren().setAll(parent);
         } else {
-            new Alert(Alert.AlertType.ERROR,"Sorry you cat't access!").show();
+            new Alert(Alert.AlertType.ERROR, "Access Denied: You do not have the required permissions to access this feature 🤫.").show();
         }
 
     }

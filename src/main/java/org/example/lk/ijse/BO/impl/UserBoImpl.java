@@ -36,9 +36,4 @@ public class UserBoImpl implements UserBO {
         return userDao.SearchUID(uid);
     }
 
-    @Override
-    public String serchrole(int role) throws IOException {
-        return  userDao.getRoleNameById(role);
-    }
-
 }

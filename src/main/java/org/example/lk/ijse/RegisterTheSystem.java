@@ -1,9 +1,7 @@
 package org.example.lk.ijse;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -11,19 +9,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.example.lk.ijse.DAO.impl.UserDaoImpl;
-import org.example.lk.ijse.Entity.Student;
 import org.example.lk.ijse.Entity.User;
-import org.example.lk.ijse.config.FactoryConfiguration;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-import org.hibernate.query.Query;
-import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
 import javax.imageio.IIOParam;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class RegisterTheSystem extends UserService {
 
@@ -53,7 +42,7 @@ public class RegisterTheSystem extends UserService {
     private IIOParam loader;
 
 
-    static String userRole = "";
+    public static String userRole = "";
 
 
     @FXML
@@ -64,8 +53,11 @@ public class RegisterTheSystem extends UserService {
 
         User user = new User();
         user.setUsername(username);
-        user.setPassword(password); // Ensure password is encrypted before saving
+        user.setPassword(password);
         user.setRole(role);
+
+        RegisterTheSystem registerTheSystem = new RegisterTheSystem();
+        registerTheSystem.registerUser(username,password,role);
 
         if (role != null && role.equals("admin")) {
             new Alert(Alert.AlertType.CONFIRMATION, "Welcome Admin!  " + username).show();
@@ -86,12 +78,11 @@ public class RegisterTheSystem extends UserService {
         User user = findUserByUsername(loginUsername.getText());
 
         if (user != null && new BCryptPasswordEncoder().matches(loginpw.getText(), user.getPassword())) {
-            // Check role and display a message accordingly
+            // Check role and display a message
             if (user.getRole().equals("admin") || user.getRole().equals("coordinator")) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Welcome back, " + user.getRole() + " " + user.getUsername() + "!").show();
                 userRole = user.getRole();
 
-                // Load the main form
                 Stage stage = new Stage();
                 stage.setScene(new Scene(FXMLLoader.load(this.getClass().getResource("/View/MainForm.fxml"))));
                 stage.show();
@@ -105,7 +96,6 @@ public class RegisterTheSystem extends UserService {
             System.out.println("Oops! Invalid username or password.");
         }
 
-        // Close the current stage
         Stage currentStage = (Stage) login.getScene().getWindow();
         currentStage.close();
     }

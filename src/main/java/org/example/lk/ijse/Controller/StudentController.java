@@ -22,6 +22,7 @@ import org.example.lk.ijse.Entity.Registration;
 import org.example.lk.ijse.Entity.Student;
 import org.example.lk.ijse.Entity.User;
 import org.example.lk.ijse.Mail.mail;
+import org.example.lk.ijse.RegisterTheSystem;
 import org.example.lk.ijse.util.Regex;
 
 import java.io.IOException;
@@ -114,6 +115,9 @@ public class StudentController implements Initializable {
     UserBO userBO = (UserBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.USER);
 
 
+    private String userRole; // To store the current user's role
+
+
     @FXML
     void clearOnActionStudent(ActionEvent event) {
 clearTextFiled();
@@ -135,7 +139,9 @@ clearTextFiled();
         List<Registration> list = new ArrayList<>();
 
 
-        Student student = new Student(id,fn,ln,address,email,number,enrollmentDate,list);
+
+
+        Student student = new Student(id,fn,ln,address,email,number,enrollmentDate,list,userRole);
 
 
         boolean s = false;
@@ -250,7 +256,7 @@ clearTextFiled();
 
 
 
-                Student student = new Student(uid,fn,ln,address,email,number,enrollmentDate,list);
+                Student student = new Student(uid,fn,ln,address,email,number,enrollmentDate,list,userRole);
                 boolean s = false;
 
                 try{
@@ -296,6 +302,10 @@ clearTextFiled();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        userRole = RegisterTheSystem.userRole;
+
+
         setValues();
         try {
             loadallvalues();

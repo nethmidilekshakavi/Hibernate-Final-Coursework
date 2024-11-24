@@ -17,6 +17,7 @@ import org.example.lk.ijse.BO.custom.RegistrationBO;
 import org.example.lk.ijse.DTO.TM.RegistrationTM;
 import org.example.lk.ijse.DTO.TM.StudentTM;
 import org.example.lk.ijse.Entity.Course;
+import org.example.lk.ijse.Entity.Payment;
 import org.example.lk.ijse.Entity.Registration;
 import org.example.lk.ijse.Entity.Student;
 import org.springframework.security.core.parameters.P;
@@ -164,6 +165,7 @@ public class RegistrationController implements Initializable {
             }
 
             ObservableList<StudentTM> observableList = FXCollections.observableArrayList();
+
 
 
             Registration registration = new Registration(id, date, payment, dueAmount, studentFName, courseFullName, courseDuration, student, course);

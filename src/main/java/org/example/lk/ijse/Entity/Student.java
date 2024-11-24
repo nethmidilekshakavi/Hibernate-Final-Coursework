@@ -19,6 +19,7 @@ public class Student {
         private int id;
 
         private String firstName;
+
         private String lastName;
 
         private String address;
@@ -30,12 +31,10 @@ public class Student {
 
         private LocalDate enrollmentDate;
 
-        @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
+        @OneToMany(mappedBy = "student", cascade = {CascadeType.MERGE,CascadeType.REMOVE},orphanRemoval = true)
         private List<Registration> registrations = new ArrayList<>();
 
-     /*   @ManyToOne(fetch = FetchType.LAZY)
-        @JoinColumn(name = "user_id", nullable = false)
-        private User user;
-*/
+        private String role;
+
 
 }

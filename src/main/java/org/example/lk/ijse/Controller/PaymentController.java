@@ -120,8 +120,6 @@ public class PaymentController implements Initializable {
     @FXML
     void PaymentOnAction(ActionEvent event) throws SQLException, IOException {
 
-
-
         try {
             Long registrationId = this.RegistationList.getSelectionModel().getSelectedItem();
             String studentFName = studentName.getText();
@@ -150,7 +148,7 @@ public class PaymentController implements Initializable {
             // Save payment
             boolean isSaved = paymentBO.savePayment(payment1);
 
-            if (isSaved) {
+            if (!isSaved) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Payment saved successfully!").show();
             } else {
                 new Alert(Alert.AlertType.ERROR, "Failed to save payment.").show();

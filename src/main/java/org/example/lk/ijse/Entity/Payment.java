@@ -23,7 +23,8 @@ public class Payment {
     private String programName;
     private Double duePayment;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.REMOVE}, orphanRemoval = true)
     private Registration registration;
+
 
 }

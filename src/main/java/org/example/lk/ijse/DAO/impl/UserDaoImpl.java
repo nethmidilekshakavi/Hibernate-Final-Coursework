@@ -127,24 +127,6 @@ public class UserDaoImpl implements UserDao {
         return user;
     }
 
-    @Override
-    public String getRoleNameById(int id) {
-        Session session = FactoryConfiguration.getSessionFactory().openSession();
-        String roleName = null;
-        try {
-
-            Role role = session.get(Role.class, id);
-            if (role != null) {
-
-                roleName = role.getRoleName();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            session.close();
-        }
-        return roleName;
-    }
 
 
 }

@@ -1,6 +1,8 @@
 package org.example.lk.ijse.DAO.impl;
 
+import org.example.lk.ijse.DAO.cutom.PaymentDao;
 import org.example.lk.ijse.DAO.cutom.RegistrationDao;
+import org.example.lk.ijse.Entity.Payment;
 import org.example.lk.ijse.Entity.Registration;
 import org.example.lk.ijse.Entity.Student;
 import org.example.lk.ijse.config.FactoryConfiguration;
@@ -14,6 +16,8 @@ import java.util.List;
 
 
 public class RegistrationDaoImpl implements RegistrationDao {
+    private PaymentDao paymentDao;
+    private RegistrationDao registrationDao;
     @Override
     public boolean save(Registration Dto) throws IOException {
 
@@ -44,22 +48,25 @@ public class RegistrationDaoImpl implements RegistrationDao {
 
     @Override
     public boolean delete(int id) throws IOException {
+
         return false;
     }
 
     @Override
     public boolean delete(Long id) throws IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
-        Transaction transaction = session.beginTransaction();
 
-        NativeQuery nativeQuery = session.createNativeQuery("delete from Registration where id = ?1");
-        nativeQuery.setParameter(1, id);
+        try {
+            session.beginTransaction();
+            Registration registration = session.get(Registration.class,id);
+            session.remove(registration);
+            session.getTransaction().commit();
 
-        nativeQuery.executeUpdate();
-
-        transaction.commit();
-        session.close();
-
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            session.getTransaction().rollback();
+        }
         return false;
     }
 

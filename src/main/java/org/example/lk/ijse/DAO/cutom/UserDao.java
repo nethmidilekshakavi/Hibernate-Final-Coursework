@@ -20,5 +20,4 @@ public interface UserDao extends CrudDao<User> {
 
     User getUserById(int id);
 
-    String getRoleNameById(int id);
 }

@@ -1,6 +1,8 @@
 package org.example.lk.ijse.DAO.impl;
 
+import org.example.lk.ijse.DAO.cutom.PaymentDao;
 import org.example.lk.ijse.DAO.cutom.StudentDao;
+import org.example.lk.ijse.Entity.Payment;
 import org.example.lk.ijse.Entity.Student;
 import org.example.lk.ijse.Entity.User;
 import org.example.lk.ijse.config.FactoryConfiguration;
@@ -14,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StudentDaoImpl implements StudentDao {
-
+private PaymentDao paymentDao;
 
     @Override
     public boolean save(Student dto) throws IOException {
@@ -55,29 +57,21 @@ public class StudentDaoImpl implements StudentDao {
 
     @Override
     public boolean delete(int entityId) throws IOException {
+
         Session session = FactoryConfiguration.getInstance().getSession();
-        Transaction transaction = null;
+
         try {
-            transaction = session.beginTransaction();
+            session.beginTransaction();
+            Student student = session.get(Student.class,entityId);
+            session.remove(student);
+            session.getTransaction().commit();
 
-            NativeQuery deleteRegistrationsQuery = session.createNativeQuery("DELETE FROM Registration WHERE student_id = ?1");
-            deleteRegistrationsQuery.setParameter(1, entityId);
-            deleteRegistrationsQuery.executeUpdate();
-
-            NativeQuery deleteStudentQuery = session.createNativeQuery("DELETE FROM Student WHERE id = ?1");
-            deleteStudentQuery.setParameter(1, entityId);
-            deleteStudentQuery.executeUpdate();
-
-            transaction.commit();
-            return true; // Deletion successful
+            return true;
         } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback(); // Roll back in case of an error
-            }
-            throw new IOException("Error deleting Student entity", e);
-        } finally {
-            session.close();
+            e.printStackTrace();
+            session.getTransaction().rollback();
         }
+        return false;
     }
 
 
