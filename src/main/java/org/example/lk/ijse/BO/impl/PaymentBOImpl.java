@@ -17,7 +17,7 @@ public class PaymentBOImpl implements PaymentBO {
 
     @Override
     public boolean saveRegistration(Registration entity) throws IOException {
-        return registrationDao.save(new Registration(entity.getId(),entity.getEnrollmentDate(),entity.getPayment(),entity.getDueAmount(),entity.getStudentName(),entity.getProgramName(),entity.getDuration(),entity.getStudent(),entity.getCourse()).getStudent());
+        return registrationDao.save(new Registration(entity.getId(),entity.getEnrollmentDate(),entity.getPayment(),entity.getDueAmount(),entity.getStudentName(),entity.getProgramName(),entity.getDuration(),entity.getStudent(),entity.getCourse(),entity.getPaymentList()));
     }
 
     @Override

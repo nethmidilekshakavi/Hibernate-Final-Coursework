@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -36,7 +38,8 @@ public class Registration {
     @JoinColumn(name = "program_id", nullable = false)
     private Course course;
 
-
+    @OneToMany(mappedBy = "registration", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Payment> paymentList = new ArrayList<>();
 
 
 

@@ -154,6 +154,8 @@ public class RegistrationController implements Initializable {
             Student student = registrationBO.serachbyIDS(studentId);
             Course course = registrationBO.serachbyCIDs(courseId);
 
+            List<Payment> paymentList = new ArrayList<>();
+
 
             if (student == null) {
                 new Alert(Alert.AlertType.ERROR, "Student not found!").show();
@@ -168,7 +170,7 @@ public class RegistrationController implements Initializable {
 
 
 
-            Registration registration = new Registration(id, date, payment, dueAmount, studentFName, courseFullName, courseDuration, student, course);
+            Registration registration = new Registration(id, date, payment, dueAmount, studentFName, courseFullName, courseDuration, student, course,paymentList);
 
             //save
             boolean isSaved = registrationBO.saveRegistration(registration);
