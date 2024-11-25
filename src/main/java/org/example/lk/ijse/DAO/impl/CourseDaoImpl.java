@@ -46,27 +46,17 @@ public class CourseDaoImpl implements CourseDao {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = null;
         try {
-            transaction = session.beginTransaction();
+            session.beginTransaction();
+            Course course = session.get(Course.class,entityId);
+            session.delete(course);
+            session.getTransaction().commit();
 
-            NativeQuery deleteRegistrationsQuery = session.createNativeQuery("DELETE FROM Registration WHERE program_id = ?1");
-            deleteRegistrationsQuery.setParameter(1, entityId);
-            deleteRegistrationsQuery.executeUpdate();
-
-
-            NativeQuery deleteStudentQuery = session.createNativeQuery("delete from courses where programId = ?1");
-            deleteStudentQuery.setParameter(1, entityId);
-            deleteStudentQuery.executeUpdate();
-
-            transaction.commit();
             return true;
         } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            throw new IOException("Error deleting Student entity", e);
-        } finally {
-            session.close();
+            e.printStackTrace();
+            session.getTransaction().rollback();
         }
+        return false;
     }
 
     @Override

@@ -63,7 +63,7 @@ private PaymentDao paymentDao;
         try {
             session.beginTransaction();
             Student student = session.get(Student.class,entityId);
-            session.remove(student);
+            session.delete(student);
             session.getTransaction().commit();
 
             return true;

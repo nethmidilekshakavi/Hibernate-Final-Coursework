@@ -89,10 +89,8 @@ public class RegistrationDaoImpl implements RegistrationDao {
 
         List<Registration> list = session.createQuery("from Registration ", Registration.class).list();
 
-
         transaction.commit();
         session.close();
-
 
         return list;
     }
