@@ -164,7 +164,7 @@
       </Text>
       <Text fx:id="WhosLog" fill="#227b94" layoutX="950.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="214.4000244140625">
          <font>
-            <Font name="System Bold Italic" size="24.0" />
+            <Font name="System Bold" size="24.0" />
          </font>
       </Text>
       <Text fx:id="month31" fill="#ece7e7" layoutX="945.0" layoutY="393.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3 Month">
