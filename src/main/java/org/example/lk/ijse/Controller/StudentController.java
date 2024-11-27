@@ -204,7 +204,7 @@ clearTextFiled();
 
                 Alert confirmDialog = new Alert(Alert.AlertType.CONFIRMATION);
                 confirmDialog.setTitle("Confirm Deletion");
-                confirmDialog.setHeaderText("Are you sure you want to delete this customer?");
+                confirmDialog.setHeaderText("Are you sure you want to delete this Student?");
                 confirmDialog.setContentText("Press OK to confirm or Cancel to abort.");
                 confirmDialog.showAndWait().ifPresent(response -> {
                     if (response == ButtonType.OK) {
@@ -219,7 +219,7 @@ clearTextFiled();
                             Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
                             successAlert.setTitle("Success");
                             successAlert.setHeaderText(null);
-                            successAlert.setContentText("Customer Deleted Successfully");
+                            successAlert.setContentText("Student Deleted Successfully");
                             successAlert.showAndWait();
                             // Reload values after successful deletion
                         } else {
@@ -227,7 +227,7 @@ clearTextFiled();
                             Alert errorAlert = new Alert(Alert.AlertType.ERROR);
                             errorAlert.setTitle("Error");
                             errorAlert.setHeaderText(null);
-                            errorAlert.setContentText("Failed to delete customer.");
+                            errorAlert.setContentText("Failed to delete Student.");
                             errorAlert.showAndWait();
                         }
                         try {

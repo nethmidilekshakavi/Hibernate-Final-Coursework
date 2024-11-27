@@ -138,7 +138,7 @@ public class UserController implements Initializable {
 
                 Alert confirmDialog = new Alert(Alert.AlertType.CONFIRMATION);
                 confirmDialog.setTitle("Confirm Deletion");
-                confirmDialog.setHeaderText("Are you sure you want to delete this customer?");
+                confirmDialog.setHeaderText("Are you sure you want to delete this User?");
                 confirmDialog.setContentText("Press OK to confirm or Cancel to abort.");
                 confirmDialog.showAndWait().ifPresent(response -> {
                     if (response == ButtonType.OK) {

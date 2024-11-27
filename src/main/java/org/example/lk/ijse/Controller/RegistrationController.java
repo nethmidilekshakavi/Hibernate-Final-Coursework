@@ -153,7 +153,6 @@ public class RegistrationController implements Initializable {
             LocalDate date = datecombo.getValue();
             Student student = registrationBO.serachbyIDS(studentId);
             Course course = registrationBO.serachbyCIDs(courseId);
-
             List<Payment> paymentList = new ArrayList<>();
 
 
@@ -234,7 +233,7 @@ public class RegistrationController implements Initializable {
 
                 Alert confirmDialog = new Alert(Alert.AlertType.CONFIRMATION);
                 confirmDialog.setTitle("Confirm Deletion");
-                confirmDialog.setHeaderText("Are you sure you want to delete this customer?");
+                confirmDialog.setHeaderText("Are you sure you want to delete this Registration?");
                 confirmDialog.setContentText("Press OK to confirm or Cancel to abort.");
 
                 confirmDialog.showAndWait().ifPresent(response -> {
@@ -250,7 +249,7 @@ public class RegistrationController implements Initializable {
                             Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
                             successAlert.setTitle("Success");
                             successAlert.setHeaderText(null);
-                            successAlert.setContentText("Customer Deleted Successfully");
+                            successAlert.setContentText("Registration Deleted Successfully");
                             successAlert.showAndWait();
                             // Reload values after successful deletion
                         } else {
@@ -258,7 +257,7 @@ public class RegistrationController implements Initializable {
                             Alert errorAlert = new Alert(Alert.AlertType.ERROR);
                             errorAlert.setTitle("Error");
                             errorAlert.setHeaderText(null);
-                            errorAlert.setContentText("Failed to delete customer.");
+                            errorAlert.setContentText("Failed to delete Registration.");
                             errorAlert.showAndWait();
                         }
                         try {
