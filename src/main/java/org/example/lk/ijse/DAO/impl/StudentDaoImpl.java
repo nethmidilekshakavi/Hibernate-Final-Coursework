@@ -120,7 +120,6 @@ private PaymentDao paymentDao;
 
         try {
             transaction = session.beginTransaction();
-            // find student
             String hql = "FROM Student WHERE id = :id";
             Query<Student> query = session.createQuery(hql, Student.class);
             query.setParameter("id", id);

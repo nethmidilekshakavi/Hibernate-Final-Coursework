@@ -17,9 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDaoImpl implements UserDao {
-
-    StudentBo studentBo = (StudentBo) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.STUDENT);
-
     @Override
     public boolean saveUser(User user) {
         Transaction transaction = null;
@@ -61,7 +58,6 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public boolean save(Student enitiy) throws IOException {
-        // Implement this method if needed
         return false;
     }
 

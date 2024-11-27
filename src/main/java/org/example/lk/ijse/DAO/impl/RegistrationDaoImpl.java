@@ -16,8 +16,6 @@ import java.util.List;
 
 
 public class RegistrationDaoImpl implements RegistrationDao {
-    private PaymentDao paymentDao;
-    private RegistrationDao registrationDao;
     @Override
     public boolean save(Registration Dto) throws IOException {
 
@@ -60,12 +58,9 @@ public class RegistrationDaoImpl implements RegistrationDao {
 
         try {
             transaction = session.beginTransaction();
-
-            // Load the Student entity
             Student student = session.get(Student.class, id);
 
             if (student != null) {
-                // Delete the student; cascade will handle related entities
                 session.delete(student);
             }
 
@@ -103,7 +98,6 @@ public class RegistrationDaoImpl implements RegistrationDao {
 
         try {
             transaction = session.beginTransaction();
-            // find student
             String hql = "FROM Registration WHERE id = :id";
             Query<Registration> query = session.createQuery(hql, Registration.class);
             query.setParameter("id", id);
