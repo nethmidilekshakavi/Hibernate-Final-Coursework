@@ -2,6 +2,7 @@ package org.example.lk.ijse.DTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.Session;
 
 import java.time.LocalDate;
 
@@ -24,4 +25,9 @@ public class RegistrationDto {
 
     private String duration;
 
+
+    public RegistrationDto(Long id, Double dueAmount, Session session) {
+        this.id = id;
+
+    }
 }

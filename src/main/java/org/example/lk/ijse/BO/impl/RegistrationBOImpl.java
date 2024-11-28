@@ -2,11 +2,18 @@ package org.example.lk.ijse.BO.impl;
 import org.example.lk.ijse.BO.custom.RegistrationBO;
 import org.example.lk.ijse.DAO.DaoFactory;
 import org.example.lk.ijse.DAO.cutom.CourseDao;
+import org.example.lk.ijse.DAO.cutom.PaymentDao;
 import org.example.lk.ijse.DAO.cutom.RegistrationDao;
 import org.example.lk.ijse.DAO.cutom.StudentDao;
 import org.example.lk.ijse.Entity.Course;
+import org.example.lk.ijse.Entity.Payment;
 import org.example.lk.ijse.Entity.Registration;
 import org.example.lk.ijse.Entity.Student;
+import org.example.lk.ijse.config.FactoryConfiguration;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.query.Query;
+
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -15,6 +22,7 @@ public class RegistrationBOImpl implements RegistrationBO {
     CourseDao courseDao = (CourseDao) DaoFactory.getDaoFactory().getDAO(DaoFactory.DAOTypes.COURSE);
     StudentDao studentDao = (StudentDao) DaoFactory.getDaoFactory().getDAO(DaoFactory.DAOTypes.STUDENT);
     RegistrationDao registrationDao = (RegistrationDao) DaoFactory.getDaoFactory().getDAO(DaoFactory.DAOTypes.REGISTRATION);
+    PaymentDao paymentDao = (PaymentDao) DaoFactory.getDaoFactory().getDAO(DaoFactory.DAOTypes.PAYMENT);
 
 
     @Override
@@ -90,9 +98,47 @@ public class RegistrationBOImpl implements RegistrationBO {
     }
 
     @Override
-    public boolean saveRegistration(Registration entity) throws IOException {
-        return registrationDao.save(new Registration(entity.getId(),entity.getEnrollmentDate(),entity.getPayment(),entity.getDueAmount(),entity.getStudentName(),entity.getProgramName(),entity.getDuration(),entity.getStudent(),entity.getCourse(),entity.getPaymentList()));
+    public boolean saveRegistration(Registration registration, Payment payment) {
+        try {
+            boolean registrationSaved = registrationDao.save(new Registration(
+                    registration.getId(),
+                    registration.getEnrollmentDate(),
+                    registration.getPayment(),
+                    registration.getDueAmount(),
+                    registration.getStudentName(),
+                    registration.getProgramName(),
+                    registration.getDuration(),
+                    registration.getStudent(),
+                    registration.getCourse(),
+                    registration.getPaymentList()
+            ));
+
+            boolean paymentSaved = paymentDao.save(new Payment(
+                    payment.getId(),
+                    payment.getEnrollmentDate(),
+                    payment.getPayment(),
+                    payment.getDueAmount(),
+                    payment.getStudentName(),
+                    payment.getProgramName(),
+                    payment.getDuePayment(),
+                    payment.getRegistration()
+            ));
+
+            // Return true if both save operations are successful
+            return registrationSaved && paymentSaved;
+        } catch (IOException e) {
+            // Log the error and rethrow if necessary
+            System.err.println("IOException occurred: " + e.getMessage());
+            e.printStackTrace();
+            return false;
+        } catch (Exception e) {
+            // Catch any other exceptions that might occur
+            System.err.println("An error occurred: " + e.getMessage());
+            e.printStackTrace();
+            return false;
+        }
     }
+
 
     @Override
     public List<Registration> getAllRegistrationDetails() throws IOException {
@@ -110,5 +156,31 @@ public class RegistrationBOImpl implements RegistrationBO {
         return registrationDao.searchByRID(rid);
     }
 
+    @Override
+    public boolean updateRegistration(Registration registration) throws SQLException {
+        try (Session session = FactoryConfiguration.getSessionFactory().openSession()) {
+            Transaction transaction = session.beginTransaction();
+
+            // HQL query to update dueAmount
+            String hql = "UPDATE Registration r SET r.dueAmount = :dueAmount WHERE r.id = :id";
+
+            Query query = session.createQuery(hql);
+            query.setParameter("dueAmount", registration.getDueAmount());
+            query.setParameter("id", registration.getId());
+
+            int result = query.executeUpdate();
+
+            if (result > 0) {
+                transaction.commit();
+                return true;
+            } else {
+                transaction.rollback();
+                return false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new SQLException("Error updating registration due amount", e);
+        }
+    }
 
 }

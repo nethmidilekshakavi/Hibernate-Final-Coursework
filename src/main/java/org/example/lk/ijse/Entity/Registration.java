@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.Session;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,5 +44,11 @@ public class Registration {
     private List<Payment> paymentList = new ArrayList<>();
 
 
-
+    public Registration(Long id, Double dueAmount) {
+        this.id = id;
+        this.dueAmount = dueAmount;
+    }
 }
+
+
+

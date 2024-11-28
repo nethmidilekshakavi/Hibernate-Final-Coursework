@@ -1,16 +1,11 @@
 package org.example.lk.ijse.DAO.impl;
-
-import org.example.lk.ijse.DAO.cutom.PaymentDao;
 import org.example.lk.ijse.DAO.cutom.RegistrationDao;
-import org.example.lk.ijse.Entity.Payment;
 import org.example.lk.ijse.Entity.Registration;
 import org.example.lk.ijse.Entity.Student;
 import org.example.lk.ijse.config.FactoryConfiguration;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
-
 import java.io.IOException;
 import java.util.List;
 
@@ -27,10 +22,7 @@ public class RegistrationDaoImpl implements RegistrationDao {
 
         transaction.commit();
         session.close();
-
-
         return false;
-
 
     }
 
@@ -53,7 +45,6 @@ public class RegistrationDaoImpl implements RegistrationDao {
     @Override
     public boolean delete(Long id) throws IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
-
         Transaction transaction = null;
 
         try {
@@ -112,6 +103,21 @@ public class RegistrationDaoImpl implements RegistrationDao {
             session.close();
         }
         return registration;
+    }
+
+    @Override
+    public boolean updateAmount(Registration registration, Session session) {
+        try {
+            String hql = "UPDATE Registration r SET r.dueAmount = :dueAmount WHERE r.id = :regId";
+            Query query = session.createQuery(hql);
+            query.setParameter("dueAmount", registration.getDueAmount());
+            query.setParameter("regId", registration.getId());
+            int affectedRows = query.executeUpdate();
+            return affectedRows > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
 

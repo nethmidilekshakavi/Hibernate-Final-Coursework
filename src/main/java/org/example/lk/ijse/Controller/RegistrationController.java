@@ -140,13 +140,12 @@ public class RegistrationController implements Initializable {
             String courseDuration = CourseDuration.getText();
             double payment = Double.parseDouble(Paymenttxt.getText());
             double totalFee = Double.parseDouble(fee.getText());
-            double dueAmount = totalFee - payment; //due Amount
+            double dueAmount = totalFee - payment; // Due Amount
             Amountduetxt.setText(String.valueOf(dueAmount));
 
-            if (dueAmount == 0){
+            if (dueAmount == 0) {
                 Paidtxt.setText("Paid !");
-            }
-            else {
+            } else {
                 Paidtxt.setText("");
             }
 
@@ -154,7 +153,6 @@ public class RegistrationController implements Initializable {
             Student student = registrationBO.serachbyIDS(studentId);
             Course course = registrationBO.serachbyCIDs(courseId);
             List<Payment> paymentList = new ArrayList<>();
-
 
             if (student == null) {
                 new Alert(Alert.AlertType.ERROR, "Student not found!").show();
@@ -165,14 +163,13 @@ public class RegistrationController implements Initializable {
                 return;
             }
 
-            ObservableList<StudentTM> observableList = FXCollections.observableArrayList();
+            // Create Payment object
+            Payment paymentObj = new Payment(0L, date, payment, dueAmount, studentFName, courseFullName, dueAmount, null);
 
+            Registration registration = new Registration(id, date, payment, dueAmount, studentFName, courseFullName, courseDuration, student, course, paymentList);
 
-
-            Registration registration = new Registration(id, date, payment, dueAmount, studentFName, courseFullName, courseDuration, student, course,paymentList);
-
-            //save
-            boolean isSaved = registrationBO.saveRegistration(registration);
+            // Save the Registration and Payment together
+            boolean isSaved = registrationBO.saveRegistration(registration, paymentObj);
 
             if (!isSaved) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Registration saved successfully!").show();
@@ -181,11 +178,10 @@ public class RegistrationController implements Initializable {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR, "An error occurred while saving the registration.").show();
         }
         loadallvalues();
         clearTextFiled();
-
-
     }
 
     public void loadallvalues() throws SQLException, IOException {

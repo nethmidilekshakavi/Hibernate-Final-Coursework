@@ -14,7 +14,7 @@ public interface PaymentBO extends SuperBo {
 
     boolean deleteRegistration(Long id) throws IOException;
 
-    boolean savePayment(Payment entity) throws IOException;
+    boolean savePayment(Payment entity, Registration registration) throws IOException;
 
     List<Payment> getAllPayment() throws IOException;
 

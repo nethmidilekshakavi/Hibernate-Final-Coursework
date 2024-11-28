@@ -18,7 +18,6 @@ import org.example.lk.ijse.BO.custom.RegistrationBO;
 import org.example.lk.ijse.DTO.TM.PaymentTM;
 import org.example.lk.ijse.Entity.Payment;
 import org.example.lk.ijse.Entity.Registration;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -114,8 +113,10 @@ public class PaymentController implements Initializable {
 
     @FXML
     private Text topic;
+
     RegistrationBO registrationBO = (RegistrationBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.REGISTRATION);
     PaymentBO paymentBO = (PaymentBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.PAYMENT);
+
 
     @FXML
     void PaymentOnAction(ActionEvent event) throws SQLException, IOException {
@@ -128,12 +129,10 @@ public class PaymentController implements Initializable {
             double payment = Double.parseDouble(Paymenttxt.getText());
             double duepayment = dueAmount - payment;
             Amountduetxt.setText(String.valueOf(duepayment));
-
-
             if (duepayment == 0) {
                 Paidtxt.setText("Paid !");
             } else {
-                Paidtxt.setText("");
+               Paidtxt.setText("");
             }
 
             LocalDate date = datecombo.getValue();
@@ -142,14 +141,21 @@ public class PaymentController implements Initializable {
                 return;
             }
 
+            double amount = dueAmount + payment;
+
+            System.out.printf(String.valueOf("testtttttttttt" +
+                    "" +amount));
+
             Registration registrationEntity = registrationBO.serachbyRID(registrationId);
-            org.example.lk.ijse.Entity.Payment payment1 = new org.example.lk.ijse.Entity.Payment(null, date, payment, dueAmount, studentFName, courseFullName, duepayment, registrationEntity);
+            Registration registrationEntity1 = new Registration(registrationId,amount);
+            org.example.lk.ijse.Entity.Payment payment1 = new org.example.lk.ijse.Entity.Payment(registrationId, date, payment, dueAmount, studentFName, courseFullName, duepayment, registrationEntity);
 
             // Save payment
-            boolean isSaved = paymentBO.savePayment(payment1);
+            boolean isSaved = paymentBO.savePayment(payment1 , registrationEntity1);
 
             if (!isSaved) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Payment saved successfully!").show();
+                loadallvalues();
             } else {
                 new Alert(Alert.AlertType.ERROR, "Failed to save payment.").show();
             }
@@ -274,8 +280,6 @@ public class PaymentController implements Initializable {
         colPayment.setCellValueFactory(new PropertyValueFactory<>("payment"));
         coldueAmonut.setCellValueFactory(new PropertyValueFactory<>("dueAmount"));
         deleteBtn.setCellValueFactory(new PropertyValueFactory<PaymentTM, JFXButton>("Delete"));
-
-
     }
 
     private void getRegistationIDS() {
