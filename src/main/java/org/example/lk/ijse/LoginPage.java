@@ -81,10 +81,5 @@ public class LoginPage extends UserService{
         role1.setText("");
     }
 
-    private User findUserByUsername(String username) {
-        UserDaoImpl userDao = new UserDaoImpl();
-        return userDao.getUserByUsername(username);
-    }
-
 
 }
