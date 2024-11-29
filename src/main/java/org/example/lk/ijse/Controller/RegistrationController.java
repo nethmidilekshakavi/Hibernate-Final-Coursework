@@ -1,5 +1,4 @@
 package org.example.lk.ijse.Controller;
-
 import com.jfoenix.controls.JFXButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,13 +14,10 @@ import javafx.scene.text.Text;
 import org.example.lk.ijse.BO.BOFactory;
 import org.example.lk.ijse.BO.custom.RegistrationBO;
 import org.example.lk.ijse.DTO.TM.RegistrationTM;
-import org.example.lk.ijse.DTO.TM.StudentTM;
 import org.example.lk.ijse.Entity.Course;
 import org.example.lk.ijse.Entity.Payment;
 import org.example.lk.ijse.Entity.Registration;
 import org.example.lk.ijse.Entity.Student;
-import org.springframework.security.core.parameters.P;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;

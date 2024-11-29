@@ -76,7 +76,7 @@ public class PaymentBOImpl implements PaymentBO {
             );
 
             if (isRegistrationUpdated) {
-                transaction.commit();
+                //transaction.commit();
                 return true;
             } else {
                 transaction.rollback();

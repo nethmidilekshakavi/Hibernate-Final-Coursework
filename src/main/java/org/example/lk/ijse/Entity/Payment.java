@@ -28,7 +28,11 @@ public class Payment {
     @JoinColumn(name = "registration_id", nullable = false)
     private Registration registration;
 
-
-
+    @PrePersist
+    public void adjustRegistrationDueAmount() {
+        if (registration != null && payment != null) {
+            registration.updateDueAmount(payment);
+        }
+    }
 
 }

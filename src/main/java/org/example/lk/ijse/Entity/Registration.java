@@ -48,6 +48,11 @@ public class Registration {
         this.id = id;
         this.dueAmount = dueAmount;
     }
+    public void updateDueAmount(Double paymentAmount) {
+        if (dueAmount != null) {
+            this.dueAmount -= paymentAmount;
+        }
+    }
 }
 
 

@@ -161,7 +161,6 @@ public class RegistrationBOImpl implements RegistrationBO {
         try (Session session = FactoryConfiguration.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
 
-            // HQL query to update dueAmount
             String hql = "UPDATE Registration r SET r.dueAmount = :dueAmount WHERE r.id = :id";
 
             Query query = session.createQuery(hql);
@@ -176,6 +175,7 @@ public class RegistrationBOImpl implements RegistrationBO {
             } else {
                 transaction.rollback();
                 return false;
+
             }
         } catch (Exception e) {
             e.printStackTrace();
