@@ -20,5 +20,4 @@ public interface RegistrationDao extends CrudDao<Registration> {
 
     Registration searchByRID(Long id);
 
-    boolean updateAmount(Registration registration, Session session);
 }

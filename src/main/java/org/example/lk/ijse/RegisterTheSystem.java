@@ -1,4 +1,5 @@
 package org.example.lk.ijse;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -6,18 +7,20 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.example.lk.ijse.DAO.impl.UserDaoImpl;
 import org.example.lk.ijse.Entity.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import javax.imageio.IIOParam;
+
 import java.io.IOException;
 
 public class RegisterTheSystem extends UserService {
 
     @FXML
-    private Text SignUp;
+    private Text SignUp1;
 
     @FXML
     private Button login;
@@ -29,90 +32,62 @@ public class RegisterTheSystem extends UserService {
     private TextField loginpw;
 
     @FXML
-    private TextField passwordtxt1;
+    private AnchorPane page1;
 
     @FXML
-    private TextField role1;
+    private ImageView pic1, pic2, pic3;
 
     @FXML
-    private Button signUpbtn;
+    private Button singupbtnOpen;
 
     @FXML
-    private TextField usernametxt1;
-    private IIOParam loader;
-
+    private Text topic;
 
     public static String userRole = "";
 
-
-    @FXML
-    void SignUpOnAction(ActionEvent event) {
-        String username = usernametxt1.getText();
-        String password = passwordtxt1.getText();
-        String role = role1.getText();
-
-        User user = new User();
-        user.setUsername(username);
-        user.setPassword(password);
-        user.setRole(role);
-
-        RegisterTheSystem registerTheSystem = new RegisterTheSystem();
-        registerTheSystem.registerUser(username,password,role);
-
-        if (role != null && role.equals("admin")) {
-            new Alert(Alert.AlertType.CONFIRMATION, "Welcome Admin!  " + username).show();
-            userRole = "admin";
-        } else if (role != null && role.equals("coordinator")) {
-            userRole = "coordinator";
-            new Alert(Alert.AlertType.CONFIRMATION, "Welcome coordinator!  " + username).show();
-        } else {
-            new Alert(Alert.AlertType.ERROR, "Invalid role!").show();
-        }
-
-        clearetextField();
-    }
-
-
     @FXML
     void loginOnAction(ActionEvent event) throws IOException {
-        User user = findUserByUsername(loginUsername.getText());
+        String username = loginUsername.getText();
+        String password = loginpw.getText();
 
-        if (user != null && new BCryptPasswordEncoder().matches(loginpw.getText(), user.getPassword())) {
-            // Check role and display a message
-            if (user.getRole().equals("admin") || user.getRole().equals("coordinator")) {
-                new Alert(Alert.AlertType.CONFIRMATION, "Welcome back, " + user.getRole() + " " + user.getUsername() + "!").show();
+        User user = findUserByUsername(username);
+
+        if (user != null && new BCryptPasswordEncoder().matches(password, user.getPassword())) {
+            // Check role and display appropriate message
+            if ("admin".equals(user.getRole()) || "coordinator".equals(user.getRole())) {
+                new Alert(Alert.AlertType.CONFIRMATION, "Welcome back, " + user.getRole() + " " + username + "!").showAndWait();
                 userRole = user.getRole();
 
+                // Load dashboard
                 Stage stage = new Stage();
                 stage.setScene(new Scene(FXMLLoader.load(this.getClass().getResource("/View/MainForm.fxml"))));
                 stage.show();
                 stage.centerOnScreen();
                 stage.setTitle("Dashboard");
+
+                // Close the current stage
+                Stage currentStage = (Stage) login.getScene().getWindow();
+                currentStage.close();
             } else {
                 new Alert(Alert.AlertType.ERROR, "You don't have the required permissions!").show();
             }
         } else {
-            new Alert(Alert.AlertType.ERROR, "Oops! Invalid username or password.").show();
-            System.out.println("Oops! Invalid username or password.");
+            new Alert(Alert.AlertType.ERROR, "Invalid username or password!").show();
         }
-
-        Stage currentStage = (Stage) login.getScene().getWindow();
-        currentStage.close();
     }
 
+    @FXML
+    void singuppageOpenBtn(ActionEvent event) throws IOException {
+        // Load the signup page
+        Stage stage = new Stage();
+        stage.setScene(new Scene(FXMLLoader.load(this.getClass().getResource("/View/LoginPage.fxml"))));
+        stage.show();
+        stage.centerOnScreen();
+        stage.setTitle("Sign Up");
+    }
 
     private User findUserByUsername(String username) {
         UserDaoImpl userDao = new UserDaoImpl();
         return userDao.getUserByUsername(username);
     }
-
-
-    public void clearetextField(){
-        usernametxt1.setText("");
-        passwordtxt1.setText("");
-        role1.setText("");
-    }
-
-
-
 }

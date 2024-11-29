@@ -105,20 +105,6 @@ public class RegistrationDaoImpl implements RegistrationDao {
         return registration;
     }
 
-    @Override
-    public boolean updateAmount(Registration registration, Session session) {
-        try {
-            String hql = "UPDATE Registration r SET r.dueAmount = :dueAmount WHERE r.id = :regId";
-            Query query = session.createQuery(hql);
-            query.setParameter("dueAmount", registration.getDueAmount());
-            query.setParameter("regId", registration.getId());
-            int affectedRows = query.executeUpdate();
-            return affectedRows > 0;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
 
 
 

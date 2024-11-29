@@ -63,7 +63,7 @@ public class PaymentBOImpl implements PaymentBO {
 
             if (isPaymentSaved) {
                 transaction.rollback();
-                new Alert(Alert.AlertType.ERROR, "Failed to save the payment!").show();
+                new Alert(Alert.AlertType.CONFIRMATION, "Susses to save the payment!").show();
                 return false;
             }
 
@@ -75,8 +75,8 @@ public class PaymentBOImpl implements PaymentBO {
                     new Registration(registration.getId(), newDueAmount)
             );
 
-            if (isRegistrationUpdated) {
-                //transaction.commit();
+            if (!isRegistrationUpdated) {
+                transaction.commit();
                 return true;
             } else {
                 transaction.rollback();

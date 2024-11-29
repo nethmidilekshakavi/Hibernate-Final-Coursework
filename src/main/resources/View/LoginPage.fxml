@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="566.0" prefWidth="828.0" style="-fx-background-color: #10375C;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.lk.ijse.LoginPage">
+   <children>
+      <AnchorPane layoutX="188.0" layoutY="66.0" prefHeight="422.0" prefWidth="427.0" style="-fx-background-radius: 20; -fx-background-color: white;">
+         <children>
+            <Text fx:id="SignUp2" fill="#1b1a1a" layoutX="166.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SIGN UP" wrappingWidth="96.0">
+               <font>
+                  <Font name="System Bold" size="23.0" />
+               </font>
+            </Text>
+            <Button fx:id="signUpbtn1" layoutX="97.0" layoutY="338.0" mnemonicParsing="false" onAction="#SignUpOnAction" prefHeight="26.0" prefWidth="230.0" style="-fx-background-color: #006BFF;" text="Sign In" textFill="#fcfafa">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <TextField fx:id="usernametxt1" layoutX="57.0" layoutY="135.0" opacity="0.79" prefHeight="26.0" prefWidth="314.0" promptText="Username" />
+            <TextField fx:id="passwordtxt1" layoutX="57.0" layoutY="195.0" opacity="0.79" prefHeight="26.0" prefWidth="314.0" promptText="password" />
+            <TextField fx:id="role1" layoutX="57.0" layoutY="261.0" opacity="0.79" prefHeight="26.0" prefWidth="314.0" promptText="Role" />
+         </children>
+         <effect>
+            <DropShadow />
+         </effect>
+      </AnchorPane>
+      <ImageView fitHeight="314.0" fitWidth="230.0" layoutX="561.0" layoutY="33.0">
+         <image>
+            <Image url="@../Assert/d079c92fa918cf9f4387f03e22f719da-removebg-preview.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="pic1" fitHeight="296.0" fitWidth="230.0" layoutX="10.0" layoutY="270.0">
+         <image>
+            <Image url="@../Assert/d602abf1944cf1f3752be2773fc4b8a9-removebg-preview.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

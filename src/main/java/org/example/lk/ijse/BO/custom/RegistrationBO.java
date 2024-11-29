@@ -47,4 +47,8 @@ public interface RegistrationBO extends SuperBo {
     Registration serachbyRID(Long rid) throws SQLException, ClassNotFoundException;
 
     boolean updateRegistration(Registration registration) throws SQLException;
+
+/*
+    boolean updateRegistration(Registration registration) throws SQLException;
+*/
 }
